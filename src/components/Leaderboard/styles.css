@@ -1,0 +1,75 @@
+
+.card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+.leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.leaderboard li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #292929;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.leaderboard li:hover {
+  transform: translateY(-2px);
+}
+
+.leaderboard .rank {
+  background-color: #444;
+  color: #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.leaderboard .user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* reduce from 12px to 8px or smaller */
+}
+
+
+.leaderboard .name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+.leaderboard .score {
+  background-color: #6b21a8;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+

@@ -5,19 +5,45 @@ import PerformanceMeter from "../components/Charts/PerformanceMeter";
 import MiniGames from "../components/Gamification/MiniGames";
 import Badges from "../components/Dashboard/Badges";
 import Leaderboard from "../components/Leaderboard/Leaderboard";
+import "./styles.css";
 
 const Dashboard = () => {
   return (
-    <main className="min-h-screen bg-gray-950 text-white p-6">
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Streak />
+    <main className="dashboard">
+      <div className="card">
         <ProgressChart />
+        <div className="card-title">Progress Chart</div>
+      </div>
+
+      <div className="card">
         <XPChart />
+        <div className="card-title"> XP Breakdown</div>
+      </div>
+
+      <div className="card">
         <PerformanceMeter />
+        <div className="card-title"> Performance Meter</div>
+      </div>
+
+      <div className="card">
         <MiniGames />
+        <div className="card-title"> Mini Games</div>
+      </div>
+
+      <div className="card">
+        <Streak />
+        <div className="card-title">Streak</div>
+      </div>
+
+      <div className="card">
         <Badges />
+        <div className="card-title">Achievement Badges</div>
+      </div>
+
+      <div className="card leaderboard-full">
         <Leaderboard />
-      </section>
+        <div className="card-title">Leaderboard</div>
+      </div>
     </main>
   );
 };

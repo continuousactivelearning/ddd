@@ -1,4 +1,4 @@
-const badges = ['Newbie', 'Task Master', 'Productivity Pro', 'Legend', 'Dominator'];
+const badges = ['Newbie', 'Productivity Pro', 'Legend', ];
 
 const Badges = () => (
   <div className="flex gap-2 flex-wrap">

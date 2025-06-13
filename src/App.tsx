@@ -1,15 +1,17 @@
-
+import Sidebar from './components/sidebar/sidebar';
 import Dashboard from './pages/Dashboard';
 
+import './App.css';
 
-function App() {
-  
-
+const App = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <Dashboard />
+    <div className="app-container">
+      <Sidebar />
+      <div className="main-content">
+        <Dashboard />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
