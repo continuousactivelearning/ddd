@@ -11,7 +11,7 @@ import MeetResults from './pages/student/MeetResults';
 import OnlineMeet from './pages/student/OnlineMeet';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-// Protected Route Component
+
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
