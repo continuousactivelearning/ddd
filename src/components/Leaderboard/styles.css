@@ -73,3 +73,15 @@
 }
 
 
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #121212;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

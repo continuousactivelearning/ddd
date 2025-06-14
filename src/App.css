@@ -27,7 +27,7 @@ html,
   left: 0;
   width: 240px;            /* Adjust as needed */
   height: 100vh;
-  background-color: #0e0e0e;
+  background: linear-gradient(135deg, #98d4ce, #1c1c2e);
   color: white;
   display: flex;
   flex-direction: column;

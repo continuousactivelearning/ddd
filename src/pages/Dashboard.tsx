@@ -1,6 +1,6 @@
 import Streak from "../components/Dashboard/Streak";
 import ProgressChart from "../components/Charts/ProgressChart";
-import XPChart from "../components/Charts/XPChart";
+import ACChart from "../components/Charts/XPChart";
 import PerformanceMeter from "../components/Charts/PerformanceMeter";
 import MiniGames from "../components/Gamification/MiniGames";
 import Badges from "../components/Dashboard/Badges";
@@ -12,17 +12,17 @@ const Dashboard = () => {
     <main className="dashboard">
       <div className="card">
         <ProgressChart />
-        <div className="card-title">Progress Chart</div>
+        <div className="card-title"> Month Progress Chart</div>
       </div>
 
       <div className="card">
-        <XPChart />
-        <div className="card-title"> XP Breakdown</div>
+        <ACChart />
+        <div className="card-title"> Weekly Accuracy Breakdown</div>
       </div>
 
       <div className="card">
         <PerformanceMeter />
-        <div className="card-title"> Performance Meter</div>
+        <div className="card-title"> Today's Performance Meter</div>
       </div>
 
       <div className="card">

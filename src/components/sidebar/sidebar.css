@@ -30,9 +30,9 @@
 }
 
 .sidebar .menu li:hover {
-  background-color: #1f1f2f;
+  background-color: #e1e9ea;
   transform: scale(1.02);
-  color: #ffd700; /* or a neon glow color */
+  color: #d06262; /* or a neon glow color */
 }
 
 .user-info {
