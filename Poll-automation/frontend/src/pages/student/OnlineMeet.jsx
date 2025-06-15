@@ -1,84 +1,85 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Paper,
-  Typography,
-  Button,
-  IconButton,
-  Grid,
-  Card,
-  CardContent,
-  useTheme,
-  CircularProgress
-} from '@mui/material';
-import {
-  Mic,
-  MicOff,
-  Videocam,
-  VideocamOff,
-  ScreenShare,
-  StopScreenShare,
-  Chat,
-  People,
-  MoreVert
-} from '@mui/icons-material';
-import { motion } from 'framer-motion';
-import DashboardHeader from '../../components/DashboardHeader';
+import React, { useState, useEffect, useRef } from 'react';
+import { Video, Mic, MicOff, VideoOff, PhoneOff, MessageSquare, Users, Settings, Share } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
+import './OnlineMeet.css';
 
 const OnlineMeet = () => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-  const [isCameraOn, setIsCameraOn] = useState(true);
-  const [isMicOn, setIsMicOn] = useState(true);
+  const { user } = useAuth();
+  const [isMuted, setIsMuted] = useState(false);
+  const [isVideoOff, setIsVideoOff] = useState(false);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [showParticipants, setShowParticipants] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const videoRef = useRef(null);
   const streamRef = useRef(null);
+  const screenShareVideoRef = useRef(null);
+  const [screenShareStream, setScreenShareStream] = useState(null);
+
+  // Mock participants data
+  const participants = [
+    { id: 1, name: 'John Doe', role: 'Teacher', isSpeaking: true },
+    { id: 2, name: 'Alice Smith', role: 'Student', isSpeaking: false },
+    { id: 3, name: 'Bob Johnson', role: 'Student', isSpeaking: false },
+    { id: 4, name: 'Emma Wilson', role: 'Student', isSpeaking: false },
+    { id: 5, name: 'Michael Brown', role: 'Student', isSpeaking: false },
+  ];
 
   useEffect(() => {
-    const initializeMedia = async () => {
+    // Get user's video stream
+    const setupVideo = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: true,
           audio: true
         });
-        streamRef.current = stream;
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
-        setIsLoading(false);
+        streamRef.current = stream;
       } catch (error) {
         console.error('Error accessing media devices:', error);
-        setIsLoading(false);
       }
     };
 
-    initializeMedia();
+    setupVideo();
 
+    // Cleanup
     return () => {
       if (streamRef.current) {
         streamRef.current.getTracks().forEach(track => track.stop());
       }
-    };
-  }, []);
-
-  const toggleCamera = () => {
-    if (streamRef.current) {
-      const videoTrack = streamRef.current.getVideoTracks()[0];
-      if (videoTrack) {
-        videoTrack.enabled = !videoTrack.enabled;
-        setIsCameraOn(videoTrack.enabled);
+      if (screenShareStream) {
+        screenShareStream.getTracks().forEach(track => track.stop());
       }
+    };
+  }, [screenShareStream]);
+
+  const handleLeaveCall = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      }
+    if (screenShareStream) {
+      screenShareStream.getTracks().forEach(track => track.stop());
     }
+    window.history.back();
   };
 
-  const toggleMic = () => {
+  const toggleMute = () => {
     if (streamRef.current) {
       const audioTrack = streamRef.current.getAudioTracks()[0];
       if (audioTrack) {
         audioTrack.enabled = !audioTrack.enabled;
-        setIsMicOn(audioTrack.enabled);
+        setIsMuted(!isMuted);
+      }
+    }
+  };
+
+  const toggleVideo = () => {
+    if (streamRef.current) {
+      const videoTrack = streamRef.current.getVideoTracks()[0];
+      if (videoTrack) {
+        videoTrack.enabled = !videoTrack.enabled;
+        setIsVideoOff(!isVideoOff);
       }
     }
   };
@@ -86,152 +87,160 @@ const OnlineMeet = () => {
   const toggleScreenShare = async () => {
     try {
       if (!isScreenSharing) {
-        const screenStream = await navigator.mediaDevices.getDisplayMedia({
-          video: true
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          video: {
+            cursor: 'always'
+          },
+          audio: false
         });
-        if (videoRef.current) {
-          videoRef.current.srcObject = screenStream;
-        }
+        setScreenShareStream(stream);
         setIsScreenSharing(true);
+
+        // Handle screen share stop
+        stream.getVideoTracks()[0].onended = () => {
+          setIsScreenSharing(false);
+          setScreenShareStream(null);
+        };
       } else {
-        if (streamRef.current) {
-          videoRef.current.srcObject = streamRef.current;
+        if (screenShareStream) {
+          screenShareStream.getTracks().forEach(track => track.stop());
         }
+        setScreenShareStream(null);
         setIsScreenSharing(false);
       }
     } catch (error) {
       console.error('Error sharing screen:', error);
+      setScreenShareStream(null);
+      setIsScreenSharing(false);
     }
   };
 
-  if (isLoading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
+  useEffect(() => {
+    if (screenShareVideoRef.current && screenShareStream) {
+      screenShareVideoRef.current.srcObject = screenShareStream;
+    }
+  }, [screenShareStream]);
 
   return (
-    <div className="dashboard-container">
-      <DashboardHeader />
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h4" sx={{ mb: 3, color: theme.palette.text.primary }}>
-          Online Meeting
-        </Typography>
+    <div className="online-meet-container">
+      <div className="meet-header">
+        <div className="meet-info">
+          <h2>Class Meeting</h2>
+          <span className="meet-time">00:45:30</span>
+        </div>
+        <div className="meet-controls">
+          <button className="control-button" onClick={toggleMute}>
+            {isMuted ? <MicOff /> : <Mic />}
+          </button>
+          <button className="control-button" onClick={toggleVideo}>
+            {isVideoOff ? <VideoOff /> : <Video />}
+          </button>
+          <button 
+            className={`control-button ${isScreenSharing ? 'active' : ''}`} 
+            onClick={toggleScreenShare}
+          >
+            <Share />
+          </button>
+          <button className="control-button" onClick={() => setShowParticipants(!showParticipants)}>
+            <Users />
+          </button>
+          <button className="control-button" onClick={() => setShowChat(!showChat)}>
+            <MessageSquare />
+          </button>
+          <button className="control-button" onClick={() => {}}>
+            <Settings />
+          </button>
+          <button className="leave-button" onClick={handleLeaveCall}>
+            <PhoneOff />
+            Leave
+          </button>
+        </div>
+      </div>
 
-        <Grid container spacing={3}>
-          {/* Main Video Area */}
-          <Grid item xs={12} md={9}>
-            <Paper
-              elevation={3}
-              sx={{
-                p: 2,
-                borderRadius: 2,
-                height: '70vh',
-                position: 'relative',
-                overflow: 'hidden',
-                background: '#000'
-              }}
-            >
+      <div className="meet-content">
+        <div className="video-grid">
+          {isScreenSharing && (
+            <div className="video-tile screen-share">
               <video
-                ref={videoRef}
+                ref={screenShareVideoRef}
                 autoPlay
                 playsInline
-                muted
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
+                className="screen-share-video"
               />
-            </Paper>
-          </Grid>
+            </div>
+          )}
+          {/* User's own video */}
+          <div className="video-tile self-video">
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted
+              className="video-element"
+            />
+            <div className="participant-info">
+              <span className="participant-name">You</span>
+              <span className="participant-role">Student</span>
+            </div>
+          </div>
 
-          {/* Controls and Participants */}
-          <Grid item xs={12} md={3}>
-            <Card sx={{ mb: 2, borderRadius: 2 }}>
-              <CardContent>
-                <Typography variant="h6" sx={{ mb: 2 }}>
-                  Participants
-                </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <People sx={{ mr: 1 }} />
-                  <Typography>You</Typography>
-                </Box>
-              </CardContent>
-            </Card>
+          {/* Other participants */}
+          {participants.map((participant) => (
+            <div key={participant.id} className={`video-tile ${participant.isSpeaking ? 'speaking' : ''}`}>
+              <div className="video-placeholder">
+                <div className="participant-info">
+                  <span className="participant-name">{participant.name}</span>
+                  <span className="participant-role">{participant.role}</span>
+                </div>
+                {participant.isSpeaking && <div className="speaking-indicator" />}
+              </div>
+            </div>
+          ))}
+        </div>
 
-            <Card sx={{ borderRadius: 2 }}>
-              <CardContent>
-                <Typography variant="h6" sx={{ mb: 2 }}>
-                  Controls
-                </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
-                  <IconButton
-                    onClick={toggleCamera}
-                    sx={{
-                      bgcolor: isCameraOn ? theme.palette.primary.main : theme.palette.error.main,
-                      color: 'white',
-                      '&:hover': {
-                        bgcolor: isCameraOn ? theme.palette.primary.dark : theme.palette.error.dark
-                      }
-                    }}
-                  >
-                    {isCameraOn ? <Videocam /> : <VideocamOff />}
-                  </IconButton>
-                  <IconButton
-                    onClick={toggleMic}
-                    sx={{
-                      bgcolor: isMicOn ? theme.palette.primary.main : theme.palette.error.main,
-                      color: 'white',
-                      '&:hover': {
-                        bgcolor: isMicOn ? theme.palette.primary.dark : theme.palette.error.dark
-                      }
-                    }}
-                  >
-                    {isMicOn ? <Mic /> : <MicOff />}
-                  </IconButton>
-                  <IconButton
-                    onClick={toggleScreenShare}
-                    sx={{
-                      bgcolor: isScreenSharing ? theme.palette.success.main : theme.palette.primary.main,
-                      color: 'white',
-                      '&:hover': {
-                        bgcolor: isScreenSharing ? theme.palette.success.dark : theme.palette.primary.dark
-                      }
-                    }}
-                  >
-                    {isScreenSharing ? <StopScreenShare /> : <ScreenShare />}
-                  </IconButton>
-                  <IconButton
-                    sx={{
-                      bgcolor: theme.palette.primary.main,
-                      color: 'white',
-                      '&:hover': {
-                        bgcolor: theme.palette.primary.dark
-                      }
-                    }}
-                  >
-                    <Chat />
-                  </IconButton>
-                  <IconButton
-                    sx={{
-                      bgcolor: theme.palette.primary.main,
-                      color: 'white',
-                      '&:hover': {
-                        bgcolor: theme.palette.primary.dark
-                      }
-                    }}
-                  >
-                    <MoreVert />
-                  </IconButton>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
+        {showParticipants && (
+          <div className="participants-sidebar">
+            <h3>Participants ({participants.length + 1})</h3>
+            <div className="participants-list">
+              <div className="participant-item">
+                <div className="participant-avatar">
+                  {user?.name?.charAt(0) || 'Y'}
+                </div>
+                <div className="participant-details">
+                  <span className="participant-name">You</span>
+                  <span className="participant-role">Student</span>
+                </div>
+                {!isMuted && <div className="speaking-dot" />}
+              </div>
+              {participants.map((participant) => (
+                <div key={participant.id} className="participant-item">
+                  <div className="participant-avatar">
+                    {participant.name.charAt(0)}
+                  </div>
+                  <div className="participant-details">
+                    <span className="participant-name">{participant.name}</span>
+                    <span className="participant-role">{participant.role}</span>
+                  </div>
+                  {participant.isSpeaking && <div className="speaking-dot" />}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {showChat && (
+          <div className="chat-sidebar">
+            <h3>Chat</h3>
+            <div className="chat-messages">
+              {/* Chat messages would go here */}
+            </div>
+            <div className="chat-input">
+              <input type="text" placeholder="Type a message..." />
+              <button>Send</button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

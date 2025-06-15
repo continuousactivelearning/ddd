@@ -1,12 +1,12 @@
-# Dopamine Dashboard
+# Poll Automation
 
-A modern web application for tracking and visualizing dopamine-related activities and habits. This project consists of a React-based frontend and a Node.js/Express backend.
+A modern web application for creating, managing, and participating in polls. This project features a React-based frontend and a Node.js/Express backend.
 
 ## 🚀 Features
 
-- Real-time activity tracking
-- Interactive data visualization
-- User authentication with Google OAuth
+- Create and manage polls
+- Real-time poll updates
+- User authentication
 - Responsive and modern UI
 - Secure session management
 - MongoDB database integration
@@ -20,8 +20,6 @@ A modern web application for tracking and visualizing dopamine-related activitie
 - TailwindCSS
 - React Query
 - Socket.IO Client
-- Recharts & Nivo for data visualization
-- Framer Motion for animations
 
 ### Backend
 - Node.js
@@ -35,8 +33,8 @@ A modern web application for tracking and visualizing dopamine-related activitie
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dopamine-dashboard.git
-cd dopamine-dashboard
+git clone https://github.com/yourusername/poll-automation.git
+cd poll-automation
 ```
 
 2. Install frontend dependencies:
@@ -54,9 +52,8 @@ npm install
 4. Create a `.env` file in the backend directory with the following variables:
 ```
 MONGODB_URI=your_mongodb_uri
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
 JWT_SECRET=your_jwt_secret
+PORT=3000
 ```
 
 ## 🚀 Running the Application
@@ -95,20 +92,10 @@ The application will be available at `http://localhost:5173`
 
 ## 🔐 Authentication
 
-The application uses Google OAuth 2.0 for authentication. Make sure to:
-1. Set up a Google Cloud Project
-2. Configure OAuth 2.0 credentials
-3. Add authorized redirect URIs
-4. Update the environment variables with your credentials
-
-## 📊 Data Visualization
-
-The dashboard uses multiple visualization libraries:
-- Recharts for basic charts
-- Nivo for advanced visualizations
-- Custom components for specific data representations
-
-
+The application uses JWT-based authentication. Make sure to:
+1. Set up your JWT secret in the environment variables
+2. Configure proper authentication middleware
+3. Implement secure session management
 
 ## 📄 License
 
