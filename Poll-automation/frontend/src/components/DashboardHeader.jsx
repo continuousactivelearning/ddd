@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { LogOut, Trophy, Zap, ChevronDown, ChevronUp } from 'lucide-react';
+import './DashboardHeader.css';
 
 const DashboardHeader = () => {
   const { user, logout } = useAuth();

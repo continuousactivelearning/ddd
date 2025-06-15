@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import DashboardHeader from '../../components/DashboardHeader';
-import { Award, Calendar, CheckCircle, Clock, Users, BarChart2, Play, Trophy, Target, Plus, TrendingUp, Bookmark } from 'lucide-react';
+import { Award, Calendar, CheckCircle, Clock, Users, BarChart2, Play, Trophy, Target, Plus, TrendingUp, Bookmark, Video } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import './Dashboard.css';
 import axios from 'axios';
@@ -465,6 +465,10 @@ const Dashboard = () => {
     }
   ];
 
+  const handleJoinOnlineMeet = () => {
+    navigate('/student/online-meet');
+  };
+
   if (loading) {
     return (
       <div className="dashboard-container">
@@ -480,10 +484,10 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <DashboardHeader />
       <div className="dashboard-wrapper">
-        {/* Header */}
-        <div className="dashboard-header">
+        {/* Quick Actions */}
+        <div className="quick-actions">
           <h1 className="dashboard-title">Student Dashboard</h1>
-          <p className="dashboard-subtitle"></p>
+          
         </div>
 
         {/* Cards Grid */}
@@ -564,9 +568,11 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        
 
         {/* Recent Activity */}
         <div className="recent-activity">
+          
           <h2>Recent Activity</h2>
           <div className="activity-list">
             {stats?.recentActivity.map((activity, index) => (
@@ -747,6 +753,24 @@ const Dashboard = () => {
           )}
         </section>
       </div>
+      <div className="meet-info-card">
+            <div className="meet-info-content">
+              <div className="meet-status">
+                <span className="status-dot"></span>
+                <span className="status-text">Live Class in Progress</span>
+              </div>
+              <h3 className="meet-title">Advanced Mathematics</h3>
+              <p className="meet-details">with Prof. John Doe • 45 students</p>
+            </div>
+            <button 
+              className="join-meet-button"
+              onClick={handleJoinOnlineMeet}
+            >
+              <Video className="meet-icon" />
+              Join Now
+            </button>
+          </div>
+     
     </div>
   );
 };
