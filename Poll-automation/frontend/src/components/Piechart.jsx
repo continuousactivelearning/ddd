@@ -9,6 +9,7 @@ import {
 } from "recharts";
 
 function PieChartComponent() {
+
   let n=22;
   let handleanswerClick=()=>{
     let new_data=[...data];
