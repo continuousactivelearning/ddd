@@ -22,11 +22,21 @@ const ProtectedRoute = memo(({ children, allowedRoles }) => {
   if (loading) {
     return (
       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
-        bgcolor={theme.palette.background.default}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100vh',
+          bgcolor: theme.palette.background.default,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 9999,
+          opacity: 0,
+          animation: 'fadeIn 0.3s ease-in forwards'
+        }}
       >
         <CircularProgress />
       </Box>
@@ -41,68 +51,97 @@ const ProtectedRoute = memo(({ children, allowedRoles }) => {
     return <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />;
   }
 
-  return <Layout>{children}</Layout>;
+  return (
+    <Box
+      sx={{
+        opacity: 0,
+        animation: 'fadeIn 0.3s ease-in forwards'
+      }}
+    >
+      {children}
+    </Box>
+  );
 });
 
 ProtectedRoute.displayName = 'ProtectedRoute';
+
+// Add this at the top of the file, after the imports
+const globalStyles = `
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+// Add this before the AppRoutes component
+const GlobalStyles = () => {
+  return <style>{globalStyles}</style>;
+};
 
 const AppRoutes = memo(() => {
   const { user } = useAuth();
 
   return (
-    <Routes>
-      <Route 
-        path="/login" 
-        element={
-          user ? (
-            <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />
-          ) : (
-            <Login />
-          )
-        } 
-      />
-      <Route 
-        path="/student" 
-        element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <Dashboard />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/student/live/:meetId" 
-        element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <Live />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/student/quiz-complete" 
-        element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <QuizComplete />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/admin" 
-        element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <AdminDashboard />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/admin/meet/:meetId" 
-        element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <AdminMeet />
-          </ProtectedRoute>
-        } 
-      />
-      <Route path="/" element={<Navigate to="/login" replace />} />
-    </Routes>
+    <>
+      <GlobalStyles />
+      <Routes>
+        <Route 
+          path="/login" 
+          element={
+            user ? (
+              <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />
+            ) : (
+              <Login />
+            )
+          } 
+        />
+        <Route 
+          path="/student" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/student/live/:meetId" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <Live />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/student/quiz-complete" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <QuizComplete />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/meet/:meetId" 
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminMeet />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </>
   );
 });
 

@@ -107,6 +107,25 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+  useEffect(() => {
+    const initializeDashboard = async () => {
+      try {
+        await fetchUserStats();
+        await fetchMeets();
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      initializeDashboard();
+    }
+  }, [isInitialRender]);
 
   // Function to format time for display
   const formatTime = (seconds) => {
@@ -471,306 +490,313 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="dashboard-container">
-        <div className="loading-spinner">
-          <CircularProgress />
-          <Typography variant="h6" sx={{ mt: 2 }}>Loading dashboard...</Typography>
+      <div className="dashboard-page">
+        <DashboardHeader />
+        <div className="dashboard-container">
+          <div className="dashboard-wrapper">
+            <div className="quick-actions">
+              <h1 className="dashboard-title">Student Dashboard</h1>
+            </div>
+            <div className="loading-content">
+              <CircularProgress />
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-page">
       <DashboardHeader />
-      <div className="dashboard-wrapper">
-        {/* Quick Actions */}
-        <div className="quick-actions">
-          <h1 className="dashboard-title">Student Dashboard</h1>
-          
-        </div>
+      <div className="dashboard-container">
+        <div className="dashboard-wrapper">
+          <div className="quick-actions">
+            <h1 className="dashboard-title">Student Dashboard</h1>
+          </div>
 
-        {/* Cards Grid */}
-        <div className="cards-grid">
-          {cards.map((card) => {
-            const IconComponent = card.icon;
-            return (
-              <div key={card.id} className={`card card-${card.colorClass}`}>
-                {/* Background Pattern */}
-                <div className="card-pattern">
-                  {/* Note: The inner pattern circle is handled by CSS nth-child, not a separate element here */}
-                </div>
-
-                {/* Icon */}
-                <div className={`card-icon icon-${card.colorClass}`}>
-                  <IconComponent className="icon" />
-                </div>
-
-                {/* Content */}
-                <div className="card-content">
-                  <h3 className={`card-title title-${card.colorClass}`}>{card.title}</h3>
-                  <p className="card-description">{card.description}</p>
-
-                  {/* Stats */}
-                  <div className="card-footer">
-                    <span className={`card-stats stats-${card.colorClass}`}>{card.stats}</span>
-                    {/* Arrow removed as per user request */}
+          {/* Cards Grid */}
+          <div className="cards-grid">
+            {cards.map((card) => {
+              const IconComponent = card.icon;
+              return (
+                <div key={card.id} className={`card card-${card.colorClass}`}>
+                  {/* Background Pattern */}
+                  <div className="card-pattern">
+                    {/* Note: The inner pattern circle is handled by CSS nth-child, not a separate element here */}
                   </div>
+
+                  {/* Icon */}
+                  <div className={`card-icon icon-${card.colorClass}`}>
+                    <IconComponent className="icon" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="card-content">
+                    <h3 className={`card-title title-${card.colorClass}`}>{card.title}</h3>
+                    <p className="card-description">{card.description}</p>
+
+                    {/* Stats */}
+                    <div className="card-footer">
+                      <span className={`card-stats stats-${card.colorClass}`}>{card.stats}</span>
+                      {/* Arrow removed as per user request */}
+                    </div>
+                  </div>
+
+                  {/* Hover Effect */}
+                  <div className={`card-hover-effect hover-${card.colorClass}`}></div>
                 </div>
+              );
+            })}
+          </div>
 
-                {/* Hover Effect */}
-                <div className={`card-hover-effect hover-${card.colorClass}`}></div>
+          {/* Charts Section */}
+          <div className="charts-container">
+            <div className="chart-card">
+              <h3>Weekly Progress</h3>
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer>
+                  <BarChart data={stats?.weeklyProgress}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="score" fill="#6366F1" />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
-            );
-          })}
-        </div>
+            </div>
 
-        {/* Charts Section */}
-        <div className="charts-container">
-          <div className="chart-card">
-            <h3>Weekly Progress</h3>
-            <div style={{ width: '100%', height: 300 }}>
-              <ResponsiveContainer>
-                <BarChart data={stats?.weeklyProgress}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="day" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="score" fill="#6366F1" />
-                </BarChart>
-              </ResponsiveContainer>
+            <div className="chart-card">
+              <h3>Category Breakdown</h3>
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer>
+                  <PieChart>
+                    <Pie
+                      data={stats?.categoryBreakdown}
+                      dataKey="correct"
+                      nameKey="category"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      label
+                    >
+                      {stats?.categoryBreakdown.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
-
-          <div className="chart-card">
-            <h3>Category Breakdown</h3>
-            <div style={{ width: '100%', height: 300 }}>
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    data={stats?.categoryBreakdown}
-                    dataKey="correct"
-                    nameKey="category"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={100}
-                    label
-                  >
-                    {stats?.categoryBreakdown.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
-        
-
-        {/* Recent Activity */}
-        <div className="recent-activity">
           
-          <h2>Recent Activity</h2>
-          <div className="activity-list">
-            {stats?.recentActivity.map((activity, index) => (
-              <div key={index} className="activity-item">
-                <CheckCircle size={20} className="success" />
-                <span>{activity.activity}</span>
-                <span className="time">{activity.date}</span>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Available Meets */}
-        <section className="meets-section">
-          <h2 className="section-title">
-            Available Quizzes
-            <span className="title-icon"><Bookmark size={24} /></span>
-          </h2>
-          {loading ? (
-            <div className="loading-message">Loading quizzes...</div>
-          ) : meets.length > 0 ? (
-            <div className="meets-grid">
-              {meets.map((meet, index) => {
-                console.log(meet)
-                const cardColor = colors[index % colors.length];
-                return (
-                  <motion.div
-                    key={meet._id}
-                    className="meet-card"
-                    style={{
-                      background: `linear-gradient(135deg, ${cardColor.bg} 0%, ${cardColor.bg}dd 100%)`,
-                      color: cardColor.text,
-                      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                      borderRadius: '20px',
-                      padding: '2rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      border: `1px solid ${cardColor.border}`,
-                      position: 'relative',
-                      overflow: 'hidden',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '1.25rem',
-                      height: '100%',
-                      backdropFilter: 'blur(10px)',
-                      WebkitBackdropFilter: 'blur(10px)'
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    whileHover={{ 
-                      scale: 1.02,
-                      boxShadow: '0 8px 12px rgba(0, 0, 0, 0.15)',
-                      border: `1px solid ${cardColor.accent}`
-                    }}
-                  >
-                    {/* Decorative Elements */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '-50%',
-                      right: '-50%',
-                      width: '200%',
-                      height: '200%',
-                      background: `radial-gradient(circle at center, ${cardColor.accent}15 0%, transparent 70%)`,
-                      opacity: 0.5,
-                      transform: 'rotate(-45deg)',
-                      pointerEvents: 'none'
-                    }} />
-
-                    {/* Card Header */}
-                    <div style={{ 
-                      display: 'flex', 
-                      justifyContent: 'space-between', 
-                      alignItems: 'flex-start',
-                      gap: '1rem',
-                      position: 'relative',
-                      zIndex: 1
-                    }}>
-                      <h3 style={{ 
-                        margin: 0, 
-                        fontSize: '1.5rem', 
-                        fontWeight: '700',
-                        color: cardColor.text,
-                        flex: 1,
-                        textShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                      }}>
-                        {meet.title}
-                      </h3>
-                      <span style={{
-                        background: `linear-gradient(135deg, ${cardColor.accent} 0%, ${cardColor.accent}dd 100%)`,
-                        color: '#fff',
-                        padding: '0.5rem 1rem',
-                        borderRadius: '20px',
-                        fontSize: '0.875rem',
-                        fontWeight: '600',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                      }}>
-                        {meet.duration} mins
-                      </span>
-                    </div>
-
-                    {/* Card Description */}
-                    <p style={{ 
-                      margin: 0,
-                      color: cardColor.text,
-                      opacity: 0.9,
-                      fontSize: '1rem',
-                      lineHeight: '1.6',
-                      flex: 1,
-                      position: 'relative',
-                      zIndex: 1
-                    }}>
-                      {meet.description}
-                    </p>
-
-                    {/* Card Footer */}
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginTop: 'auto',
-                      paddingTop: '1rem',
-                      borderTop: `1px solid ${cardColor.border}40`,
-                      position: 'relative',
-                      zIndex: 1
-                    }}>
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleJoinMeet(meet);
-                        }}
-                        style={{
-                          background: `linear-gradient(135deg, ${cardColor.accent} 0%, ${cardColor.accent}dd 100%)`,
-                          border: 'none',
-                          padding: '0.75rem 1.5rem',
-                          borderRadius: '12px',
-                          color: '#ffffff',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease',
-                          fontSize: '0.9rem',
-                          fontWeight: '600',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          whiteSpace: 'nowrap',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                          textShadow: '0 1px 2px rgba(0,0,0,0.1)',
-                          width: '100%',
-                          justifyContent: 'center'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-                        }}
-                      >
-                        Start Quiz
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                      </button>
-                    </div>
-                  </motion.div>
-                );
-              })}
+          {/* Recent Activity */}
+          <div className="recent-activity">
+            
+            <h2>Recent Activity</h2>
+            <div className="activity-list">
+              {stats?.recentActivity.map((activity, index) => (
+                <div key={index} className="activity-item">
+                  <CheckCircle size={20} className="success" />
+                  <span>{activity.activity}</span>
+                  <span className="time">{activity.date}</span>
+                </div>
+              ))}
             </div>
-          ) : (
-            <div className="no-meets-message">
-              <p>No quizzes available at the moment.</p>
-              {error && <p className="error-message">{error}</p>}
-              <button className="retry-button" onClick={fetchMeets}>
-                Retry
+          </div>
+
+          {/* Available Meets */}
+          <section className="meets-section">
+            <h2 className="section-title">
+              Available Quizzes
+              <span className="title-icon"><Bookmark size={24} /></span>
+            </h2>
+            {loading ? (
+              <div className="loading-message">Loading quizzes...</div>
+            ) : meets.length > 0 ? (
+              <div className="meets-grid">
+                {meets.map((meet, index) => {
+                  console.log(meet)
+                  const cardColor = colors[index % colors.length];
+                  return (
+                    <motion.div
+                      key={meet._id}
+                      className="meet-card"
+                      style={{
+                        background: `linear-gradient(135deg, ${cardColor.bg} 0%, ${cardColor.bg}dd 100%)`,
+                        color: cardColor.text,
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        borderRadius: '20px',
+                        padding: '2rem',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        border: `1px solid ${cardColor.border}`,
+                        position: 'relative',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.25rem',
+                        height: '100%',
+                        backdropFilter: 'blur(10px)',
+                        WebkitBackdropFilter: 'blur(10px)'
+                      }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      whileHover={{ 
+                        scale: 1.02,
+                        boxShadow: '0 8px 12px rgba(0, 0, 0, 0.15)',
+                        border: `1px solid ${cardColor.accent}`
+                      }}
+                    >
+                      {/* Decorative Elements */}
+                      <div style={{
+                        position: 'absolute',
+                        top: '-50%',
+                        right: '-50%',
+                        width: '200%',
+                        height: '200%',
+                        background: `radial-gradient(circle at center, ${cardColor.accent}15 0%, transparent 70%)`,
+                        opacity: 0.5,
+                        transform: 'rotate(-45deg)',
+                        pointerEvents: 'none'
+                      }} />
+
+                      {/* Card Header */}
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'flex-start',
+                        gap: '1rem',
+                        position: 'relative',
+                        zIndex: 1
+                      }}>
+                        <h3 style={{ 
+                          margin: 0, 
+                          fontSize: '1.5rem', 
+                          fontWeight: '700',
+                          color: cardColor.text,
+                          flex: 1,
+                          textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                        }}>
+                          {meet.title}
+                        </h3>
+                        <span style={{
+                          background: `linear-gradient(135deg, ${cardColor.accent} 0%, ${cardColor.accent}dd 100%)`,
+                          color: '#fff',
+                          padding: '0.5rem 1rem',
+                          borderRadius: '20px',
+                          fontSize: '0.875rem',
+                          fontWeight: '600',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                        }}>
+                          {meet.duration} mins
+                        </span>
+                      </div>
+
+                      {/* Card Description */}
+                      <p style={{ 
+                        margin: 0,
+                        color: cardColor.text,
+                        opacity: 0.9,
+                        fontSize: '1rem',
+                        lineHeight: '1.6',
+                        flex: 1,
+                        position: 'relative',
+                        zIndex: 1
+                      }}>
+                        {meet.description}
+                      </p>
+
+                      {/* Card Footer */}
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginTop: 'auto',
+                        paddingTop: '1rem',
+                        borderTop: `1px solid ${cardColor.border}40`,
+                        position: 'relative',
+                        zIndex: 1
+                      }}>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleJoinMeet(meet);
+                          }}
+                          style={{
+                            background: `linear-gradient(135deg, ${cardColor.accent} 0%, ${cardColor.accent}dd 100%)`,
+                            border: 'none',
+                            padding: '0.75rem 1.5rem',
+                            borderRadius: '12px',
+                            color: '#ffffff',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease',
+                            fontSize: '0.9rem',
+                            fontWeight: '600',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            whiteSpace: 'nowrap',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                            textShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                            width: '100%',
+                            justifyContent: 'center'
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                            e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0)';
+                            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                          }}
+                        >
+                          Start Quiz
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="no-meets-message">
+                <p>No quizzes available at the moment.</p>
+                {error && <p className="error-message">{error}</p>}
+                <button className="retry-button" onClick={fetchMeets}>
+                  Retry
+                </button>
+              </div>
+            )}
+          </section>
+        </div>
+        <div className="meet-info-card">
+              <div className="meet-info-content">
+                <div className="meet-status">
+                  <span className="status-dot"></span>
+                  <span className="status-text">Live Class in Progress</span>
+                </div>
+                <h3 className="meet-title">Advanced Mathematics</h3>
+                <p className="meet-details">with Prof. John Doe • 45 students</p>
+              </div>
+              <button 
+                className="join-meet-button"
+                onClick={handleJoinOnlineMeet}
+              >
+                <Video className="meet-icon" />
+                Join Now
               </button>
             </div>
-          )}
-        </section>
+       
       </div>
-      <div className="meet-info-card">
-            <div className="meet-info-content">
-              <div className="meet-status">
-                <span className="status-dot"></span>
-                <span className="status-text">Live Class in Progress</span>
-              </div>
-              <h3 className="meet-title">Advanced Mathematics</h3>
-              <p className="meet-details">with Prof. John Doe • 45 students</p>
-            </div>
-            <button 
-              className="join-meet-button"
-              onClick={handleJoinOnlineMeet}
-            >
-              <Video className="meet-icon" />
-              Join Now
-            </button>
-          </div>
-     
     </div>
   );
 };
