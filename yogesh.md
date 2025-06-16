@@ -10,3 +10,5 @@ Day 6
 Today,I have developed the custom login page
 Day 7
 Today,I make memory match making game
+Day 8
+Today, I make a quiz game
