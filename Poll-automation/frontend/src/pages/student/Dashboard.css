@@ -2,17 +2,46 @@
   min-height: 100vh;
   background: #f8fafc;
   color: #1a1c2e;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  animation: fadeIn 0.3s ease-in forwards;
 }
 
 .dashboard-container {
-  min-height: 100vh;
-  background-color: #f9fafb;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 1.5rem;
+  background-color: #f9fafb;
+  margin-top: 80px;
+  flex: 1;
+  position: relative;
+  animation: slideIn 0.3s ease-in forwards;
+}
+
+.dashboard-container.loading {
+  opacity: 0;
+  transform: none;
 }
 
 .dashboard-wrapper {
   max-width: 1280px;
   margin: 0 auto;
+  width: 100%;
+  position: relative;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+.loading-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  opacity: 0.7;
+  animation: fadeIn 0.3s ease-in forwards;
 }
 
 .dashboard-header {
@@ -32,6 +61,9 @@
   font-weight: 700;
   color: #1a1c2e;
   margin: 0;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .dashboard-subtitle {
@@ -445,10 +477,16 @@
 
 /* Loading Spinner */
 .loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  gap: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
 .loading-spinner::after {
@@ -789,11 +827,10 @@
 }
 
 .quick-actions {
-  padding: 1rem 2rem;
-  margin-top: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .meet-info-card {
@@ -807,7 +844,7 @@
   border: 1px solid #e5e7eb;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.04);
   max-width: 400px;
-  margin: 2rem 0 2rem 6rem;
+  margin: 2rem 0 2rem 0rem;
 }
 
 .meet-info-content {
@@ -897,6 +934,26 @@
   }
   100% {
     transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
     opacity: 1;
   }
 } 
