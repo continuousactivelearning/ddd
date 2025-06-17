@@ -106,7 +106,7 @@ This project is licensed under the ISC License.
 Mande.Dheeraj
 Lakshmi Manasa
 Thirumalesh
-Vamsi
+Vamsi Krishna
 
 ## 🙏 Acknowledgments
 
