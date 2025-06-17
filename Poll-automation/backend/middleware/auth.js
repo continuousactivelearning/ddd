@@ -9,24 +9,27 @@ const User = require('../models/User');
 
 const auth = async (req, res, next) => {
     try {
-        // Get token from Authorization header
-        const token = req.header('Authorization')?.replace('Bearer ', '');
-        
+        // Get token from header
+        const authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'No token provided' });
+        }
+
+        const token = authHeader.split(' ')[1];
         if (!token) {
-            return res.status(401).json({ message: 'No authentication token, access denied' });
+            return res.status(401).json({ message: 'No token provided' });
         }
 
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
-        // Find user by ID
+        // Get user from database
         const user = await User.findById(decoded.userId);
-        
         if (!user) {
             return res.status(401).json({ message: 'User not found' });
         }
 
-        // Attach user to request object
+        // Add user to request object
         req.user = user;
         req.token = token;
 
@@ -40,6 +43,9 @@ const auth = async (req, res, next) => {
         next();
     } catch (error) {
         console.error('Auth middleware error:', error);
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
         res.status(401).json({ message: 'Please authenticate' });
     }
 };

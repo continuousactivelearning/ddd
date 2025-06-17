@@ -12,6 +12,8 @@ const passport = require('passport');
 
 // Import route handlers
 const authRoutes = require('./routes/auth');
+const adminAuthRoutes = require('./routes/adminAuth');
+const adminQuizRoutes = require('./routes/adminQuiz');
 const meetRoutes = require('./routes/meets');
 const answerRoutes = require('./routes/answer');
 const statsRoutes = require('./routes/stats');
@@ -21,7 +23,7 @@ const app = express();
 
 // Middleware Configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend URL
+  origin: ['http://localhost:5173', 'http://localhost:5174'], // Allow both frontend and admin URLs
   credentials: true
 })); // Enable CORS for all routes
 app.use(express.json()); // Parse JSON request bodies
@@ -48,6 +50,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dopamine-
 
 // API Routes
 app.use('/api/auth', authRoutes);    // Authentication routes
+app.use('/api/admin/auth', adminAuthRoutes); // Admin authentication routes
+app.use('/api/admin/quiz', adminQuizRoutes);
 app.use('/api/meets', meetRoutes);   // Quiz/Meet management routes
 app.use('/api/answers', answerRoutes); // Answer submission and leaderboard routes
 app.use('/api/stats', statsRoutes);   // User statistics routes
