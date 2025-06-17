@@ -33,6 +33,26 @@ import {
 import { useAuth } from '../contexts/AuthContext';
 import AdminHeader from '../components/AdminHeader';
 import axios from '../utils/axios';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Initialize the Gemini API
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+// Helper function to delay execution
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Helper function to clean and parse JSON response
+const parseGeminiResponse = (text) => {
+  try {
+    // Remove markdown code block formatting if present
+    const cleanedText = text.replace(/```json\n?|\n?```/g, '').trim();
+    return JSON.parse(cleanedText);
+  } catch (error) {
+    console.error('Error parsing response:', error);
+    throw new Error('Failed to parse the generated questions. Please try again.');
+  }
+};
 
 const CreateQuiz = () => {
   const { user } = useAuth();
@@ -62,29 +82,57 @@ const CreateQuiz = () => {
     setLoading(true);
     setError('');
 
-    try {
-      const response = await axios.post('/api/admin/quiz/generate', {
-        topic,
-        difficulty,
-        numQuestions
-      });
+    let retryCount = 0;
+    const maxRetries = 3;
+    const baseDelay = 60000; // 60 seconds
 
-      setQuestions(response.data.questions);
-      setSuccess('Questions generated successfully!');
-    } catch (err) {
-      console.error('Error generating questions:', err);
-      if (err.response?.status === 401) {
-        setError('Session expired. Please login again.');
-        // Redirect to login after a short delay
-        setTimeout(() => {
-          window.location.href = '/login';
-        }, 2000);
-      } else {
-        setError(err.response?.data?.message || 'Failed to generate questions');
+    while (retryCount < maxRetries) {
+      try {
+        // Generate questions using Gemini
+        const prompt = `Generate ${numQuestions} ${difficulty} difficulty API-related questions about ${topic} 
+        Dont Link everything to js make the questions based on topic purely if given telision related to telivison if given currency regarding currencies like that dont link every topic to Api let the topic be only that topic. 
+        For each question, provide:
+        1. The question text
+        2. Four multiple choice options
+        3. The index of the correct answer (0-3)
+        
+        Format the response as a JSON array of objects with this structure:
+        {
+          "question": "string",
+          "options": ["string", "string", "string", "string"],
+          "correctAnswer": number
+        }`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        
+        // Parse the generated questions using the helper function
+        const generatedQuestions = parseGeminiResponse(text);
+        setQuestions(generatedQuestions);
+        setSuccess('Questions generated successfully!');
+        break; // Success, exit the retry loop
+      } catch (err) {
+        console.error('Error generating questions:', err);
+        
+        // Check if it's a rate limit error
+        if (err.message?.includes('429') || err.message?.includes('quota')) {
+          retryCount++;
+          if (retryCount < maxRetries) {
+            const waitTime = baseDelay * retryCount;
+            setError(`Rate limit reached. Retrying in ${waitTime/1000} seconds...`);
+            await delay(waitTime);
+            continue;
+          }
+        }
+        
+        // If we've exhausted retries or it's a different error
+        setError('Failed to generate questions. Please try again later or upgrade your API quota.');
+        break;
       }
-    } finally {
-      setLoading(false);
     }
+
+    setLoading(false);
   };
 
   const createQuiz = async () => {
