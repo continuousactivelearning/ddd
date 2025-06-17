@@ -6,7 +6,8 @@ import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import PostQuestion from "./pages/PostQuestion";
 import AnswerQuestions from "./pages/AnswerQuestions";
-import ViewResponses from "./pages/ViewResponses";
+import ViewQuestions from "./pages/ViewQuestions";
+import QuestionResponses from "./pages/QuestionResponses";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/post-question" element={<PostQuestion />} />
         <Route path="/answer" element={<AnswerQuestions />} />
-        <Route path="/responses" element={<ViewResponses />} />
+        <Route path="/questions" element={<ViewQuestions />} />
+        <Route path="/question-responses/:questionId" element={<QuestionResponses />} />
       </Routes>
     </Router>
   );

@@ -1,22 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const Question = require("../models/Question");
-const jwt = require("jsonwebtoken");
+const Answer = require("../models/Answer");
+const {authMiddleware,requireHost} = require("../middleware/auth");
 
-const authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ error: "Access denied" });
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(400).json({ error: "Invalid token" });
-  }
-};
 
-router.post("/", authenticate, async (req, res) => {
+router.post("/", authMiddleware, requireHost, async (req, res) => {
   const { questionText, options, correctAnswer } = req.body;
+
+  const validOptions = ["A", "B", "C", "D"];
+  if (!validOptions.includes(correctAnswer)) {
+    return res.status(400).json({ error: "Correct answer must be A, B, C, or D" });
+  }
+
+  if (options.length !== 4) {
+    return res.status(400).json({ error: "Exactly 4 options are required" });
+  }
+
   try {
     const question = await Question.create({
       questionText,
@@ -29,7 +29,8 @@ router.post("/", authenticate, async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-router.get("/", async (req, res) => {
+
+router.get("/",authMiddleware,async (req, res) => {
   try {
     const questions = await Question.find();
     res.json(questions);
@@ -38,5 +39,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/responses/:questionId", authMiddleware, requireHost, async (req, res) => {
+  try {
+    const questionId = req.params.questionId;
+    const responses = await Answer.find({ question: questionId }).populate("student", "name email");
+    res.json(responses);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch responses for the question" });
+  }
+});
 
 module.exports = router;

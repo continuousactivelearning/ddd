@@ -1,11 +1,8 @@
-// server/src/routes/authRoutes.js
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-
-const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post("/register", async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -27,11 +24,11 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
     res.json({ token, user: { id: user._id, name: user.name, role: user.role } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-module.exports = router;
+module.exports = router;  

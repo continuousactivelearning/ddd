@@ -1,49 +1,64 @@
-// routes/answerRoutes.js
 const express = require("express");
 const router = express.Router();
 const Answer = require("../models/Answer");
-const authMiddleware = require("../middleware/auth");
+const Question = require("../models/Question");
+const User = require("../models/User");
+const { authMiddleware } = require("../middleware/auth");
 
-// Save student answers
+
 router.post("/submit", authMiddleware, async (req, res) => {
   try {
     const studentId = req.user.id;
-    const answers = req.body; // { questionId: answer }
+    const answers = req.body;
 
-    const answerDocs = Object.entries(answers).map(([questionId, answer]) => ({
-      student: studentId,
-      question: questionId,
-      answer,
-    }));
+    for (const [questionId, selectedOption] of Object.entries(answers)) {
+      const question = await Question.findById(questionId);
+      if (!question) continue;
 
-    await Answer.insertMany(answerDocs);
-    res.status(200).json({ message: "Answers submitted" });
+      const isCorrect = question.correctAnswer === selectedOption;
+      const score = isCorrect ? 1 : 0;
+
+      await Answer.updateOne(
+        { student: studentId, question: questionId },
+        {
+          $set: {
+            answer: selectedOption,
+            score: score,
+          },
+        },
+        { upsert: true } 
+      );
+    }
+
+    res.status(200).json({ message: "Answers submitted with score" });
   } catch (err) {
+    console.error("Submit Error:", err);
     res.status(500).json({ error: "Failed to submit answers" });
   }
 });
-// GET /responses (for hosts)
-router.get("/responses", authMiddleware, async (req, res) => {
+
+
+router.get("/mine", authMiddleware, async (req, res) => {
   try {
-    const userId = req.user.id;
-
-    // Fetch the user's role (assumes you don't already populate role in middleware)
-    const user = await require("../models/User").findById(userId);
-    if (!user || user.role !== "host") {
-      return res.status(403).json({ error: "Access denied" });
-    }
-
-    // Fetch answers along with question and student info
-    const responses = await Answer.find()
-      .populate("student", "name email")
-      .populate("question", "questionText");
-
-    res.json(responses);
+    const answers = await Answer.find({ student: req.user.id }).select("question answer");
+    res.json(answers);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch responses" });
+    res.status(500).json({ error: "Failed to fetch your answers" });
   }
 });
 
+router.get("/score", authMiddleware, async (req, res) => {
+  try {
+    const studentId = req.user._id;
+
+    const answers = await Answer.find({ student: studentId, score: 1 });
+    const totalScore = answers.length;
+
+    res.json({ score: totalScore });
+  } catch (err) {
+    console.error("Score Error:", err);
+    res.status(500).json({ error: "Failed to fetch score" });
+  }
+});
 
 module.exports = router;
