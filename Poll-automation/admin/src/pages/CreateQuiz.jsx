@@ -90,7 +90,10 @@ const CreateQuiz = () => {
       try {
         // Generate questions using Gemini
         const prompt = `Generate ${numQuestions} ${difficulty} difficulty API-related questions about ${topic} 
-        Dont Link everything to js make the questions based on topic purely if given telision related to telivison if given currency regarding currencies like that dont link every topic to Api let the topic be only that topic. 
+        Dont Link everything to js make the questions based on topic purely if given telision generate questions
+         related to telivison if given currency regarding currencies like that dont link every topic to Api 
+         let the topic be only that topic in future i may be give shirts cars etc it should be based on that topic not with api linkage and all
+         . 
         For each question, provide:
         1. The question text
         2. Four multiple choice options
