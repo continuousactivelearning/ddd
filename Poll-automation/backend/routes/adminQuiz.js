@@ -150,33 +150,79 @@ router.get('/:quizId/analytics', auth, isAdmin, async (req, res) => {
       return res.status(404).json({ message: 'Quiz not found' });
     }
 
+    const totalParticipants = quiz.participants.length;
+    const completedParticipants = quiz.participants.filter(p => p.completedAt).length;
+    const completedParticipantsData = quiz.participants.filter(p => p.completedAt);
+
     const analytics = {
-      totalParticipants: quiz.participants.length,
-      completedParticipants: quiz.participants.filter(p => p.completedAt).length,
+      totalParticipants,
+      completedParticipants,
       averageScore: 0,
       highestScore: 0,
       lowestScore: 0,
-      completionRate: 0,
+      completionRate: totalParticipants > 0 ? Math.round((completedParticipants / totalParticipants) * 100) : 0,
       recentParticipants: quiz.participants
         .sort((a, b) => new Date(b.completedAt || 0) - new Date(a.completedAt || 0))
         .slice(0, 5)
+        .map(p => ({
+          name: p.user?.name || 'Unknown User',
+          email: p.user?.email || 'No email',
+          score: p.score || 0,
+          completedAt: p.completedAt
+        }))
     };
 
-    if (quiz.participants.length > 0) {
-      const completedParticipants = quiz.participants.filter(p => p.completedAt);
-      if (completedParticipants.length > 0) {
-        const scores = completedParticipants.map(p => p.score);
-        analytics.averageScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
-        analytics.highestScore = Math.max(...scores);
-        analytics.lowestScore = Math.min(...scores);
-      }
-      analytics.completionRate = Math.round((analytics.completedParticipants / analytics.totalParticipants) * 100);
+    if (completedParticipantsData.length > 0) {
+      const scores = completedParticipantsData.map(p => p.score || 0);
+      analytics.averageScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+      analytics.highestScore = Math.max(...scores);
+      analytics.lowestScore = Math.min(...scores);
     }
 
     res.json(analytics);
   } catch (error) {
     console.error('Error fetching quiz analytics:', error);
     res.status(500).json({ message: 'Failed to fetch quiz analytics' });
+  }
+});
+
+// Get quiz leaderboard
+router.get('/:quizId/leaderboard', auth, isAdmin, async (req, res) => {
+  try {
+    const quiz = await Quiz.findOne({
+      _id: req.params.quizId,
+      createdBy: req.user._id
+    }).populate('participants.user', 'name email');
+
+    if (!quiz) {
+      return res.status(404).json({ message: 'Quiz not found' });
+    }
+
+    // Sort participants by score (highest first) and completion time
+    const leaderboard = quiz.participants
+      .filter(p => p.completedAt && p.user) // Only completed attempts with valid user
+      .sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score; // Higher score first
+        }
+        return new Date(a.completedAt) - new Date(b.completedAt); // Earlier completion first
+      })
+      .map((participant, index) => ({
+        rank: index + 1,
+        name: participant.user.name || 'Unknown User',
+        email: participant.user.email || 'No email',
+        score: participant.score || 0,
+        completedAt: participant.completedAt
+      }));
+
+    res.json({
+      quizTopic: quiz.topic,
+      totalParticipants: leaderboard.length,
+      leaderboard: leaderboard
+    });
+  } catch (error) {
+    console.error('Error fetching quiz leaderboard:', error);
+    res.status(500).json({ message: 'Failed to fetch quiz leaderboard' });
   }
 });
 

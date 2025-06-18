@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+import createAppTheme from './theme';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CreateQuiz from './pages/CreateQuiz';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { ThemeProvider as CustomThemeProvider, useTheme } from './contexts/ThemeContext';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -21,40 +22,45 @@ const ProtectedRoute = ({ children }) => {
 };
 
 function AppRoutes() {
+  const { isDarkMode } = useTheme();
+  const theme = createAppTheme(isDarkMode);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route 
-          path="/" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route
-          path="/create-quiz"
-          element={
-            <ProtectedRoute>
-              <CreateQuiz />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route
+            path="/create-quiz"
+            element={
+              <ProtectedRoute>
+                <CreateQuiz />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <CustomThemeProvider>
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
 
