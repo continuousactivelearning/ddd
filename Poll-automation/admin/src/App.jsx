@@ -10,45 +10,49 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
-
+  console.log('ProtectedRoute:', { user, loading });
   if (loading) {
     return null; // or a loading spinner
   }
-
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-
   return children;
 };
+
+function AppRoutes() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route 
+          path="/" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route
+          path="/create-quiz"
+          element={
+            <ProtectedRoute>
+              <CreateQuiz />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </Router>
+  );
+}
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route 
-              path="/" 
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route
-              path="/create-quiz"
-              element={
-                <ProtectedRoute>
-                  <CreateQuiz />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/login" replace />} />
-          </Routes>
-        </Router>
+        <AppRoutes />
       </AuthProvider>
     </ThemeProvider>
   );

@@ -1,5 +1,3 @@
-
-
 import { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 import axios from '../utils/axios';
 
@@ -96,7 +94,7 @@ export const AuthProvider = ({ children }) => {
       const userData = await checkAuth();
 
       if (userData) {
-        // If we're on the login page and have a user, redirect to student dashboard
+        // If we're on the login page and have a user, redirect to student landing page
         if (window.location.pathname === '/login') {
           window.location.replace('/student');
           return;
@@ -109,7 +107,10 @@ export const AuthProvider = ({ children }) => {
         }
       } else {
         // If we're not on the login page and have no user, redirect to login
-        if (window.location.pathname !== '/login') {
+        // BUT exclude public student dashboard and quiz routes that are protected by ProtectedRoute
+        if (window.location.pathname !== '/login' && 
+            window.location.pathname !== '/student/public' &&
+            !window.location.pathname.startsWith('/quiz/')) {
           window.location.replace('/login');
         }
       }

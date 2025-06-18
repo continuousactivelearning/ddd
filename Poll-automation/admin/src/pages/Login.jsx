@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Box,
@@ -18,30 +18,57 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { user, login, error } = useAuth();
+  const { user, login, error, loading } = useAuth();
   const navigate = useNavigate();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
-    // Check for token in URL
+    // If user is already authenticated, redirect to dashboard
+    if (user && !loading) {
+      navigate('/');
+      return;
+    }
+
+    // Check for token in URL (only once)
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
     
-    if (token) {
-      login(token).then(() => {
-        // Remove token from URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-        navigate('/');
-      }).catch(() => {
-        // Handle login error
-      });
-    } else if (user) {
-      navigate('/');
+    if (token && !isProcessing) {
+      setIsProcessing(true);
+      login(token)
+        .then(() => {
+          // Remove token from URL
+          window.history.replaceState({}, document.title, window.location.pathname);
+          navigate('/');
+        })
+        .catch((err) => {
+          console.error('Login error:', err);
+          setIsProcessing(false);
+        });
     }
-  }, [user, login, navigate]);
+  }, []); // Remove dependencies to prevent infinite loops
 
   const handleGoogleLogin = () => {
     window.location.href = 'http://localhost:5000/api/admin/auth/google';
   };
+
+  // Show loading while processing login
+  if (isProcessing || loading) {
+    return (
+      <Box
+        sx={{
+          minHeight: '100vh',
+          width: '100vw',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #1a1c2e 0%, #2d1b69 100%)',
+        }}
+      >
+        <CircularProgress sx={{ color: 'white' }} />
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -154,9 +181,9 @@ const Login = () => {
             </Typography>
 
             {error && (
-              <Typography color="error" sx={{ mb: 2 }}>
+              <Alert severity="error" sx={{ mb: 2, width: '100%' }}>
                 {error}
-              </Typography>
+              </Alert>
             )}
 
             <Button
@@ -164,11 +191,13 @@ const Login = () => {
               size="large"
               startIcon={<GoogleIcon />}
               onClick={handleGoogleLogin}
+              disabled={isProcessing}
               sx={{
                 width: '100%',
                 maxWidth: 300,
                 py: 1.5,
                 borderColor: 'divider',
+                color: 'white',
                 '&:hover': {
                   borderColor: 'primary.main',
                   bgcolor: 'action.hover'

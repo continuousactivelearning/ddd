@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000',
-  withCredentials: true,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -14,8 +13,14 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
+    console.log('Request URL:', config.url);
+    console.log('Token present:', !!token);
+    console.log('Token value:', token ? token.substring(0, 20) + '...' : 'No token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+      console.log('Authorization header set:', `Bearer ${token.substring(0, 20)}...`);
+    } else {
+      console.log('No token found in localStorage');
     }
     // Add cache control headers to prevent unnecessary requests
     config.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
@@ -34,25 +39,15 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // Clear token and redirect to login
+    // Only force logout if the 401 is from the auth check endpoint
+    if (
+      error.response?.status === 401 &&
+      error.config?.url?.includes('/api/admin/auth/me')
+    ) {
       localStorage.removeItem('token');
       window.location.href = '/login';
     }
-    // Handle network errors
-    if (error.code === 'ERR_NETWORK') {
-      console.error('Network error:', error);
-      return Promise.reject(new Error('Network error. Please check your connection.'));
-    }
-    
-    // Handle CORS errors
-    if (error.response?.status === 0) {
-      console.error('CORS error:', error);
-      return Promise.reject(new Error('CORS error. Please check your connection.'));
-    }
-
-    // Handle other errors
-    console.error('API error:', error);
+    // For other 401s, just reject the error (let the page handle it)
     return Promise.reject(error.response?.data?.message || 'An error occurred. Please try again.');
   }
 );

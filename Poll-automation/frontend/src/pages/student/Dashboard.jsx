@@ -19,7 +19,7 @@ import {
 } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CircularProgress, Typography } from '@mui/material';
+import { CircularProgress, Typography, TextField, Button, Box } from '@mui/material';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -63,19 +63,14 @@ const PieChartComponent = ({ data }) => {
 
 const Dashboard = () => {
   const { user } = useAuth();
+  
   const [userStats, setUserStats] = useState({
     totalMeets: 0,
     averageScore: 0,
     timeSpent: 0,
     badgesEarned: 0
   });
-  const [meets, setMeets] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
-  const [activeMeet, setActiveMeet] = useState(null);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(null);
   const [stats, setStats] = useState({
     totalScore: 850,
     totalMeets: 12,
@@ -108,12 +103,14 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [isInitialRender, setIsInitialRender] = useState(true);
+  const [activeQuizzes, setActiveQuizzes] = useState([]);
+  const [quizCode, setQuizCode] = useState('');
+  const [quizCodeError, setQuizCodeError] = useState('');
+  const [showQuizCodeEntry, setShowQuizCodeEntry] = useState(false);
 
   useEffect(() => {
     const initializeDashboard = async () => {
       try {
-        await fetchUserStats();
-        await fetchMeets();
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -140,16 +137,16 @@ const Dashboard = () => {
   const cards = [
     {
       id: 1,
-      title: "Total Meets",
-      description: "Number of meets you've participated in",
+      title: "Total Quizzes",
+      description: "Number of quizzes you've participated in",
       icon: Users,
-      stats: `${stats.totalMeets || 0} Meets`,
+      stats: `${activeQuizzes.length} Quizzes`,
       colorClass: "blue",
     },
     {
       id: 2,
       title: "Average Score",
-      description: "Your overall performance across all meets",
+      description: "Your overall performance across all quizzes",
       icon: BarChart2,
       stats: `${stats.accuracy?.toFixed(1) || 0}%`,
       colorClass: "green",
@@ -186,219 +183,13 @@ const Dashboard = () => {
     { label: 'CSS', value: 10 },
   ], []);
 
-  const fetchUserStats = useCallback(async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/stats/user', {
-        credentials: 'include',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setUserStats(data);
-      } else {
-        console.error('Failed to fetch user stats');
-        setUserStats({
-          totalScore: 1250,
-          totalMeets: 15,
-          accuracy: 85,
-          currentStreak: 7,
-          totalQuestions: 200,
-          correctAnswers: 170,
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching user stats:', error);
-      setUserStats({
-        totalScore: 1250,
-        totalMeets: 15,
-        accuracy: 85,
-        currentStreak: 7,
-        totalQuestions: 200,
-        correctAnswers: 170,
-      });
-    }
-  }, []);
-
-  const fetchMeets = useCallback(async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/meets', {
-        credentials: 'include',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch meets: ${response.statusText}`);
-      }
-      
-        const data = await response.json();
-      console.log('Fetched meets:', data); // Debug log
-          setMeets(data);
-    } catch (error) {
-      console.error('Error fetching meets:', error);
-      setMeets([]);
-    }
-  }, []);
-
-  const fetchLeaderboard = useCallback(async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/meets/leaderboard', {
-        credentials: 'include',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch leaderboard: ${response.statusText}`);
-      }
-      
-      const data = await response.json();
-      console.log('Leaderboard data:', data); // Debug log
-      setLeaderboard(data);
-    } catch (error) {
-      console.error('Error fetching leaderboard:', error);
-      setLeaderboard([]);
-    }
-  }, []);
-
-  const handleJoinMeet = (meet) => {
-    navigate(`/student/quiz/${meet._id}`);
-  };
-
-  const handleAnswer = (selectedOption) => {
-    if (activeMeet.questions[currentQuestion].correctAnswer === selectedOption) {
-      setScore(prev => prev + 10);
-    }
-    
-    if (currentQuestion < activeMeet.questions.length - 1) {
-      setCurrentQuestion(prev => prev + 1);
-    } else {
-      // Quiz completed
-      setShowQuiz(false);
-      setActiveMeet(null);
-      // Update user stats
-      fetchUserStats();
-      fetchLeaderboard();
-    }
-  };
-
-  useEffect(() => {
-    let timer;
-    if (timeLeft > 0 && showQuiz) {
-      timer = setInterval(() => {
-        setTimeLeft(prev => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      setShowQuiz(false);
-      setActiveMeet(null);
-    }
-    return () => clearInterval(timer);
-  }, [timeLeft, showQuiz]);
-
-  useEffect(() => {
-    if (user) {
-      fetchStats();
-      fetchMeets();
-      fetchLeaderboard();
-    }
-  }, [user]);
-
-  const fetchStats = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('http://localhost:5000/api/meets/stats', {
-        credentials: 'include',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch stats: ${response.statusText}`);
-      }
-      
-      const data = await response.json();
-      console.log('Stats data:', data);
-      
-      // Update stats state with the fetched data
-      setStats({
-        totalScore: data.totalScore || 850,
-        totalMeets: data.totalMeets || 12,
-        accuracy: data.accuracy || 85.5,
-        currentStreak: data.currentStreak || 5,
-        totalQuestions: data.totalQuestions || 120,
-        correctAnswers: data.correctAnswers || 102,
-        weeklyProgress: data.weeklyProgress || [
-          { day: 'Mon', score: 75 },
-          { day: 'Tue', score: 85 },
-          { day: 'Wed', score: 65 },
-          { day: 'Thu', score: 90 },
-          { day: 'Fri', score: 80 },
-          { day: 'Sat', score: 95 },
-          { day: 'Sun', score: 70 }
-        ],
-        categoryBreakdown: data.categoryBreakdown || [
-          { category: 'React', correct: 35, total: 40 },
-          { category: 'JavaScript', correct: 25, total: 30 },
-          { category: 'Node.js', correct: 18, total: 20 },
-          { category: 'CSS', correct: 8, total: 10 }
-        ],
-        recentActivity: data.recentActivity || [
-          { date: '2 hours ago', activity: 'Completed React Quiz' },
-          { date: '1 day ago', activity: 'Completed JavaScript Quiz' },
-          { date: '2 days ago', activity: 'Completed Node.js Quiz' }
-        ]
-      });
-    } catch (error) {
-      console.error('Error fetching stats:', error);
-      setError(error.message);
-      // Set default values if fetch fails
-      setStats({
-        totalScore: 850,
-        totalMeets: 12,
-        accuracy: 85.5,
-        currentStreak: 5,
-        totalQuestions: 120,
-        correctAnswers: 102,
-        weeklyProgress: [
-          { day: 'Mon', score: 75 },
-          { day: 'Tue', score: 85 },
-          { day: 'Wed', score: 65 },
-          { day: 'Thu', score: 90 },
-          { day: 'Fri', score: 80 },
-          { day: 'Sat', score: 95 },
-          { day: 'Sun', score: 70 }
-        ],
-        categoryBreakdown: [
-          { category: 'React', correct: 35, total: 40 },
-          { category: 'JavaScript', correct: 25, total: 30 },
-          { category: 'Node.js', correct: 18, total: 20 },
-          { category: 'CSS', correct: 8, total: 10 }
-        ],
-        recentActivity: [
-          { date: '2 hours ago', activity: 'Completed React Quiz' },
-          { date: '1 day ago', activity: 'Completed JavaScript Quiz' },
-          { date: '2 days ago', activity: 'Completed Node.js Quiz' }
-        ]
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Add useEffect for debugging
   useEffect(() => {
-    console.log('Current meets state:', meets);
-  }, [meets]);
+    console.log('Current active quizzes:', activeQuizzes);
+  }, [activeQuizzes]);
 
   // Memoized data for stat cards
   const statCardsData = useMemo(() => {
-    const currentUserStats = userStats || {};
     return [
       {
         id: 1,
@@ -411,7 +202,7 @@ const Dashboard = () => {
         ),
         title: 'Total Quizzes',
         description: 'Number of quizzes you\'ve participated in',
-        value: `${meets.length} Quizzes`,
+        value: `${activeQuizzes.length} Quizzes`,
       },
       {
         id: 2,
@@ -423,7 +214,7 @@ const Dashboard = () => {
         ),
         title: 'Average Score',
         description: 'Your overall performance across all quizzes',
-        value: `${currentUserStats.averageScore || 0}%`,
+        value: `${stats.accuracy?.toFixed(1) || 0}%`,
       },
       {
         id: 3,
@@ -435,7 +226,7 @@ const Dashboard = () => {
         ),
         title: 'Time Spent',
         description: 'Total time spent in learning sessions',
-        value: `${formatTime(currentUserStats.timeSpent || 0)}`,
+        value: `${formatTime(stats.totalQuestions * 2 || 0)}`,
       },
       {
         id: 4,
@@ -447,10 +238,10 @@ const Dashboard = () => {
         ),
         title: 'Achievements',
         description: 'Badges and rewards earned',
-        value: `${currentUserStats.badgesEarned || 0} Badges`,
+        value: `${Math.floor(stats.totalScore / 100) || 0} Badges`,
       },
     ];
-  }, [userStats, meets, formatTime]);
+  }, [activeQuizzes, stats, formatTime]);
 
   // Define a color cycle for the meet cards
   const colors = [
@@ -488,6 +279,42 @@ const Dashboard = () => {
     navigate('/student/online-meet');
   };
 
+  // Fetch active quizzes for students
+  const fetchActiveQuizzes = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('http://localhost:5000/api/quiz/active');
+      if (!response.ok) throw new Error('Failed to fetch active quizzes');
+      const data = await response.json();
+      setActiveQuizzes(data);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setActiveQuizzes([]);
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchActiveQuizzes();
+  }, [fetchActiveQuizzes]);
+
+  // Handler for quiz code entry
+  const handleQuizCodeSubmit = (e) => {
+    e.preventDefault();
+    if (!quizCode.trim()) {
+      setQuizCodeError('Please enter a quiz code');
+      return;
+    }
+    setQuizCodeError('');
+    navigate(`/quiz/${quizCode.trim().toUpperCase()}`);
+  };
+
+  // Handler for clicking a quiz card
+  const handleQuizCardClick = (quiz) => {
+    navigate(`/quiz/${quiz.quizCode}`);
+  };
+
   if (loading) {
     return (
       <div className="dashboard-page">
@@ -514,6 +341,82 @@ const Dashboard = () => {
           <div className="quick-actions">
             <h1 className="dashboard-title">Student Dashboard</h1>
           </div>
+
+          {/* Quiz Code Entry - Hidden by default */}
+          {showQuizCodeEntry && (
+            <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
+              <form onSubmit={handleQuizCodeSubmit} style={{ display: 'flex', gap: 8 }}>
+                <TextField
+                  label="Enter Quiz Code"
+                  value={quizCode}
+                  onChange={e => setQuizCode(e.target.value)}
+                  error={!!quizCodeError}
+                  helperText={quizCodeError}
+                  size="small"
+                  sx={{ minWidth: 200 }}
+                />
+                <Button type="submit" variant="contained" color="primary">
+                  Join Quiz
+                </Button>
+              </form>
+              <Button 
+                variant="outlined" 
+                onClick={() => setShowQuizCodeEntry(false)}
+                size="small"
+              >
+                Cancel
+              </Button>
+            </Box>
+          )}
+
+          {/* Show Quiz Code Entry Button */}
+          {!showQuizCodeEntry && (
+            <Box sx={{ mb: 4 }}>
+              <Button 
+                variant="outlined" 
+                onClick={() => setShowQuizCodeEntry(true)}
+                startIcon={<Plus />}
+              >
+                Enter Quiz Code
+              </Button>
+            </Box>
+          )}
+
+          {/* Active Quizzes List */}
+          <section className="meets-section">
+            <h2 className="section-title">
+              Available Quizzes
+            </h2>
+            {loading ? (
+              <div className="loading-message">Loading quizzes...</div>
+            ) : activeQuizzes.length > 0 ? (
+              <div className="meets-grid">
+                {activeQuizzes.map((quiz, index) => (
+                  <motion.div
+                    key={quiz.quizCode}
+                    className="meet-card"
+                    style={{ cursor: 'pointer', padding: '1.5rem', border: '1px solid #eee', borderRadius: '16px', marginBottom: '1rem', background: '#fff' }}
+                    whileHover={{ scale: 1.03, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}
+                    onClick={() => handleQuizCardClick(quiz)}
+                  >
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>{quiz.topic}</Typography>
+                    <Typography variant="body2" color="text.secondary">Difficulty: {quiz.difficulty}</Typography>
+                    <Typography variant="body2" color="text.secondary">Quiz Code: <strong>{quiz.quizCode}</strong></Typography>
+                    <Typography variant="body2" color="text.secondary">Created by: {quiz.createdBy?.name || 'Unknown'}</Typography>
+                    <Typography variant="body2" color="text.secondary">Created at: {new Date(quiz.createdAt).toLocaleString()}</Typography>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="no-meets-message">
+                <p>No active quizzes available at the moment.</p>
+                {error && <p className="error-message">{error}</p>}
+                <Button variant="outlined" onClick={fetchActiveQuizzes}>
+                  Retry
+                </Button>
+              </div>
+            )}
+          </section>
 
           {/* Cards Grid */}
           <div className="cards-grid">
@@ -610,192 +513,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Available Meets */}
-          <section className="meets-section">
-            <h2 className="section-title">
-              Available Quizzes
-              <span className="title-icon"><Bookmark size={24} /></span>
-            </h2>
-            {loading ? (
-              <div className="loading-message">Loading quizzes...</div>
-            ) : meets.length > 0 ? (
-              <div className="meets-grid">
-                {meets.map((meet, index) => {
-                  console.log(meet)
-                  const cardColor = colors[index % colors.length];
-                  return (
-                    <motion.div
-                      key={meet._id}
-                      className="meet-card"
-                      style={{
-                        background: `linear-gradient(135deg, ${cardColor.bg} 0%, ${cardColor.bg}dd 100%)`,
-                        color: cardColor.text,
-                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                        borderRadius: '20px',
-                        padding: '2rem',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        border: `1px solid ${cardColor.border}`,
-                        position: 'relative',
-                        overflow: 'hidden',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1.25rem',
-                        height: '100%',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)'
-                      }}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      whileHover={{ 
-                        scale: 1.02,
-                        boxShadow: '0 8px 12px rgba(0, 0, 0, 0.15)',
-                        border: `1px solid ${cardColor.accent}`
-                      }}
-                    >
-                      {/* Decorative Elements */}
-                      <div style={{
-                        position: 'absolute',
-                        top: '-50%',
-                        right: '-50%',
-                        width: '200%',
-                        height: '200%',
-                        background: `radial-gradient(circle at center, ${cardColor.accent}15 0%, transparent 70%)`,
-                        opacity: 0.5,
-                        transform: 'rotate(-45deg)',
-                        pointerEvents: 'none'
-                      }} />
-
-                      {/* Card Header */}
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between', 
-                        alignItems: 'flex-start',
-                        gap: '1rem',
-                        position: 'relative',
-                        zIndex: 1
-                      }}>
-                        <h3 style={{ 
-                          margin: 0, 
-                          fontSize: '1.5rem', 
-                          fontWeight: '700',
-                          color: cardColor.text,
-                          flex: 1,
-                          textShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                        }}>
-                          {meet.title}
-                        </h3>
-                        <span style={{
-                          background: `linear-gradient(135deg, ${cardColor.accent} 0%, ${cardColor.accent}dd 100%)`,
-                          color: '#fff',
-                          padding: '0.5rem 1rem',
-                          borderRadius: '20px',
-                          fontSize: '0.875rem',
-                          fontWeight: '600',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                        }}>
-                          {meet.duration} mins
-                        </span>
-                      </div>
-
-                      {/* Card Description */}
-                      <p style={{ 
-                        margin: 0,
-                        color: cardColor.text,
-                        opacity: 0.9,
-                        fontSize: '1rem',
-                        lineHeight: '1.6',
-                        flex: 1,
-                        position: 'relative',
-                        zIndex: 1
-                      }}>
-                        {meet.description}
-                      </p>
-
-                      {/* Card Footer */}
-                      <div style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginTop: 'auto',
-                        paddingTop: '1rem',
-                        borderTop: `1px solid ${cardColor.border}40`,
-                        position: 'relative',
-                        zIndex: 1
-                      }}>
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleJoinMeet(meet);
-                          }}
-                          style={{
-                            background: `linear-gradient(135deg, ${cardColor.accent} 0%, ${cardColor.accent}dd 100%)`,
-                            border: 'none',
-                            padding: '0.75rem 1.5rem',
-                            borderRadius: '12px',
-                            color: '#ffffff',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease',
-                            fontSize: '0.9rem',
-                            fontWeight: '600',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            whiteSpace: 'nowrap',
-                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                            textShadow: '0 1px 2px rgba(0,0,0,0.1)',
-                            width: '100%',
-                            justifyContent: 'center'
-                          }}
-                          onMouseOver={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-2px)';
-                            e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-                          }}
-                          onMouseOut={(e) => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-                          }}
-                        >
-                          Start Quiz
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                          </svg>
-                        </button>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="no-meets-message">
-                <p>No quizzes available at the moment.</p>
-                {error && <p className="error-message">{error}</p>}
-                <button className="retry-button" onClick={fetchMeets}>
-                  Retry
-                </button>
-              </div>
-            )}
-          </section>
         </div>
-        <div className="meet-info-card">
-              <div className="meet-info-content">
-                <div className="meet-status">
-                  <span className="status-dot"></span>
-                  <span className="status-text">Live Class in Progress</span>
-                </div>
-                <h3 className="meet-title">Advanced Mathematics</h3>
-                <p className="meet-details">with Prof. John Doe • 45 students</p>
-              </div>
-              <button 
-                className="join-meet-button"
-                onClick={handleJoinOnlineMeet}
-              >
-                <Video className="meet-icon" />
-                Join Now
-              </button>
-            </div>
-       
       </div>
     </div>
   );
