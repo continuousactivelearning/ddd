@@ -100,7 +100,7 @@ router.get('/google/callback',
       { expiresIn: '24h' }
     );
 
-    // Redirect to frontend with token
+    // Redirect to frontend with token - redirect to student landing page
     res.redirect(`http://localhost:5173/student?token=${token}`);
   }
 );

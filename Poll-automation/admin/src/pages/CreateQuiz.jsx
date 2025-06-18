@@ -154,7 +154,7 @@ const CreateQuiz = () => {
         questions
       });
 
-      setQuizLink(`${window.location.origin}/quiz/${response.data.quizId}`);
+      setQuizLink(response.data.studentUrl);
       setShowLinkDialog(true);
       setSuccess('Quiz created successfully!');
     } catch (err) {
@@ -336,8 +336,18 @@ const CreateQuiz = () => {
             <DialogTitle>Quiz Created Successfully!</DialogTitle>
             <DialogContent>
               <Typography variant="body1" sx={{ mb: 2 }}>
-                Share this link with your students:
+                Share this information with your students:
               </Typography>
+              
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="h6" color="primary" gutterBottom>
+                  Quiz Code: {quizLink.split('/').pop()}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Students can use this code to access the quiz
+                </Typography>
+              </Box>
+
               <Box
                 sx={{
                   display: 'flex',

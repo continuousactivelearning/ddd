@@ -37,6 +37,11 @@ const quizSchema = new mongoose.Schema({
     enum: ['active', 'inactive', 'archived'],
     default: 'active'
   },
+  quizCode: {
+    type: String,
+    unique: true,
+    required: true
+  },
   participants: [{
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -60,6 +65,7 @@ const quizSchema = new mongoose.Schema({
 // Add indexes for better query performance
 quizSchema.index({ createdBy: 1, createdAt: -1 });
 quizSchema.index({ status: 1 });
+quizSchema.index({ quizCode: 1 });
 
 const Quiz = mongoose.model('Quiz', quizSchema);
 

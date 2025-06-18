@@ -46,19 +46,31 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 router.get('/me', auth, isAdmin, async (req, res) => {
   try {
+    console.log('Admin auth check - User ID:', req.user._id);
+    console.log('Admin auth check - User role:', req.user.role);
+    
     const cachedUser = userCache.get(req.user._id.toString());
     if (cachedUser && Date.now() - cachedUser.timestamp < CACHE_DURATION) {
+      console.log('Returning cached user data');
       return res.json(cachedUser.data);
     }
 
     const user = await User.findById(req.user._id).select('-__v');
+    console.log('Fetched user from database:', user ? 'User found' : 'User not found');
+    
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+
     userCache.set(req.user._id.toString(), {
       data: user,
       timestamp: Date.now()
     });
 
+    console.log('Returning user data for admin');
     res.json(user);
   } catch (error) {
+    console.error('Admin auth error:', error);
     res.status(401).json({ message: 'Not authenticated' });
   }
 });

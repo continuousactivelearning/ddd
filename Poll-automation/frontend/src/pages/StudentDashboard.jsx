@@ -15,13 +15,6 @@ const StudentDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // If we're on the dashboard route, redirect to 
-  useEffect(() => {
-    if (location.pathname === '/student/dashboard') {
-      navigate('/student/dashboard');
-    }
-  }, [location.pathname, navigate]);
-
   const handleMouseDown = (e) => {
     if (!hasDraggedRef.current) {
       setIsDragging(true);

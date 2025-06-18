@@ -28,10 +28,13 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
+      console.log('Checking authentication...');
       const response = await axios.get('/api/admin/auth/me');
+      console.log('Auth check successful:', response.data);
       setUser(response.data);
       setError(null);
     } catch (err) {
+      console.error('Auth check failed:', err);
       setUser(null);
       localStorage.removeItem('token');
       setError(err.response?.data?.message || 'Authentication failed');
@@ -42,9 +45,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (token) => {
     try {
+      console.log('Logging in with token...');
       localStorage.setItem('token', token);
       await checkAuth();
+      console.log('Login successful');
     } catch (err) {
+      console.error('Login failed:', err);
       setError(err.response?.data?.message || 'Login failed');
       throw err;
     }
@@ -58,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     } finally {
       localStorage.removeItem('token');
       setUser(null);
+      setError(null);
     }
   };
 
@@ -66,7 +73,8 @@ export const AuthProvider = ({ children }) => {
     loading,
     error,
     login,
-    logout
+    logout,
+    checkAuth
   };
 
   return (

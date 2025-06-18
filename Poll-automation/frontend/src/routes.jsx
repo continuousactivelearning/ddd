@@ -3,10 +3,10 @@
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
-import Layout from './components/Layout';
 import Login from './pages/Login';
+import StudentDashboard from './pages/StudentDashboard';
 import Dashboard from './pages/student/Dashboard';
-import Live from './pages/student/Live';
+import Quiz from './pages/student/Quiz';
 import QuizComplete from './pages/student/QuizComplete';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminMeet from './pages/admin/Meet';
@@ -48,7 +48,16 @@ const ProtectedRoute = memo(({ children, allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />;
+    // On student frontend, allow admin users to access student routes for testing
+    // Only redirect if it's a student trying to access admin routes
+    if (user.role === 'student' && allowedRoles.includes('admin')) {
+      return <Navigate to="/student" replace />;
+    }
+    // For admin users on student frontend, allow access to student routes
+    if (user.role === 'admin' && (allowedRoles.includes('student') || allowedRoles.includes('admin'))) {
+      return children;
+    }
+    return <Navigate to="/student" replace />;
   }
 
   return (
@@ -93,7 +102,7 @@ const AppRoutes = memo(() => {
           path="/login" 
           element={
             user ? (
-              <Navigate to={user.role === 'admin' ? '/admin' : '/student'} replace />
+              <Navigate to="/student" replace />
             ) : (
               <Login />
             )
@@ -103,17 +112,37 @@ const AppRoutes = memo(() => {
           path="/student" 
           element={
             <ProtectedRoute allowedRoles={['student']}>
+              <StudentDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/student/dashboard" 
+          element={
+            <ProtectedRoute allowedRoles={['student']}>
               <Dashboard />
             </ProtectedRoute>
           } 
         />
         <Route 
-          path="/student/live/:meetId" 
+          path="/student/public" 
+          element={<Dashboard />}
+        />
+        <Route 
+          path="/quiz/:quizCode" 
+          element={
+            <ProtectedRoute allowedRoles={['student', 'admin']}>
+              <Quiz />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path="/quizzes" 
           element={
             <ProtectedRoute allowedRoles={['student']}>
-              <Live />
+              <Dashboard />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route 
           path="/student/quiz-complete" 
@@ -139,7 +168,7 @@ const AppRoutes = memo(() => {
             </ProtectedRoute>
           } 
         />
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/student" replace />} />
       </Routes>
     </>
   );
