@@ -17,9 +17,24 @@ import {
   Alert,
   CircularProgress,
   Chip,
-  Stack
+  Stack,
+  IconButton,
+  InputAdornment
 } from '@mui/material';
-import { Add as AddIcon, Search as SearchIcon, FilterList as FilterIcon } from '@mui/icons-material';
+import { 
+  Add as AddIcon, 
+  Search as SearchIcon, 
+  FilterList as FilterIcon,
+  TrendingUp as TrendingUpIcon,
+  People as PeopleIcon,
+  Quiz as QuizIcon,
+  CheckCircle as CheckCircleIcon,
+  Schedule as ScheduleIcon,
+  Star as StarIcon,
+  AutoAwesome as SparklesIcon,
+  FlashOn as ZapIcon,
+  TrackChanges as TargetIcon
+} from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import AdminHeader from '../components/AdminHeader';
@@ -94,8 +109,9 @@ const Dashboard = () => {
     const inactive = quizzes.filter(q => q.status === 'inactive').length;
     const archived = quizzes.filter(q => q.status === 'archived').length;
     const totalParticipants = quizzes.reduce((sum, quiz) => sum + quiz.participants.length, 0);
+    const completedQuizzes = quizzes.filter(q => q.participants.some(p => p.completedAt)).length;
     
-    return { total, active, inactive, archived, totalParticipants };
+    return { total, active, inactive, archived, totalParticipants, completedQuizzes };
   };
 
   const stats = getStats();
@@ -124,250 +140,373 @@ const Dashboard = () => {
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
       <AdminHeader />
       
-      <Box sx={{ pt: '80px', px: 3 }}>
-        <Container maxWidth="xl">
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-            <Typography variant="h4">
-              Admin Dashboard
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              startIcon={<AddIcon />}
-              onClick={() => navigate('/create-quiz')}
-              sx={{ px: 3, py: 1.5 }}
+      <Box sx={{ pt: '100px', px: 0, width: '100vw', overflowX: 'hidden' }}>
+        {/* Header Section with Better Spacing */}
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' },
+          justifyContent: 'space-between', 
+          alignItems: { xs: 'stretch', md: 'center' }, 
+          mb: 6,
+          gap: 3,
+          px: { xs: 2, md: 4 }
+        }}>
+          <Box>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                mb: 2,
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                background: 'linear-gradient(270deg, #6366F1, #8B5CF6, #EC4899, #6366F1)',
+                backgroundSize: '800% 800%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                animation: 'gradientMove 6s ease-in-out infinite',
+                '@keyframes gradientMove': {
+                  '0%': { backgroundPosition: '0% 50%' },
+                  '50%': { backgroundPosition: '100% 50%' },
+                  '100%': { backgroundPosition: '0% 50%' },
+                },
+                textAlign: { xs: 'center', md: 'left' },
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1
+              }}
             >
-              Create New Quiz
-            </Button>
+            Admin Dashboard
+          </Typography>
           </Box>
+        </Box>
 
-          {/* Stats Cards */}
-          <Grid container spacing={3} sx={{ mb: 4 }}>
-            <Grid item xs={12} sm={6} md={2}>
+        {/* Enhanced Stats Cards - Full Width, 6 per row */}
+        <Grid container spacing={3} sx={{ mb: 6, mt: 4, px: { xs: 0, md: 4 }, width: '100%' }} justifyContent="center">
+          {[
+            {
+              icon: <QuizIcon sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />, label: 'Total Quizzes', value: stats.total,
+              bg: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)' : 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+              boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(99, 102, 241, 0.25)' : '0 8px 32px rgba(99, 102, 241, 0.12)'
+            },
+            {
+              icon: <CheckCircleIcon sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />, label: 'Active Quizzes', value: stats.active,
+              bg: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+              boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(16, 185, 129, 0.25)' : '0 8px 32px rgba(16, 185, 129, 0.12)'
+            },
+            {
+              icon: <ScheduleIcon sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />, label: 'Inactive Quizzes', value: stats.inactive,
+              bg: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)' : 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+              boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(245, 158, 11, 0.25)' : '0 8px 32px rgba(245, 158, 11, 0.12)'
+            },
+            {
+              icon: <StarIcon sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />, label: 'Archived Quizzes', value: stats.archived,
+              bg: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)' : 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+              boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(239, 68, 68, 0.25)' : '0 8px 32px rgba(239, 68, 68, 0.12)'
+            },
+            {
+              icon: <PeopleIcon sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />, label: 'Total Participants', value: stats.totalParticipants,
+              bg: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)' : 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
+              boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(139, 92, 246, 0.25)' : '0 8px 32px rgba(139, 92, 246, 0.12)'
+            },
+            {
+              icon: <TrendingUpIcon sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />, label: 'Completed Quizzes', value: stats.completedQuizzes,
+              bg: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)' : 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)',
+              boxShadow: theme.palette.mode === 'dark' ? '0 8px 32px rgba(6, 182, 212, 0.25)' : '0 8px 32px rgba(6, 182, 212, 0.12)'
+            }
+          ].map((card, idx) => (
+            <Grid item xs={12} sm={6} md={2} key={card.label}>
               <MotionCard
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
+                transition={{ delay: 0.1 + idx * 0.1 }}
                 sx={{
-                  p: 2,
+                  minWidth: 220,
+                  maxWidth: 220,
+                  minHeight: 220,
+                  maxHeight: 220,
+                  py: 5,
+                  px: 3,
                   textAlign: 'center',
-                  bgcolor: 'primary.light',
-                  color: 'white'
+                  background: card.bg,
+                  color: 'white',
+                  borderRadius: '24px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: card.boxShadow,
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)',
+                    transform: 'translateX(-100%)',
+                    transition: 'transform 0.6s',
+                  },
+                  '&:hover::before': {
+                    transform: 'translateX(100%)',
+                  },
+                  '&:hover': {
+                    transform: 'translateY(-8px) scale(1.02)',
+                    boxShadow: card.boxShadow,
+                  }
                 }}
               >
-                <Typography variant="h4">{stats.total}</Typography>
-                <Typography variant="body2">Total Quizzes</Typography>
+                {card.icon}
+                <Typography variant="h2" sx={{ fontWeight: 900, mb: 0.5, fontSize: '2.5rem' }}>
+                  {card.value}
+                </Typography>
+                <Typography variant="h6" sx={{ fontWeight: 700, opacity: 0.95 }}>
+                  {card.label}
+                </Typography>
               </MotionCard>
             </Grid>
-            <Grid item xs={12} sm={6} md={2}>
-              <MotionCard
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                sx={{
-                  p: 2,
-                  textAlign: 'center',
-                  bgcolor: 'success.light',
-                  color: 'white'
+          ))}
+        </Grid>
+
+        {/* Beautiful Create Quiz Card - Responsive, right-aligned on desktop */}
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, mb: 6, px: { xs: 2, md: 4 } }}>
+          <MotionCard
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.7 }}
+            sx={{
+              width: '100%',
+              maxWidth: 700,
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: '24px',
+              position: 'relative',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)',
+                transform: 'translateX(-100%)',
+                transition: 'transform 0.8s',
+              },
+              '&:hover::before': {
+                transform: 'translateX(100%)',
+              },
+              '&:hover': {
+                transform: 'translateY(-4px) scale(1.01)',
+                boxShadow: '0 25px 50px rgba(102, 126, 234, 0.4)',
+              }
+            }}
+            onClick={() => navigate('/create-quiz')}
+          >
+            <CardContent sx={{ p: { xs: 2, sm: 4 }, color: 'white' }}>
+              <Grid container alignItems="center" spacing={3}>
+                <Grid item xs={12} md={8}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 60,
+                        height: 60,
+                        borderRadius: '16px',
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        backdropFilter: 'blur(10px)',
+                        mr: 2,
+                        border: '2px solid rgba(255, 255, 255, 0.3)'
+                      }}
+                    >
+                      <SparklesIcon sx={{ fontSize: 32, color: 'white' }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="h4" sx={{ fontWeight: 800, mb: 0.5, fontSize: { xs: '1.3rem', sm: '1.7rem' } }}>
+                Create New Quiz
+              </Typography>
+                      <Typography variant="body1" sx={{ opacity: 0.9, fontWeight: 500, fontSize: { xs: '0.95rem', sm: '1.1rem' } }}>
+                        Design engaging quizzes with multiple question types
+              </Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                    <Chip 
+                      icon={<TargetIcon />} 
+                      label="Multiple Question Types" 
+                      sx={{ 
+                        background: 'rgba(255, 255, 255, 0.2)', 
+                        color: 'white', 
+                        fontWeight: 600,
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        fontSize: { xs: '0.8rem', sm: '1rem' }
+                      }} 
+                    />
+                    <Chip 
+                      icon={<ZapIcon />} 
+                      label="Instant Analytics" 
+                      sx={{ 
+                        background: 'rgba(255, 255, 255, 0.2)', 
+                        color: 'white', 
+                        fontWeight: 600,
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        fontSize: { xs: '0.8rem', sm: '1rem' }
+                      }} 
+                    />
+                    <Chip 
+                      icon={<CheckCircleIcon />} 
+                      label="Auto Grading" 
+                      sx={{ 
+                        background: 'rgba(255, 255, 255, 0.2)', 
+                        color: 'white', 
+                        fontWeight: 600,
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        fontSize: { xs: '0.8rem', sm: '1rem' }
+                      }} 
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={4} sx={{ textAlign: { xs: 'left', md: 'right' }, mt: { xs: 2, md: 0 } }}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    startIcon={<AddIcon />}
+                    sx={{ 
+                      px: 4, 
+                      py: 2,
+                      borderRadius: '16px',
+                      background: 'rgba(255, 255, 255, 0.2)',
+                      backdropFilter: 'blur(10px)',
+                      border: '2px solid rgba(255, 255, 255, 0.3)',
+                      color: 'white',
+                      fontWeight: 700,
+                      fontSize: { xs: '1rem', sm: '1.1rem' },
+                      '&:hover': {
+                        background: 'rgba(255, 255, 255, 0.3)',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 8px 25px rgba(255, 255, 255, 0.3)',
+                      }
+                    }}
+                  >
+                    Get Started
+                  </Button>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </MotionCard>
+        </Box>
+
+        {/* Search and Filter Section */}
+        <Box sx={{ mb: 4, px: { xs: 2, md: 4 } }}>
+          <Grid container spacing={3} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                placeholder="Search quizzes..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon color="action" />
+                    </InputAdornment>
+                  ),
                 }}
-              >
-                <Typography variant="h4">{stats.active}</Typography>
-                <Typography variant="body2">Active</Typography>
-              </MotionCard>
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '16px',
+                    background: theme.palette.background.paper,
+                  }
+                }}
+              />
             </Grid>
-            <Grid item xs={12} sm={6} md={2}>
-              <MotionCard
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                sx={{
-                  p: 2,
-                  textAlign: 'center',
-                  bgcolor: 'warning.light',
-                  color: 'white'
-                }}
-              >
-                <Typography variant="h4">{stats.inactive}</Typography>
-                <Typography variant="body2">Inactive</Typography>
-              </MotionCard>
+            <Grid item xs={12} sm={6} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Status</InputLabel>
+                <Select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  label="Status"
+                  sx={{ borderRadius: '16px' }}
+                >
+                  <MenuItem value="all">All Status</MenuItem>
+                  <MenuItem value="active">Active</MenuItem>
+                  <MenuItem value="inactive">Inactive</MenuItem>
+                  <MenuItem value="archived">Archived</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
-            <Grid item xs={12} sm={6} md={2}>
-              <MotionCard
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                sx={{
-                  p: 2,
-                  textAlign: 'center',
-                  bgcolor: 'grey.500',
-                  color: 'white'
-                }}
-              >
-                <Typography variant="h4">{stats.archived}</Typography>
-                <Typography variant="body2">Archived</Typography>
-              </MotionCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={2}>
-              <MotionCard
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                sx={{
-                  p: 2,
-                  textAlign: 'center',
-                  bgcolor: 'info.light',
-                  color: 'white'
-                }}
-              >
-                <Typography variant="h4">{stats.totalParticipants}</Typography>
-                <Typography variant="body2">Total Participants</Typography>
-              </MotionCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={2}>
-              <MotionCard
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                sx={{
-                  p: 2,
-                  textAlign: 'center',
-                  bgcolor: 'secondary.light',
-                  color: 'white'
-                }}
-              >
-                <Typography variant="h4">{quizzes.length > 0 ? Math.round(quizzes.reduce((sum, quiz) => sum + quiz.questions.length, 0) / quizzes.length) : 0}</Typography>
-                <Typography variant="body2">Avg Questions</Typography>
-              </MotionCard>
+            <Grid item xs={12} sm={6} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Difficulty</InputLabel>
+                <Select
+                  value={difficultyFilter}
+                  onChange={(e) => setDifficultyFilter(e.target.value)}
+                  label="Difficulty"
+                  sx={{ borderRadius: '16px' }}
+                >
+                  <MenuItem value="all">All Difficulties</MenuItem>
+                  <MenuItem value="easy">Easy</MenuItem>
+                  <MenuItem value="medium">Medium</MenuItem>
+                  <MenuItem value="hard">Hard</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
+        </Box>
 
-          {/* Search and Filter */}
-          <Box sx={{ mb: 3 }}>
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={12} md={4}>
-                <TextField
-                  fullWidth
-                  placeholder="Search quizzes..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  InputProps={{
-                    startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <FormControl fullWidth>
-                  <InputLabel>Status</InputLabel>
-                  <Select
-                    value={statusFilter}
-                    label="Status"
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                  >
-                    <MenuItem value="all">All Status</MenuItem>
-                    <MenuItem value="active">Active</MenuItem>
-                    <MenuItem value="inactive">Inactive</MenuItem>
-                    <MenuItem value="archived">Archived</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <FormControl fullWidth>
-                  <InputLabel>Difficulty</InputLabel>
-                  <Select
-                    value={difficultyFilter}
-                    label="Difficulty"
-                    onChange={(e) => setDifficultyFilter(e.target.value)}
-                  >
-                    <MenuItem value="all">All Difficulties</MenuItem>
-                    <MenuItem value="easy">Easy</MenuItem>
-                    <MenuItem value="medium">Medium</MenuItem>
-                    <MenuItem value="hard">Hard</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} md={2}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => {
-                    setSearchTerm('');
-                    setStatusFilter('all');
-                    setDifficultyFilter('all');
-                  }}
-                >
-                  Clear Filters
-                </Button>
-              </Grid>
-            </Grid>
+        {/* Error Alert */}
+        {error && (
+          <Alert severity="error" sx={{ mb: 3, borderRadius: '12px', mx: { xs: 2, md: 4 } }}>
+            {error}
+          </Alert>
+        )}
+
+        {/* Quizzes Grid */}
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
+            <CircularProgress />
           </Box>
-
-          {/* Error Alert */}
-          {error && (
-            <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>
-              {error}
-            </Alert>
-          )}
-
-          {/* Loading State */}
-          {loading ? (
-            <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-              <CircularProgress />
-            </Box>
-          ) : (
-            <>
-              {/* Results Count */}
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="body2" color="text.secondary">
-                  Showing {filteredQuizzes.length} of {quizzes.length} quizzes
-                </Typography>
-              </Box>
-
-              {/* Quizzes Grid */}
-              {filteredQuizzes.length > 0 ? (
-                <Grid container spacing={3}>
-                  {filteredQuizzes.map((quiz, index) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={quiz._id}>
-                      <motion.div
-                        variants={cardVariants}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <QuizCard
-                          quiz={quiz}
-                          onStatusUpdate={handleStatusUpdate}
-                          onDelete={handleDelete}
-                        />
-                      </motion.div>
-                    </Grid>
-                  ))}
-                </Grid>
-              ) : (
-                <Box sx={{ textAlign: 'center', p: 4 }}>
-                  <Typography variant="h6" color="text.secondary" gutterBottom>
-                    No quizzes found
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-                    {quizzes.length === 0 
-                      ? "You haven't created any quizzes yet. Click 'Create New Quiz' to get started!"
-                      : "Try adjusting your search or filter criteria."
-                    }
-                  </Typography>
-                  {quizzes.length === 0 && (
-                    <Button
-                      variant="contained"
-                      size="large"
-                      startIcon={<AddIcon />}
-                      onClick={() => navigate('/create-quiz')}
-                    >
-                      Create Your First Quiz
-                    </Button>
-                  )}
-                </Box>
-              )}
-            </>
-          )}
-        </Container>
+        ) : filteredQuizzes.length === 0 ? (
+          <Box sx={{ textAlign: 'center', py: 8, px: { xs: 2, md: 4 } }}>
+            <Typography variant="h6" color="text.secondary" sx={{ mb: 2 }}>
+              No quizzes found
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {searchTerm || statusFilter !== 'all' || difficultyFilter !== 'all' 
+                ? 'Try adjusting your search or filters' 
+                : 'Create your first quiz to get started'
+              }
+            </Typography>
+          </Box>
+        ) : (
+          <Box sx={{
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
+            gap: 3,
+          }}>
+            {filteredQuizzes.map((quiz, index) => (
+              <MotionCard
+                key={quiz._id}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: index * 0.1 }}
+                sx={{ height: '100%' }}
+              >
+                <QuizCard
+                  quiz={quiz}
+                  onStatusUpdate={handleStatusUpdate}
+                  onDelete={handleDelete}
+                />
+              </MotionCard>
+            ))}
+          </Box>
+        )}
       </Box>
     </Box>
   );
