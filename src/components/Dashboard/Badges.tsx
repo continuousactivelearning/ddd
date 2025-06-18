@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface Badge {
   name: string;
@@ -6,371 +6,487 @@ interface Badge {
   gradient: string;
   shadowColor: string;
   description: string;
+  isEarned: boolean;
+  progress?: number;
+  maxProgress?: number;
+  earnedDate?: string;
+  progressLabel?: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  checkmark?: boolean;
 }
 
 const badges: Badge[] = [
   { 
-    name: 'Newbie', 
-    icon: '🌱', 
-    gradient: 'linear-gradient(135deg, #10b981, #059669)',
-    shadowColor: 'rgba(16, 185, 129, 0.4)',
-    description: 'Welcome to the journey!'
+    name: 'Early Bird', 
+    icon: '⛰️', 
+    gradient: 'linear-gradient(135deg, #ea580c, #dc2626)',
+    shadowColor: 'rgba(234, 88, 12, 0.4)',
+    description: 'Complete 5 lessons before 9 AM',
+    isEarned: true,
+    earnedDate: '1/15/2024',
+    rarity: 'common',
+    checkmark: true
   },
   { 
-    name: 'Productivity Pro', 
+    name: 'Streak Master', 
+    icon: '🔥', 
+    gradient: 'linear-gradient(135deg, #dc2626, #991b1b)',
+    shadowColor: 'rgba(220, 38, 38, 0.4)',
+    description: 'Maintain a 7-day learning streak',
+    isEarned: true,
+    earnedDate: '1/18/2024',
+    rarity: 'rare',
+    checkmark: true
+  },
+  { 
+    name: 'Quiz Champion', 
+    icon: '🏆', 
+    gradient: 'linear-gradient(135deg, #059669, #047857)',
+    shadowColor: 'rgba(5, 150, 105, 0.4)',
+    description: 'Score 100% on 10 quizzes',
+    isEarned: true,
+    earnedDate: '1/20/2024',
+    rarity: 'epic',
+    checkmark: true
+  },
+  { 
+    name: 'Speed Learner', 
     icon: '⚡', 
-    gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
+    gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
     shadowColor: 'rgba(59, 130, 246, 0.4)',
-    description: 'Efficiency master!'
+    description: 'Complete 20 lessons in one day',
+    isEarned: false,
+    progress: 13,
+    maxProgress: 20,
+    progressLabel: '13 of 20 completed',
+    rarity: 'rare'
   },
   { 
-    name: 'Legend', 
-    icon: '👑', 
-    gradient: 'linear-gradient(135deg, #f59e0b, #ea580c)',
-    shadowColor: 'rgba(245, 158, 11, 0.4)',
-    description: 'Ultimate achievement!'
+    name: 'Perfectionist', 
+    icon: '⭐', 
+    gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+    shadowColor: 'rgba(6, 182, 212, 0.4)',
+    description: 'Achieve 100% completion on all modules',
+    isEarned: false,
+    progress: 10,
+    maxProgress: 12,
+    progressLabel: '10 of 12 completed',
+    rarity: 'legendary'
+  },
+  { 
+    name: 'Social Learner', 
+    icon: '👥', 
+    gradient: 'linear-gradient(135deg, #6b7280, #4b5563)',
+    shadowColor: 'rgba(107, 114, 128, 0.4)',
+    description: 'Help 5 other students with questions',
+    isEarned: false,
+    progress: 2,
+    maxProgress: 5,
+    progressLabel: '2 of 5 completed',
+    rarity: 'common'
   },
 ];
 
 const Badges: React.FC = () => {
-  const [visibleBadges, setVisibleBadges] = useState<number[]>([]);
-  const [hoveredBadge, setHoveredBadge] = useState<number | null>(null);
-  const [showHeader, setShowHeader] = useState<boolean>(false);
-  const [showStats, setShowStats] = useState<boolean>(false);
-  const [sparklePositions, setSparklePositions] = useState<{x: number, y: number}[]>([]);
+  const [selectedBadge, setSelectedBadge] = useState<Badge | null>(null);
 
-  useEffect(() => {
-    // Staggered animations
-    setTimeout(() => setShowHeader(true), 100);
-    
-    badges.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleBadges(prev => [...prev, index]);
-      }, 300 + (index * 250));
-    });
-    
-    setTimeout(() => setShowStats(true), 1200);
+  const handleBadgeClick = (badge: Badge) => {
+    setSelectedBadge(badge);
+  };
 
-    // Generate random sparkle positions
-    const positions = Array.from({length: 8}, () => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100
-    }));
-    setSparklePositions(positions);
-  }, []);
+  const closeModal = () => {
+    setSelectedBadge(null);
+  };
+
+  const getRarityColor = (rarity: string) => {
+    switch (rarity) {
+      case 'common': return '#6b7280';
+      case 'rare': return '#3b82f6';
+      case 'epic': return '#8b5cf6';
+      case 'legendary': return '#f59e0b';
+      default: return '#6b7280';
+    }
+  };
+
+  const getRarityBorder = (rarity: string) => {
+    switch (rarity) {
+      case 'common': return '#d1d5db';
+      case 'rare': return '#3b82f6';
+      case 'epic': return '#8b5cf6';
+      case 'legendary': return '#f59e0b';
+      default: return '#d1d5db';
+    }
+  };
 
   const containerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    minHeight: '250px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px',
-    overflow: 'hidden'
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    padding: '24px',
+    backgroundColor: '#f8fafc',
+    minHeight: '100vh'
   };
-
-  const backgroundEffectStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: `radial-gradient(circle at 30% 40%, 
-      rgba(59, 130, 246, 0.05) 0%, 
-      transparent 50%),
-      radial-gradient(circle at 70% 60%, 
-      rgba(245, 158, 11, 0.05) 0%, 
-      transparent 50%)`,
-    animation: 'float 6s ease-in-out infinite',
-    pointerEvents: 'none'
-  };
-
-  const sparkleStyle = (index: number): React.CSSProperties => ({
-    position: 'absolute',
-    left: `${sparklePositions[index]?.x || 0}%`,
-    top: `${sparklePositions[index]?.y || 0}%`,
-    fontSize: '8px',
-    color: '#fbbf24',
-    animation: `twinkle 3s ease-in-out infinite ${index * 0.5}s`,
-    pointerEvents: 'none',
-    opacity: 0
-  });
 
   const headerStyle: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
-    gap: '10px',
-    marginBottom: '20px',
-    transition: 'all 0.8s ease',
-    transform: showHeader ? 'translateY(0) scale(1)' : 'translateY(-20px) scale(0.9)',
-    opacity: showHeader ? 1 : 0
-  };
-
-  const trophyStyle: React.CSSProperties = {
-    fontSize: '28px',
-    animation: showHeader ? 'bounce 2s ease-in-out infinite' : 'none',
-    transformOrigin: 'bottom',
-    filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.3))'
-  };
-
-  const headerTextStyle: React.CSSProperties = {
-    fontSize: '18px',
-    fontWeight: '700',
-    color: '#e5e7eb',
-    letterSpacing: '0.5px',
-    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
-  };
-
-  const badgesContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '12px',
-    justifyContent: 'center',
-    maxWidth: '280px',
+    justifyContent: 'space-between',
     marginBottom: '20px'
   };
 
-  const badgeWrapperStyle = (index: number): React.CSSProperties => ({
+  const headerTitleStyle: React.CSSProperties = {
+    fontSize: '24px',
+    fontWeight: '700',
+    color: '#1f2937',
+    margin: 0
+  };
+
+  const headerSubtitleStyle: React.CSSProperties = {
+    fontSize: '14px',
+    color: '#6b7280',
+    margin: '4px 0 0 0'
+  };
+
+  const trophyIconStyle: React.CSSProperties = {
+    fontSize: '24px',
+    color: '#3b82f6',
+    padding: '8px',
+    backgroundColor: '#dbeafe',
+    borderRadius: '8px'
+  };
+
+  const badgesGridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '16px',
+    maxWidth: '900px'
+  };
+
+  const badgeCardStyle = (badge: Badge): React.CSSProperties => ({
+    backgroundColor: 'white',
+    borderRadius: '12px',
+    padding: '20px',
+    border: `2px solid ${getRarityBorder(badge.rarity)}`,
     position: 'relative',
     cursor: 'pointer',
-    transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    transform: visibleBadges.includes(index) 
-      ? (hoveredBadge === index ? 'translateY(-8px) scale(1.1)' : 'translateY(0) scale(1)')
-      : 'translateY(20px) scale(0.8)',
-    opacity: visibleBadges.includes(index) ? 1 : 0,
-    transformOrigin: 'center bottom'
+    transition: 'all 0.2s ease',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+    opacity: badge.isEarned ? 1 : 0.8
   });
 
-  const badgeStyle = (badge: Badge, index: number): React.CSSProperties => ({
-    position: 'relative',
-    background: badge.gradient,
-    color: 'white',
-    padding: '12px 16px',
-    borderRadius: '25px',
+  const rarityLabelStyle = (rarity: string): React.CSSProperties => ({
+    position: 'absolute',
+    top: '12px',
+    left: '12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    color: getRarityColor(rarity),
+    textTransform: 'lowercase',
+    backgroundColor: rarity === 'legendary' ? '#fef3c7' : 'transparent'
+  });
+
+  const checkmarkStyle: React.CSSProperties = {
+    position: 'absolute',
+    top: '12px',
+    right: '12px',
+    width: '20px',
+    height: '20px',
+    backgroundColor: '#10b981',
+    borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    boxShadow: hoveredBadge === index 
-      ? `0 8px 25px ${badge.shadowColor}, 0 0 20px ${badge.shadowColor}`
-      : `0 4px 15px ${badge.shadowColor}`,
-    transition: 'all 0.3s ease',
-    overflow: 'hidden',
-    minWidth: '120px',
-    justifyContent: 'center'
-  });
-
-  const badgeGlowStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: '-100%',
-    width: '100%',
-    height: '100%',
-    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-    transition: 'left 0.6s ease',
-    pointerEvents: 'none'
+    justifyContent: 'center',
+    fontSize: '12px',
+    color: 'white'
   };
 
-  const badgeGlowActiveStyle: React.CSSProperties = {
-    ...badgeGlowStyle,
-    left: '100%'
-  };
-
-  const iconStyle: React.CSSProperties = {
-    fontSize: '20px',
-    transition: 'transform 0.3s ease',
-    transform: hoveredBadge !== null ? 'rotate(10deg) scale(1.1)' : 'rotate(0deg) scale(1)'
-  };
-
-  const badgeTextStyle: React.CSSProperties = {
-    fontWeight: '600',
-    fontSize: '13px',
-    whiteSpace: 'nowrap',
-    textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
-  };
-
-  const tooltipStyle = (index: number): React.CSSProperties => ({
-  position: 'absolute',
-  bottom: '120%',
-  left: '50%',
-  background: 'rgba(0, 0, 0, 0.9)',
-  color: 'white',
-  fontSize: '11px',
-  padding: '6px 10px',
-  borderRadius: '6px',
-  whiteSpace: 'nowrap',
-  transition: 'all 0.3s ease',
-  opacity: hoveredBadge === index ? 1 : 0,
-  visibility: hoveredBadge === index ? 'visible' : 'hidden',
-  transform: hoveredBadge === index 
-    ? 'translateX(-50%) translateY(0)' 
-    : 'translateX(-50%) translateY(4px)',
-  pointerEvents: 'none',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-  zIndex: 10
-});
-
-
-  const tooltipArrowStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: '100%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: 0,
-    height: 0,
-    borderLeft: '4px solid transparent',
-    borderRight: '4px solid transparent',
-    borderTop: '4px solid rgba(0, 0, 0, 0.9)'
-  };
-
-  const progressContainerStyle: React.CSSProperties = {
+  const badgeContentStyle: React.CSSProperties = {
     display: 'flex',
-    gap: '8px',
-    marginBottom: '16px',
-    transition: 'all 0.8s ease',
-    transitionDelay: '0.8s',
-    transform: showStats ? 'translateY(0)' : 'translateY(15px)',
-    opacity: showStats ? 1 : 0
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: '12px'
   };
 
-  const progressDotStyle = (index: number): React.CSSProperties => ({
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    transition: 'all 0.4s ease',
-    transitionDelay: `${index * 150}ms`,
-    backgroundColor: visibleBadges.includes(index) ? '#3b82f6' : '#4b5563',
-    transform: visibleBadges.includes(index) ? 'scale(1.2)' : 'scale(1)',
-    boxShadow: visibleBadges.includes(index) 
-      ? '0 0 10px rgba(59, 130, 246, 0.6)' 
-      : 'none',
-    animation: visibleBadges.includes(index) ? 'pulse 2s ease-in-out infinite' : 'none'
+  const badgeIconStyle: React.CSSProperties = {
+    fontSize: '40px',
+    marginBottom: '12px',
+    filter: 'none'
+  };
+
+  const badgeNameStyle: React.CSSProperties = {
+    fontSize: '18px',
+    fontWeight: '700',
+    color: '#1f2937',
+    marginBottom: '6px'
+  };
+
+  const badgeDescriptionStyle: React.CSSProperties = {
+    fontSize: '14px',
+    color: '#6b7280',
+    marginBottom: '16px',
+    lineHeight: '1.4'
+  };
+
+  const progressSectionStyle: React.CSSProperties = {
+    width: '100%',
+    marginTop: '16px'
+  };
+
+  const progressHeaderStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '8px'
+  };
+
+  const progressLabelStyle: React.CSSProperties = {
+    fontSize: '12px',
+    color: '#6b7280',
+    fontWeight: '600'
+  };
+
+  const progressValueStyle: React.CSSProperties = {
+    fontSize: '12px',
+    color: '#1f2937',
+    fontWeight: '600'
+  };
+
+  const progressBarContainerStyle: React.CSSProperties = {
+    width: '100%',
+    height: '6px',
+    backgroundColor: '#e5e7eb',
+    borderRadius: '3px',
+    overflow: 'hidden'
+  };
+
+  const progressBarFillStyle = (progress: number, maxProgress: number): React.CSSProperties => ({
+    height: '100%',
+    backgroundColor: '#3b82f6',
+    borderRadius: '3px',
+    width: `${(progress / maxProgress) * 100}%`,
+    transition: 'width 0.8s ease'
   });
 
-  const statsStyle: React.CSSProperties = {
+  // Modal styles
+  const modalOverlayStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000,
+    opacity: selectedBadge ? 1 : 0,
+    visibility: selectedBadge ? 'visible' : 'hidden',
+    transition: 'all 0.3s ease'
+  };
+
+  const modalStyle: React.CSSProperties = {
+    background: 'white',
+    borderRadius: '20px',
+    padding: '32px',
+    maxWidth: '400px',
+    width: '90%',
     textAlign: 'center',
-    transition: 'all 0.8s ease',
-    transitionDelay: '1s',
-    transform: showStats ? 'translateY(0)' : 'translateY(20px)',
-    opacity: showStats ? 1 : 0
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+    transform: selectedBadge ? 'scale(1) translateY(0)' : 'scale(0.8) translateY(20px)',
+    transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    position: 'relative'
   };
 
-  const statsTextStyle: React.CSSProperties = {
-    fontSize: '13px',
-    color: '#9ca3af'
+  const modalIconStyle: React.CSSProperties = {
+    fontSize: '60px',
+    marginBottom: '16px',
+    display: 'block',
+    filter: selectedBadge?.isEarned ? 'none' : 'grayscale(100%)'
   };
 
-  const highlightNumberStyle: React.CSSProperties = {
+  const modalTitleStyle: React.CSSProperties = {
+    fontSize: '24px',
+    fontWeight: '700',
+    color: '#1f2937',
+    marginBottom: '8px'
+  };
+
+  const modalDescriptionStyle: React.CSSProperties = {
+    fontSize: '16px',
+    color: '#6b7280',
+    marginBottom: '24px',
+    lineHeight: '1.5'
+  };
+
+  const earnedBadgeStyle: React.CSSProperties = {
+    background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)',
+    color: '#065f46',
+    padding: '12px 24px',
+    borderRadius: '10px',
+    fontSize: '14px',
+    fontWeight: '600',
+    marginBottom: '24px'
+  };
+
+  const modalProgressSectionStyle: React.CSSProperties = {
+    marginBottom: '24px'
+  };
+
+  const modalProgressHeaderStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '8px'
+  };
+
+  const modalProgressLabelStyle: React.CSSProperties = {
+    fontSize: '14px',
+    color: '#6b7280',
+    fontWeight: '500'
+  };
+
+  const modalProgressPercentStyle: React.CSSProperties = {
+    fontSize: '14px',
     color: '#3b82f6',
-    fontWeight: 'bold',
-    fontSize: '15px',
-    textShadow: '0 0 8px rgba(59, 130, 246, 0.4)'
+    fontWeight: '700'
   };
+
+  const modalProgressBarContainerStyle: React.CSSProperties = {
+    width: '100%',
+    height: '8px',
+    backgroundColor: '#e5e7eb',
+    borderRadius: '4px',
+    overflow: 'hidden'
+  };
+
+  const modalProgressBarFillStyle = (progress: number, maxProgress: number): React.CSSProperties => ({
+    height: '100%',
+    backgroundColor: '#3b82f6',
+    borderRadius: '4px',
+    width: `${(progress / maxProgress) * 100}%`,
+    transition: 'width 0.8s ease'
+  });
+
+  const modalProgressTextStyle: React.CSSProperties = {
+    fontSize: '12px',
+    color: '#9ca3af',
+    marginTop: '4px'
+  };
+
+  const closeButtonStyle: React.CSSProperties = {
+    background: '#3b82f6',
+    color: 'white',
+    border: 'none',
+    padding: '12px 32px',
+    borderRadius: '10px',
+    fontSize: '16px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+    boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+  };
+
+  const earnedCount = badges.filter(badge => badge.isEarned).length;
 
   return (
     <div style={containerStyle}>
-      <div style={backgroundEffectStyle}></div>
-      
-      {/* Floating sparkles */}
-      {sparklePositions.map((_, index) => (
-        <div key={index} style={sparkleStyle(index)}>✨</div>
-      ))}
-
-      {/* Header */}
       <div style={headerStyle}>
-        <div style={trophyStyle}>🏆</div>
-        <div style={headerTextStyle}>Your Achievements</div>
+        <div>
+          <h1 style={headerTitleStyle}>Achievements</h1>
+          <p style={headerSubtitleStyle}>{earnedCount} of {badges.length} earned</p>
+        </div>
+        <div style={trophyIconStyle}>🏆</div>
       </div>
 
-      {/* Badges */}
-      <div style={badgesContainerStyle}>
-        {badges.map((badge, index) => (
+      <div style={badgesGridStyle}>
+        {badges.map((badge, _index) => (
           <div
             key={badge.name}
-            style={badgeWrapperStyle(index)}
-            onMouseEnter={() => setHoveredBadge(index)}
-            onMouseLeave={() => setHoveredBadge(null)}
+            style={badgeCardStyle(badge)}
+            onClick={() => handleBadgeClick(badge)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            }}
           >
-            <div style={badgeStyle(badge, index)}>
-              <div style={hoveredBadge === index ? badgeGlowActiveStyle : badgeGlowStyle}></div>
-              <span style={iconStyle}>{badge.icon}</span>
-              <span style={badgeTextStyle}>{badge.name}</span>
-            </div>
+            <div style={rarityLabelStyle(badge.rarity)}>{badge.rarity}</div>
             
-            {/* Tooltip */}
-            <div style={tooltipStyle(index)}>
-              {badge.description}
-              <div style={tooltipArrowStyle}></div>
+            {badge.checkmark && (
+              <div style={checkmarkStyle}>✓</div>
+            )}
+
+            <div style={badgeContentStyle}>
+              <div style={badgeIconStyle}>{badge.icon}</div>
+              <h3 style={badgeNameStyle}>{badge.name}</h3>
+              <p style={badgeDescriptionStyle}>{badge.description}</p>
+
+              {!badge.isEarned && badge.progress !== undefined && (
+                <div style={progressSectionStyle}>
+                  <div style={progressHeaderStyle}>
+                    <span style={progressLabelStyle}>Progress</span>
+                    <span style={progressValueStyle}>{badge.progress}/{badge.maxProgress}</span>
+                  </div>
+                  <div style={progressBarContainerStyle}>
+                    <div style={progressBarFillStyle(badge.progress, badge.maxProgress!)}></div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Progress dots */}
-      <div style={progressContainerStyle}>
-        {badges.map((_, index) => (
-          <div key={index} style={progressDotStyle(index)} />
-        ))}
-      </div>
-
-      {/* Stats */}
-      <div style={statsStyle}>
-        <div style={statsTextStyle}>
-          <span style={highlightNumberStyle}>{visibleBadges.length}</span>
-          <span> / {badges.length} Unlocked</span>
+      {/* Modal */}
+      <div style={modalOverlayStyle} onClick={closeModal}>
+        <div style={modalStyle} onClick={(e) => e.stopPropagation()}>
+          {selectedBadge && (
+            <>
+              <span style={modalIconStyle}>{selectedBadge.icon}</span>
+              <h2 style={modalTitleStyle}>{selectedBadge.name}</h2>
+              <p style={modalDescriptionStyle}>{selectedBadge.description}</p>
+              
+              {selectedBadge.isEarned ? (
+                <div style={earnedBadgeStyle}>
+                  Earned on {selectedBadge.earnedDate}
+                </div>
+              ) : (
+                <div style={modalProgressSectionStyle}>
+                  <div style={modalProgressHeaderStyle}>
+                    <span style={modalProgressLabelStyle}>Progress</span>
+                    <span style={modalProgressPercentStyle}>
+                      {Math.round((selectedBadge.progress! / selectedBadge.maxProgress!) * 100)}%
+                    </span>
+                  </div>
+                  <div style={modalProgressBarContainerStyle}>
+                    <div style={modalProgressBarFillStyle(selectedBadge.progress!, selectedBadge.maxProgress!)}></div>
+                  </div>
+                  <div style={modalProgressTextStyle}>
+                    {selectedBadge.progressLabel}
+                  </div>
+                </div>
+              )}
+              
+              <button 
+                style={closeButtonStyle}
+                onClick={closeModal}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+                }}
+              >
+                Close
+              </button>
+            </>
+          )}
         </div>
       </div>
-
-      <style>{`
-        @keyframes bounce {
-          0%, 20%, 53%, 80%, 100% {
-            transform: translateY(0);
-          }
-          40%, 43% {
-            transform: translateY(-8px);
-          }
-          70% {
-            transform: translateY(-4px);
-          }
-          90% {
-            transform: translateY(-2px);
-          }
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          33% {
-            transform: translateY(-10px) rotate(1deg);
-          }
-          66% {
-            transform: translateY(5px) rotate(-1deg);
-          }
-        }
-        
-        @keyframes twinkle {
-          0%, 100% {
-            opacity: 0;
-            transform: scale(0.5);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.7;
-          }
-        }
-      `}</style>
     </div>
   );
 };

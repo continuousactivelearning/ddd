@@ -1,113 +1,162 @@
-
 import { useNavigate } from "react-router-dom";
 import { Sparkles, Brain, Map } from "lucide-react";
+import type { CSSProperties } from "react";
 
 const MiniGames = () => {
   const navigate = useNavigate();
 
   const games = [
     {
-      name: "Memory Map",
-      icon: <Map className="w-8 h-8" />,
-      color: "from-emerald-400 via-teal-500 to-blue-600",
-      shadow: "shadow-emerald-500/25",
-      hoverShadow: "hover:shadow-emerald-500/40",
-      path: "/memory-map",
-      description: "Test your spatial memory",
+      name: "Matchmaking Game",
+      icon: <Map size={28} />,
+      color: "linear-gradient(to bottom right, #34d399, #0ea5e9)",
+      path: "/matchmaking",
+      description: "Flip and match memory challenge",
     },
     {
       name: "Quiz",
-      icon: <Brain className="w-8 h-8" />,
-      color: "from-purple-500 via-violet-600 to-pink-600",
-      shadow: "shadow-purple-500/25",
-      hoverShadow: "hover:shadow-purple-500/40",
+      icon: <Brain size={28} />,
+      color: "linear-gradient(to bottom right, #8b5cf6, #ec4899)",
       path: "/quiz",
       description: "Challenge your knowledge",
     },
     {
-      name: "Short Questions",
-      icon: <Sparkles className="w-8 h-8" />,
-      color: "from-amber-400 via-orange-500 to-red-500",
-      shadow: "shadow-orange-500/25",
-      hoverShadow: "hover:shadow-orange-500/40",
-      path: "/short-questions",
-      description: "Quick thinking challenges",
+      name: "Hangman Game",
+      icon: <Sparkles size={28} />,
+      color: "linear-gradient(to bottom right, #fbbf24, #ef4444)",
+      path: "/hangman",
+      description: "Classic word guessing fun",
     },
   ];
 
+  const containerStyle: CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1.5rem",
+    flexWrap: "wrap",
+    width: "100%",
+    padding: "2rem",
+    boxSizing: "border-box",
+  };
+
+  const buttonStyle = (gradient: string): CSSProperties => ({
+    background: gradient,
+    borderRadius: "20px",
+    padding: "1.25rem",
+    color: "#fff",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    cursor: "pointer",
+    minWidth: "200px",
+    minHeight: "180px",
+    flex: "1 1 220px",
+    position: "relative",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  });
+
+  const buttonHoverStyle: CSSProperties = {
+    transform: "scale(1.03) translateY(-4px)",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+  };
+
+  const bubbleStyle = (top = false): CSSProperties => ({
+    position: "absolute",
+    width: top ? "60px" : "80px",
+    height: top ? "60px" : "80px",
+    backgroundColor: "white",
+    borderRadius: "50%",
+    opacity: 0.1,
+    filter: "blur(20px)",
+    animation: "pulse 2s infinite",
+    top: top ? "0" : undefined,
+    bottom: !top ? "0" : undefined,
+    left: top ? "-20px" : undefined,
+    right: !top ? "-20px" : undefined,
+  });
+
+  const tooltipStyle: CSSProperties = {
+    position: "absolute",
+    top: "8px",
+    right: "12px",
+    backgroundColor: "rgba(255,255,255,0.1)",
+    padding: "4px 8px",
+    borderRadius: "12px",
+    fontSize: "10px",
+    color: "#fff",
+    opacity: 0,
+    transition: "opacity 0.3s ease",
+  };
+
+  const dotStyle = (delay: string): CSSProperties => ({
+    width: "6px",
+    height: "6px",
+    backgroundColor: "#fff",
+    borderRadius: "50%",
+    animation: "bounce 1.2s infinite",
+    animationDelay: delay,
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            Mini Games
-          </h1>
-          <p className="text-lg text-gray-600 font-medium">
-            Choose your challenge and test your skills!
-          </p>
-        </div>
-
-        {/* Games Grid - Now horizontal */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {games.map((game, index) => (
-            <div
-              key={game.name}
-              className="group relative overflow-hidden"
-              style={{ animationDelay: `${index * 150}ms` }}
+    <div style={{ padding: "1.5rem", boxSizing: "border-box", width: "100%" }}>
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Mini Games</h1>
+      <div style={containerStyle}>
+        {games.map((game, index) => (
+          <div
+            key={index}
+            style={{ position: "relative", transition: "transform 0.3s ease" }}
+            onMouseEnter={(e) => {
+              const div = e.currentTarget as HTMLDivElement;
+              const button = div.querySelector(".hover-button") as HTMLButtonElement;
+              const tooltip = div.querySelector(".tooltip") as HTMLDivElement;
+              if (button) Object.assign(button.style, buttonHoverStyle);
+              if (tooltip) tooltip.style.opacity = "1";
+            }}
+            onMouseLeave={(e) => {
+              const div = e.currentTarget as HTMLDivElement;
+              const button = div.querySelector(".hover-button") as HTMLButtonElement;
+              const tooltip = div.querySelector(".tooltip") as HTMLDivElement;
+              if (button) {
+                button.style.transform = "";
+                button.style.boxShadow = "";
+              }
+              if (tooltip) tooltip.style.opacity = "0";
+            }}
+          >
+            <button
+              onClick={() => navigate(game.path)}
+              style={buttonStyle(game.color)}
+              className="hover-button"
             >
-              <button
-                onClick={() => navigate(game.path)}
-                className={`
-                  relative w-full p-6 rounded-3xl bg-gradient-to-br ${game.color} 
-                  text-white shadow-2xl ${game.shadow} ${game.hoverShadow}
-                  transform hover:scale-[1.02] hover:-translate-y-2 
-                  transition-all duration-500 ease-out
-                  border border-white/20 backdrop-blur-sm
-                  active:scale-[0.98] active:translate-y-0
-                  overflow-hidden
-                  min-h-[200px] flex flex-col justify-center items-center
-                `}
+              <div style={bubbleStyle(true)}></div>
+              <div style={bubbleStyle(false)}></div>
+              <div className="tooltip" style={tooltipStyle}>Get ready for something fun!</div>
+              <div
+                style={{
+                  backgroundColor: "rgba(255, 255, 255, 0.2)",
+                  padding: "0.75rem",
+                  borderRadius: "12px",
+                  marginBottom: "1rem",
+                }}
               >
-                {/* Animated background pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-0 -left-4 w-24 h-24 bg-white rounded-full blur-xl animate-pulse"></div>
-                  <div className="absolute bottom-0 -right-4 w-32 h-32 bg-white rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 text-center">
-                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm group-hover:bg-white/30 transition-colors duration-300 mb-4 inline-block">
-                    {game.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{game.name}</h3>
-                  <p className="text-white/80 text-sm font-medium">{game.description}</p>
-                  
-                  {/* Arrow indicator */}
-                  <div className="flex justify-center items-center space-x-2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 mt-4">
-                    <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                  </div>
-                </div>
-
-                {/* Hover effect overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out"></div>
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom decoration */}
-        <div className="flex justify-center mt-12 space-x-2">
-          {[...Array(3)].map((_, i) => (
-            <div
-              key={i}
-              className="w-3 h-3 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full animate-pulse"
-              style={{ animationDelay: `${i * 0.5}s` }}
-            ></div>
-          ))}
-        </div>
+                {game.icon}
+              </div>
+              <h3 style={{ fontSize: "1rem", fontWeight: "bold", margin: 0 }}>{game.name}</h3>
+              <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.8)", marginTop: "0.25rem" }}>
+                {game.description}
+              </p>
+              <div style={{ display: "flex", gap: "6px", marginTop: "1rem", opacity: 0.7 }}>
+                <div style={dotStyle("0s")}></div>
+                <div style={dotStyle("0.1s")}></div>
+                <div style={dotStyle("0.2s")}></div>
+              </div>
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

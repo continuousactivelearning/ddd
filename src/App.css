@@ -8,27 +8,50 @@ body,
 html,
 #root {
   height: 100%;
-  background-color: #0e0e0e;
-  color: #fff;
+  color: #86f6e3;
   font-family: 'Inter', sans-serif;
+  background-color: rgb(183, 251, 232);
+  /*background: linear-gradient(135deg, #020202, #ebebed);
+  background-size: 400% 400%;
+  animation: gradientBreath 5s ease infinite;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 0;*/
+}
+
+@keyframes gradientBreath {
+  0% {
+    background-position: 0% 20%;
+  }
+  50% {
+    background-position: 20% 40%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .app-container {
   display: flex;
   min-height: 100vh;
-  width: 100%;
   overflow: hidden;
 }
+
+.main-content {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
 
 /* Sidebar */
 .sidebar {
   position: fixed;         /* Keep it locked to the left */
   top: 0;
   left: 0;
-  width: 240px;            /* Adjust as needed */
+  width: 200px;            /* Adjust as needed */
   height: 100vh;
-  background: linear-gradient(135deg, #98d4ce, #1c1c2e);
-  color: white;
+  color: rgb(242, 243, 238);
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -38,15 +61,30 @@ html,
 }
 
 .dashboard {
-  margin-left: 240px; /* Match sidebar width */
+  margin-left: 200px; /* Match sidebar width */
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   min-height: 100vh;
-  background-color: #0e0e0e;
+  background-size: 400% 400%;
+  animation: gradientBreath 15s ease infinite;
   box-sizing: border-box;
+  color: #e4e6ea;
 }
+
+@keyframes gradientBreath {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 
 .user-info {
@@ -88,9 +126,3 @@ html,
   color: #6c63ff;
 }
 
-/* Right side dashboard */
-.main-content {
-  flex: 1;
-  padding: 2rem;
-  overflow-y: auto;
-}

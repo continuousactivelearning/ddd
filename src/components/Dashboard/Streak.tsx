@@ -1,193 +1,96 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import './styles.css';
+
+const streakData = {
+  currentStreak: 12,
+  longestStreak: 25,
+  bestStreakPercent: 48,
+  week: [
+    { day: 'M', date: '01/15', completed: true },
+    { day: 'T', date: '01/16', completed: true },
+    { day: 'W', date: '01/17', completed: true },
+    { day: 'T', date: '01/18', completed: true },
+    { day: 'F', date: '01/19', completed: true },
+    { day: 'S', date: '01/20', completed: true },
+    { day: 'S', date: '01/21', completed: false },
+  ],
+  milestone: {
+    goal: 30,
+    current: 12,
+    label: 'Monthly Master Badge',
+  },
+  achievements: [
+    { title: '7 Day Streak', desc: 'Week Warrior Badge', unlocked: true },
+    { title: '14 Day Streak', desc: 'Consistency Champion', unlocked: true },
+    { title: '30 Day Streak', desc: 'Monthly Master Badge', unlocked: false },
+    { title: '100 Day Streak', desc: 'Century Streak Legend', unlocked: false },
+  ],
+};
 
 const Streak: React.FC = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [flame, setFlame] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-    const flameInterval = setInterval(() => {
-      setFlame(prev => !prev);
-    }, 1500);
-    
-    return () => clearInterval(flameInterval);
-  }, []);
-
-  const containerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    minHeight: '200px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden'
-  };
-
-  const backgroundStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.05) 40%, transparent 70%)',
-    pointerEvents: 'none'
-  };
-
-  const mainContentStyle: React.CSSProperties = {
-    position: 'relative',
-    zIndex: 10,
-    textAlign: 'center',
-    padding: '1rem 0',
-    transition: 'all 1s ease',
-    transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-    opacity: isVisible ? 1 : 0
-  };
-
-  const flameContainerStyle: React.CSSProperties = {
-    position: 'relative',
-    marginBottom: '24px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  };
-
-  const flameStyle: React.CSSProperties = {
-    fontSize: '48px',
-    transition: 'all 0.5s ease',
-    transform: flame ? 'scale(1.1)' : 'scale(1)',
-    position: 'relative',
-    display: 'inline-block'
-  };
-
-  const flameBackgroundStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    color: '#fde047',
-    animation: 'pulse 2s infinite'
-  };
-
-  const flameForegroundStyle: React.CSSProperties = {
-    position: 'relative',
-    color: '#fb923c'
-  };
-
-  const glowRingStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '80px',
-    height: '80px',
-    border: '2px solid rgba(251, 146, 60, 0.3)',
-    borderRadius: '50%',
-    animation: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite'
-  };
-
-  const streakCountStyle: React.CSSProperties = {
-    marginBottom: '12px',
-    transition: 'all 0.7s ease',
-    transitionDelay: '0.3s',
-    transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
-    opacity: isVisible ? 1 : 0
-  };
-
-  const streakNumberStyle: React.CSSProperties = {
-    fontSize: '28px',
-    fontWeight: 'bold',
-    background: 'linear-gradient(to right, #fb923c, #fde047, #fb923c)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    marginBottom: '8px',
-    lineHeight: '1.2'
-  };
-
-  const labelStyle: React.CSSProperties = {
-    marginBottom: '16px',
-    transition: 'all 0.7s ease',
-    transitionDelay: '0.5s',
-    transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
-    opacity: isVisible ? 1 : 0
-  };
-
-  const labelTextStyle: React.CSSProperties = {
-    color: '#d1d5db',
-    fontSize: '12px',
-    fontWeight: '500',
-    letterSpacing: '0.05em',
-    textTransform: 'uppercase'
-  };
-
-  const dotsContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '4px',
-    transition: 'all 0.7s ease',
-    transitionDelay: '0.7s',
-    transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
-    opacity: isVisible ? 1 : 0
-  };
-
-  const dotStyle = (index: number): React.CSSProperties => ({
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    backgroundColor: index < 7 ? '#fb923c' : '#374151',
-    transition: 'all 0.3s ease',
-    animationDelay: `${index * 100}ms`
-  });
+  const { currentStreak, longestStreak, bestStreakPercent, week, milestone, achievements } = streakData;
 
   return (
-    <div style={containerStyle}>
-      <div style={backgroundStyle}></div>
-      
-      <div style={mainContentStyle}>
-        <div style={flameContainerStyle}>
-          <div style={flameStyle}>
-            <div style={flameBackgroundStyle}>🔥</div>
-            <div style={flameForegroundStyle}>🔥</div>
-          </div>
-          <div style={glowRingStyle}></div>
-        </div>
+    <div className="streak-card">
+      <div className="streak-header">
+        <h3>Learning Streak</h3>
+        <p>Keep up the great work!</p>
+        <div className="streak-flame">🔥</div>
+      </div>
 
-        <div style={streakCountStyle}>
-          <div style={streakNumberStyle}>
-            7 Days
-          </div>
-        </div>
+      <div className="streak-count">
+        <div className="count">{currentStreak}</div>
+        <div className="label">Current Streak (days)</div>
+      </div>
 
-        <div style={labelStyle}>
-          <div style={labelTextStyle}>
-            Current Streak
+      <div className="streak-week">
+        {week.map((d, i) => (
+          <div key={i} className={`day-box ${d.completed ? 'completed' : ''}`}>
+            <div>{d.day}</div>
+            <div className="date">{d.date}</div>
+            {d.completed && <span className="check">✓</span>}
           </div>
-        </div>
+        ))}
+        <div className="week-summary">{week.filter(w => w.completed).length}/7 days</div>
+      </div>
 
-        <div style={dotsContainerStyle}>
-          {[...Array(7)].map((_, i) => (
-            <div
-              key={i}
-              style={dotStyle(i)}
-            />
-          ))}
+      <div className="streak-metrics">
+        <div>
+          <div className="metric-value">{longestStreak}</div>
+          <div className="metric-label">Longest Streak</div>
+        </div>
+        <div>
+          <div className="metric-value">{bestStreakPercent}%</div>
+          <div className="metric-label">of Best Streak</div>
         </div>
       </div>
 
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-        
-        @keyframes ping {
-          75%, 100% {
-            transform: translate(-50%, -50%) scale(2);
-            opacity: 0;
-          }
-        }
-      `}</style>
+      <div className="milestone-progress">
+        <div className="milestone-label">Next Milestone</div>
+        <div className="milestone-title">{milestone.label}</div>
+        <div className="progress-bar">
+          <div className="progress-fill" style={{ width: `${(milestone.current / milestone.goal) * 100}%` }} />
+        </div>
+        <div className="milestone-stats">
+          {milestone.current}/{milestone.goal} days
+          <span className="milestone-remaining">{milestone.goal - milestone.current} days to go</span>
+        </div>
+      </div>
+
+      <div className="achievements-section">
+        <h4>Milestone Achievements</h4>
+        <ul className="achievement-list">
+          {achievements.map((ach, idx) => (
+            <li key={idx} className={`achievement ${ach.unlocked ? 'unlocked' : 'locked'}`}>
+              <div>
+                <div className="ach-title">{ach.title}</div>
+                <div className="ach-desc">{ach.desc}</div>
+              </div>
+              <div className="ach-icon">{ach.unlocked ? '🏅' : '🔒'}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,19 @@
 import { BookOpen, Activity, CalendarDays, Settings, Medal } from "lucide-react";
-import "./sidebar.css"
+import "./sidebar.css";
 
 const Sidebar = () => (
   <aside className="sidebar">
-    <h2>👤 Gaurpad Shukla</h2>
-    <div className="text-sm text-gray-400 mb-4">Student</div>
+    {/* 👤 User Image */}
+    <div className="user-profile">
+      <img
+        src="./assets/user-avatar.png"
+        alt="User Avatar"
+        className="user-avatar"
+      />
+      <h2 className="user-name">Gaurpad Shukla</h2>
+      <div className="user-role">Student</div>
+    </div>
+
     <ul className="menu">
       <li><BookOpen size={20} /> My Courses</li>
       <li><Activity size={20} /> Course Activity</li>

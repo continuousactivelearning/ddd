@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
 
 type QuizQuestion = {
   question: string;
@@ -14,51 +13,56 @@ const Quiz = () => {
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
-
+  const [timer, setTimer] = useState(15);
   const navigate = useNavigate();
 
   useEffect(() => {
-  fetch("https://quizapi.io/api/v1/questions?apiKey=wCDCTsF9WwhlTcfyOHX1Xwix1r9S0RfVBKUuxjrN&category=code&difficulty=Easy&limit=10&tags=JavaScript")
-    .then((res) => {
-      if (!res.ok) throw new Error("Quiz API request failed.");
-      return res.json();
-    })
-    .then((data) => {
-      const formatted = data.map((q: any) => {
-        const correctKey = Object.entries(q.correct_answers || {}).find(([_, isCorrect]) => isCorrect === "true");
-        const correctAnswerKey = correctKey?.[0]?.replace("_correct", "");
-        const correctAnswer = q.answers?.[correctAnswerKey] || "";
-
-        const incorrectAnswers = Object.entries(q.answers || {})
-          .filter(([key, val]) => val && key !== correctAnswerKey)
-          .map(([_, val]) => val as string);
-
-        return {
-          question: q.question,
-          correct_answer: correctAnswer,
-          incorrect_answers: incorrectAnswers,
-        };
+    fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple")
+      .then((res) => {
+        if (!res.ok) throw new Error("Quiz API request failed.");
+        return res.json();
+      })
+      .then((data) => {
+        setQuestions(data.results);
+      })
+      .catch((err) => {
+        console.error("Failed to load quiz questions", err);
+        setError("Failed to load quiz. Please try again later.");
       });
-      setQuestions(formatted);
-    })
-    .catch((err) => {
-      console.error("Failed to load quiz questions Error:", err);
-      setError("Failed to load quiz. Please try again later.");
-    });
-}, []);
+  }, []);
 
-
+  useEffect(() => {
+    if (!submitted) {
+      const interval = setInterval(() => {
+        setTimer((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            handleNext();
+            return 15;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [current, submitted]);
 
   const handleAnswer = (answer: string) => {
     setAnswers((prev) => ({ ...prev, [current]: answer }));
   };
 
   const handleNext = () => {
-    if (current < questions.length - 1) setCurrent((prev) => prev + 1);
+    if (current < questions.length - 1) {
+      setCurrent((prev) => prev + 1);
+      setTimer(15);
+    }
   };
 
   const handlePrev = () => {
-    if (current > 0) setCurrent((prev) => prev - 1);
+    if (current > 0) {
+      setCurrent((prev) => prev - 1);
+      setTimer(15);
+    }
   };
 
   const handleSubmit = () => {
@@ -76,70 +80,139 @@ const Quiz = () => {
     ? [...currentQ.incorrect_answers, currentQ.correct_answer].sort(() => Math.random() - 0.5)
     : [];
 
+  const styles = {
+    container: {
+      padding: "2rem",
+      marginLeft: "250px", // space for fixed sidebar
+      color: "white",
+      minHeight: "100vh",
+      backgroundColor: "#111827",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    box: {
+      backgroundColor: "#1f2937",
+      padding: "2rem",
+      borderRadius: "10px",
+      maxWidth: "600px",
+      width: "100%",
+      boxShadow: "0 0 15px rgba(0,0,0,0.5)",
+    },
+    question: {
+      fontSize: "18px",
+      fontWeight: "600",
+      marginBottom: "1rem",
+    },
+    option: (selected: boolean, correct: boolean, submitted: boolean) => ({
+      backgroundColor: selected
+        ? submitted
+          ? correct
+            ? "#10b981"
+            : "#ef4444"
+          : "#6366f1"
+        : "#374151",
+      color: "white",
+      padding: "0.75rem",
+      marginBottom: "0.5rem",
+      borderRadius: "6px",
+      cursor: submitted ? "not-allowed" : "pointer",
+      border: "1px solid #4b5563",
+      transition: "all 0.3s ease",
+    }),
+    button: {
+      padding: "0.5rem 1rem",
+      backgroundColor: "#3b82f6",
+      border: "none",
+      borderRadius: "6px",
+      color: "white",
+      fontWeight: "bold",
+      cursor: "pointer",
+      margin: "0 0.5rem",
+    },
+    timer: {
+      fontSize: "16px",
+      marginBottom: "1rem",
+      fontWeight: "bold",
+      color: timer <= 5 ? "#f87171" : "#fbbf24",
+    },
+  };
+
   if (error) {
     return (
-      <div className="main-content">
-        <h2 className="text-red-500 text-xl">{error}</h2>
+      <div style={styles.container}>
+        <h2 style={{ color: "red", fontSize: "18px", fontWeight: "bold" }}>{error}</h2>
       </div>
     );
   }
 
   if (questions.length === 0) {
     return (
-      <div className="main-content text-white text-lg">
-        Loading quiz...
+      <div style={styles.container}>
+        <p>Loading quiz...</p>
       </div>
     );
   }
 
   return (
-    <div className="main-content quiz-container">
-      <div className="quiz-box">
-        <h1 className="text-2xl font-bold mb-6">🧠 Quiz Time!</h1>
+    <div style={styles.container}>
+      <div style={styles.box}>
+        <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "1rem" }}>🧠 Quiz Time!</h2>
+        <div style={styles.timer}>⏳ Time Left: {timer}s</div>
 
-        <p className="text-lg mb-4" dangerouslySetInnerHTML={{ __html: `${current + 1}. ${currentQ.question}` }} />
-        <ul className="space-y-2">
+        <p
+          style={styles.question}
+          dangerouslySetInnerHTML={{ __html: `${current + 1}. ${currentQ.question}` }}
+        />
+
+        <div>
           {allOptions.map((option, index) => (
-            <li
+            <div
               key={index}
-              className={`p-2 border rounded cursor-pointer ${
-                answers[current] === option
-                  ? "bg-purple-700 border-purple-400"
-                  : "hover:bg-gray-700 border-gray-600"
-              }`}
-              onClick={() => handleAnswer(option)}
+              style={styles.option(
+                answers[current] === option,
+                option === currentQ.correct_answer,
+                submitted
+              )}
+              onClick={() => {
+                if (!submitted) handleAnswer(option);
+              }}
               dangerouslySetInnerHTML={{ __html: option }}
             />
           ))}
-        </ul>
+        </div>
 
-        <div className="flex justify-between mt-6">
+        <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "space-between" }}>
           <button
+            style={styles.button}
             onClick={handlePrev}
             disabled={current === 0}
-            className="bg-gray-600 px-4 py-2 rounded disabled:opacity-50"
           >
             Previous
           </button>
           {current < questions.length - 1 ? (
-            <button onClick={handleNext} className="bg-indigo-600 px-4 py-2 rounded hover:bg-indigo-700">
+            <button style={styles.button} onClick={handleNext}>
               Next
             </button>
           ) : (
-            <button onClick={handleSubmit} className="bg-green-600 px-4 py-2 rounded hover:bg-green-700">
+            <button style={styles.button} onClick={handleSubmit}>
               Submit
             </button>
           )}
         </div>
 
         {submitted && (
-          <div className="mt-6 text-center">
-            <p className="text-xl font-bold text-green-400">
+          <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+            <p style={{ fontSize: "18px", fontWeight: "bold", color: "#10b981" }}>
               🎉 Your Score: {getScore()} / {questions.length}
             </p>
             <button
               onClick={() => navigate("/")}
-              className="mt-4 bg-gray-700 px-4 py-2 rounded"
+              style={{
+                ...styles.button,
+                backgroundColor: "#6b7280",
+                marginTop: "1rem",
+              }}
             >
               Back to Dashboard
             </button>

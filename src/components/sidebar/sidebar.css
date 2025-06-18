@@ -3,7 +3,12 @@
   min-height: 100vh;
 }
 
+.sidebar {
+  background-color: #ffffff0a;
+  color: #333;
+}
 .sidebar h2 {
+  color: black;
   font-size: 20px;
   margin-bottom: 1rem;
   text-align: center;
@@ -12,6 +17,8 @@
 .sidebar .menu {
   list-style: none;
   padding: 0;
+  color: #333;
+  background-color: #ffffff0a;
   margin-top: 1rem;
   width: 100%;
 }
@@ -30,9 +37,9 @@
 }
 
 .sidebar .menu li:hover {
-  background-color: #e1e9ea;
+  background-color: #10b981;
   transform: scale(1.02);
-  color: #d06262; /* or a neon glow color */
+  color: #ffffff; /* or a neon glow color */
 }
 
 .user-info {
@@ -48,11 +55,13 @@
 
 .user-name {
   font-size: 1.1rem;
+  color: #333;
   font-weight: bold;
 }
 
 .user-role {
   font-size: 0.9rem;
+  color: #333;
   color: #888;
 }
 
@@ -70,4 +79,36 @@
 
 .sidebar-nav li:hover {
   color: #00bcd4;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff33;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.75rem;
+}
+
+.user-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.user-role {
+  font-size: 0.9rem;
+  color: #bbb;
+  text-align: center;
 }
