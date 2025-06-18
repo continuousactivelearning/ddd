@@ -11,65 +11,63 @@ function AnswerQuestions() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (!token) return;
-
-      try {
-        const [qRes, aRes, sRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/questions", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          axios.get("http://localhost:5000/api/answers/mine", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          axios.get("http://localhost:5000/api/answers/score", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-        ]);
-
-        const questions = qRes.data;
-        const myAnswers = aRes.data;
-
-        const answeredMap = {};
-        myAnswers.forEach((ans) => {
-          answeredMap[ans.question] = ans.answer;
-        });
-
-        const answered = questions.filter((q) => answeredMap[q._id]);
-        const unanswered = questions.filter((q) => !answeredMap[q._id]);
-
-        setQuestions(questions);
-        setAnswers(answeredMap);
-        setAnsweredQuestions(answered);
-        setUnansweredQuestions(unanswered);
-        setScore(sRes.data.score);
-      } catch (err) {
-        console.error("Fetch error:", err.response?.data || err);
-      }
-    };
-
-    fetchData();
+    if (token) fetchData();
   }, [token]);
 
-  const handleChange = (qid, answer) => {
-    setAnswers({ ...answers, [qid]: answer });
+  const fetchData = async () => {
+    try {
+      const [qRes, aRes, sRes] = await Promise.all([
+        axios.get("http://localhost:5000/api/questions", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get("http://localhost:5000/api/answers/mine", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get("http://localhost:5000/api/answers/score", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
+
+      const questions = qRes.data;
+      const myAnswers = aRes.data;
+
+      const answeredMap = {};
+      myAnswers.forEach((ans) => {
+        answeredMap[ans.question] = ans.answer;
+      });
+
+      const answered = questions.filter((q) => answeredMap[q._id]);
+      const unanswered = questions.filter((q) => !answeredMap[q._id]);
+
+      setQuestions(questions);
+      setAnswers(answeredMap);
+      setAnsweredQuestions(answered);
+      setUnansweredQuestions(unanswered);
+      setScore(sRes.data.score);
+    } catch (err) {
+      console.error("Fetch error:", err.response?.data || err);
+    }
   };
 
-const handleSubmit = async () => {
-  try {
-    await axios.post("http://localhost:5000/api/answers/submit", answers, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    alert("Submitted successfully");
+  const handleChange = (qid, answer) => {
+    setAnswers((prev) => ({ ...prev, [qid]: answer }));
+  };
 
-    // Clear local answers to avoid re-submission
-    setAnswers({});
-    // Re-fetch data properly
-    window.location.reload();
-  } catch (err) {
-    alert(err.response?.data?.error || "Submit failed");
-  }
-};
+  const handleSubmit = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/answers/submit", answers, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert("Submitted successfully");
+
+      // Clear temporary local answers to prevent re-submission
+      setAnswers({});
+      // Refresh question and score data
+      fetchData();
+    } catch (err) {
+      alert(err.response?.data?.error || "Submit failed");
+    }
+  };
 
   return (
     <div style={{ padding: "20px" }}>
