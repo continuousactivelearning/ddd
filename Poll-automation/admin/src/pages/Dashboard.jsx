@@ -33,13 +33,15 @@ import {
   Star as StarIcon,
   AutoAwesome as SparklesIcon,
   FlashOn as ZapIcon,
-  TrackChanges as TargetIcon
+  TrackChanges as TargetIcon,
+  NoteAlt as NoteAltIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import AdminHeader from '../components/AdminHeader';
 import QuizCard from '../components/QuizCard';
 import axios from '../utils/axios';
+import Chatbot from '../components/Chatbot';
 
 // Create motion components
 const MotionCard = motion(Card);
@@ -139,6 +141,7 @@ const Dashboard = () => {
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
       <AdminHeader />
+      <Chatbot />
       
       <Box sx={{ pt: '100px', px: 0, width: '100vw', overflowX: 'hidden' }}>
         {/* Header Section with Better Spacing */}
@@ -483,29 +486,98 @@ const Dashboard = () => {
             </Typography>
           </Box>
         ) : (
-          <Box sx={{
-            width: '100%',
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
-            gap: 3,
-          }}>
-            {filteredQuizzes.map((quiz, index) => (
+          <>
+            <Box sx={{
+              width: '100%',
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
+              gap: 3,
+            }}>
+              {filteredQuizzes.map((quiz, index) => (
+                <MotionCard
+                  key={quiz._id}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: index * 0.1 }}
+                  sx={{ height: '100%' }}
+                >
+                  <QuizCard
+                    quiz={quiz}
+                    onStatusUpdate={handleStatusUpdate}
+                    onDelete={handleDelete}
+                  />
+                </MotionCard>
+              ))}
+            </Box>
+
+            {/* Admin Note Card - clean, elegant, below quizzes grid */}
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, my: 6, px: { xs: 2, md: 4 } }}>
               <MotionCard
-                key={quiz._id}
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                transition={{ delay: index * 0.1 }}
-                sx={{ height: '100%' }}
+                transition={{ delay: 0.9 }}
+                sx={{
+                  width: '100%',
+                  maxWidth: 700,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: '24px',
+                  p: 0,
+                  boxShadow: theme => theme.palette.mode === 'dark'
+                    ? '0 8px 32px 0 rgba(30,41,59,0.25)'
+                    : '0 8px 32px 0 rgba(99,102,241,0.08)',
+                  border: theme => theme.palette.mode === 'dark'
+                    ? '1.5px solid #334155'
+                    : '1.5px solid #E0E7FF',
+                  background: theme => theme.palette.mode === 'dark'
+                    ? 'linear-gradient(135deg, #232526 0%, #334155 100%)'
+                    : 'linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)',
+                  backdropFilter: 'blur(10px)',
+                  color: theme => theme.palette.mode === 'dark' ? '#F1F5F9' : '#232526',
+                }}
               >
-                <QuizCard
-                  quiz={quiz}
-                  onStatusUpdate={handleStatusUpdate}
-                  onDelete={handleDelete}
-                />
+                <CardContent sx={{ p: { xs: 3, sm: 5 }, color: 'inherit', position: 'relative', zIndex: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 48,
+                        height: 48,
+                        borderRadius: '12px',
+                        background: theme => theme.palette.mode === 'dark'
+                          ? 'rgba(99,102,241,0.10)'
+                          : 'rgba(99,102,241,0.08)',
+                        boxShadow: theme => theme.palette.mode === 'dark'
+                          ? '0 2px 8px 0 #23252633'
+                          : '0 2px 8px 0 #a1c4fd33',
+                        mr: 2,
+                        border: '1.5px solid rgba(99,102,241,0.10)'
+                      }}
+                    >
+                      <NoteAltIcon sx={{ fontSize: 28, color: theme => theme.palette.mode === 'dark' ? '#A5B4FC' : '#6366F1' }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.2, fontSize: { xs: '1.1rem', sm: '1.3rem' }, letterSpacing: 0.2, fontFamily: 'Inter, Roboto, Helvetica, Arial, sans-serif' }}>
+                        Admin Note
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, fontSize: { xs: '0.98rem', sm: '1.08rem' }, fontFamily: 'Inter, Roboto, Helvetica, Arial, sans-serif', color: theme => theme.palette.mode === 'dark' ? '#E0E7FF' : '#3730A3', lineHeight: 1.5 }}>
+                        Empower your team, inspire your students, and let innovation lead the way! <span role="img" aria-label="rocket">🚀</span>
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 1 }}>
+                    <Typography variant="caption" sx={{ color: theme => theme.palette.mode === 'dark' ? '#A5B4FC' : '#6366F1', fontWeight: 600, letterSpacing: 0.5 }}>
+                      Only visible to admins
+                    </Typography>
+                  </Box>
+                </CardContent>
               </MotionCard>
-            ))}
-          </Box>
+            </Box>
+          </>
         )}
       </Box>
     </Box>
