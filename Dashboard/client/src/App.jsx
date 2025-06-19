@@ -20,7 +20,7 @@ function App() {
         <Route path="/post-question" element={<PostQuestion />} />
         <Route path="/answer" element={<AnswerQuestions />} />
         <Route path="/questions" element={<ViewQuestions />} />
-        <Route path="/question-responses/:questionId" element={<QuestionResponses />} />
+        <Route path="/responses/:questionId" element={<QuestionResponses />} />
       </Routes>
     </Router>
   );

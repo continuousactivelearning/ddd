@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Question = require("../models/Question");
 const Answer = require("../models/Answer");
-const {authMiddleware,requireHost} = require("../middleware/auth");
+const { authMiddleware, requireHost } = require("../middleware/auth");
 
-
+// Create a new question
 router.post("/", authMiddleware, requireHost, async (req, res) => {
   const { questionText, options, correctAnswer } = req.body;
 
@@ -13,7 +13,7 @@ router.post("/", authMiddleware, requireHost, async (req, res) => {
     return res.status(400).json({ error: "Correct answer must be A, B, C, or D" });
   }
 
-  if (options.length !== 4) {
+  if (!options || options.length !== 4) {
     return res.status(400).json({ error: "Exactly 4 options are required" });
   }
 
@@ -22,7 +22,7 @@ router.post("/", authMiddleware, requireHost, async (req, res) => {
       questionText,
       options,
       correctAnswer,
-      createdBy: req.user.id
+      createdBy: req.user.id,
     });
     res.status(201).json(question);
   } catch (err) {
@@ -30,7 +30,8 @@ router.post("/", authMiddleware, requireHost, async (req, res) => {
   }
 });
 
-router.get("/",authMiddleware,async (req, res) => {
+// Get all questions
+router.get("/", authMiddleware, async (req, res) => {
   try {
     const questions = await Question.find();
     res.json(questions);
@@ -39,6 +40,20 @@ router.get("/",authMiddleware,async (req, res) => {
   }
 });
 
+// Get a single question by ID (used for insight page)
+router.get("/:id", authMiddleware, requireHost, async (req, res) => {
+  try {
+    const question = await Question.findById(req.params.id);
+    if (!question) {
+      return res.status(404).json({ error: "Question not found" });
+    }
+    res.json(question);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch question" });
+  }
+});
+
+// Get responses for a specific question
 router.get("/responses/:questionId", authMiddleware, requireHost, async (req, res) => {
   try {
     const questionId = req.params.questionId;

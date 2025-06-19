@@ -61,4 +61,22 @@ router.get("/score", authMiddleware, async (req, res) => {
   }
 });
 
+// Get all answers for a specific question (for hosts to visualize responses)
+router.get("/question/:questionId", authMiddleware, async (req, res) => {
+  try {
+    // Optional: if you want only hosts to access this
+    if (req.user.role !== "host") {
+      return res.status(403).json({ error: "Access denied" });
+    }
+
+    const questionId = req.params.questionId;
+    const answers = await Answer.find({ question: questionId }).populate("student", "name email");
+    res.json(answers);
+  } catch (err) {
+    console.error("Question Response Error:", err);
+    res.status(500).json({ error: "Failed to fetch responses for this question" });
+  }
+});
+
+
 module.exports = router;

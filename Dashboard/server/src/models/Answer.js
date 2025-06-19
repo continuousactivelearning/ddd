@@ -6,6 +6,6 @@ const answerSchema = new mongoose.Schema({
   question: { type: mongoose.Schema.Types.ObjectId, ref: "Question", required: true },
   answer: { type: String, required: true }, 
   score: { type: Number, default: 0 },
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model("Answer", answerSchema);
