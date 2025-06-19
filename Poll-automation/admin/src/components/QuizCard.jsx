@@ -27,7 +27,8 @@ import {
   ListItemSecondaryAction,
   useTheme,
   IconButton,
-  Tooltip
+  Tooltip,
+  useMediaQuery
 } from '@mui/material';
 import {
   Visibility as ViewIcon,
@@ -51,6 +52,7 @@ import axios from '../utils/axios';
 
 const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const [analytics, setAnalytics] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -194,7 +196,14 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
         }}>
         <CardContent sx={{ flexGrow: 1, p: 4, pb: 2 }}>
           {/* Header */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            justifyContent: 'space-between',
+            alignItems: { xs: 'flex-start', md: 'center' },
+            mb: 2,
+            gap: { xs: 1, md: 0 },
+          }}>
             <Typography 
               variant="h6" 
               component="h2" 
@@ -210,18 +219,18 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
             >
               {quiz.topic}
             </Typography>
-            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center', mt: { xs: 0.5, sm: 0 } }}>
               <Chip 
                 label={quiz.difficulty} 
                 color={getDifficultyColor(quiz.difficulty)}
                 size="small"
-                sx={{ fontWeight: 600, fontSize: '0.95rem', px: 1.2 }}
+                sx={{ fontWeight: 600, fontSize: { xs: '0.80rem', sm: '0.95rem' }, px: { xs: 0.7, sm: 1.2 }, height: { xs: 22, sm: 28 }, mb: { xs: 0.5, sm: 0 } }}
               />
             <Chip 
               label={quiz.status} 
               color={getStatusColor(quiz.status)}
               size="small"
-                sx={{ fontWeight: 600, fontSize: '0.95rem', px: 1.2 }}
+                sx={{ fontWeight: 600, fontSize: { xs: '0.80rem', sm: '0.95rem' }, px: { xs: 0.7, sm: 1.2 }, height: { xs: 22, sm: 28 }, mb: { xs: 0.5, sm: 0 } }}
             />
             </Box>
           </Box>
@@ -272,48 +281,117 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
 
           <Divider sx={{ my: 2 }} />
 
-          {/* Stats Grid */}
+          {/* Stats Grid - custom layout for perfect alignment */}
           <Grid container spacing={2} sx={{ mb: 1 }}>
-            <Grid item xs={6}>
-              <Box sx={{ textAlign: 'center', p: 1 }}>
-                <PeopleIcon sx={{ color: theme.palette.primary.main, fontSize: 24, mb: 0.5 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: '1.1rem' }}>
+            {/* First column: Participants (row 1), Avg Score (row 2) */}
+            <Grid item xs={6} sm={3} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box sx={{
+                textAlign: 'center',
+                p: 1,
+                minHeight: { xs: 60, sm: 80 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <PeopleIcon sx={{ color: theme.palette.primary.main, fontSize: { xs: 20, sm: 24 }, mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
                   {quiz.participants.length}
                 </Typography>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: { xs: '0.75rem', sm: '0.85rem' } }}>
                   Participants
                 </Typography>
               </Box>
-            </Grid>
-            <Grid item xs={6}>
-              <Box sx={{ textAlign: 'center', p: 1 }}>
-                <CheckCircleIcon sx={{ color: theme.palette.success.main, fontSize: 24, mb: 0.5 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: '1.1rem' }}>
-                  {completedParticipants}
-                </Typography>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
-                  Completed
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={6}>
-              <Box sx={{ textAlign: 'center', p: 1 }}>
-                <TrendingUpIcon sx={{ color: theme.palette.warning.main, fontSize: 24, mb: 0.5 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: '1.1rem' }}>
+              <Box sx={{
+                textAlign: 'center',
+                p: 1,
+                minHeight: { xs: 60, sm: 80 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <TrendingUpIcon sx={{ color: theme.palette.warning.main, fontSize: { xs: 20, sm: 24 }, mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
                   {averageScore}%
                 </Typography>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: { xs: '0.75rem', sm: '0.85rem' } }}>
                   Avg Score
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={6}>
-              <Box sx={{ textAlign: 'center', p: 1 }}>
+            {/* Second column: Completed (row 1), Duration (row 2) */}
+            <Grid item xs={6} sm={3} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box sx={{
+                textAlign: 'center',
+                p: 1,
+                minHeight: { xs: 60, sm: 80 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <CheckCircleIcon sx={{ color: theme.palette.success.main, fontSize: { xs: 20, sm: 24 }, mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+                  {completedParticipants}
+                </Typography>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: { xs: '0.75rem', sm: '0.85rem' } }}>
+                  Completed
+                </Typography>
+              </Box>
+              <Box sx={{
+                textAlign: 'center',
+                p: 1,
+                minHeight: { xs: 60, sm: 80 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <TimerIcon sx={{ color: theme.palette.info.main, fontSize: { xs: 20, sm: 24 }, mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+                  {quiz.questions.length * 2}m
+                </Typography>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: { xs: '0.75rem', sm: '0.85rem' } }}>
+                  Duration
+                </Typography>
+              </Box>
+            </Grid>
+            {/* On sm+ screens, show each stat in its own column */}
+            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Box sx={{
+                textAlign: 'center',
+                p: 1,
+                minHeight: 80,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <TrendingUpIcon sx={{ color: theme.palette.warning.main, fontSize: 24, mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: '1.1rem' }}>
+                  {averageScore}%
+                </Typography>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: '0.85rem' }}>
+                  Avg Score
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Box sx={{
+                textAlign: 'center',
+                p: 1,
+                minHeight: 80,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
                 <TimerIcon sx={{ color: theme.palette.info.main, fontSize: 24, mb: 0.5 }} />
                 <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.text.primary, fontSize: '1.1rem' }}>
                   {quiz.questions.length * 2}m
                 </Typography>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: '0.85rem' }}>
                   Duration
                 </Typography>
               </Box>
@@ -324,30 +402,34 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
         <CardActions
           sx={{
             display: 'flex',
-            flexWrap: 'nowrap',
-            gap: 1,
-            justifyContent: 'space-between',
+            flexWrap: { xs: 'wrap', sm: 'nowrap' },
+            gap: { xs: 1, sm: 1 },
+            justifyContent: { xs: 'flex-start', sm: 'space-between' },
+            alignItems: 'center',
             p: 0,
             mt: 2,
+            flexDirection: { xs: 'row', sm: 'row' },
           }}
         >
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1, flex: 1, minWidth: 0 }}>
             <Button
               size="small"
               startIcon={<AnalyticsIcon />}
-              onClick={() => {
-                fetchAnalytics();
-                setAnalyticsDialogOpen(true);
-              }}
+              onClick={() => { fetchAnalytics(); setAnalyticsDialogOpen(true); }}
               disabled={loading}
               sx={{ 
-                borderRadius: '12px',
+                borderRadius: '10px',
                 fontWeight: 600,
-              px: 1.5,
-              minWidth: 90,
+                px: { xs: 0.5, sm: 1.5 },
+                minWidth: { xs: 48, sm: 90 },
+                fontSize: { xs: '0.80rem', sm: '0.95rem' },
+                height: { xs: 28, sm: 36 },
               background: theme => theme.palette.mode === 'dark' ? theme.palette.primary.main : 'white',
               color: theme => theme.palette.mode === 'dark' ? 'white' : theme.palette.primary.main,
               boxShadow: '0 2px 8px rgba(99,102,241,0.08)',
               whiteSpace: 'nowrap',
+                flex: 1,
+                mb: { xs: 1, sm: 0 },
                 '&:hover': {
                 background: theme => theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.light,
                 color: 'white',
@@ -359,46 +441,24 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
             </Button>
             <Button
               size="small"
-              startIcon={<LeaderboardIcon />}
-              onClick={() => {
-                fetchLeaderboard();
-                setLeaderboardDialogOpen(true);
-              }}
-              disabled={loading}
-              sx={{ 
-                borderRadius: '12px',
-                fontWeight: 600,
-              px: 1.5,
-              minWidth: 90,
-              background: theme => theme.palette.mode === 'dark' ? theme.palette.secondary.main : 'white',
-              color: theme => theme.palette.mode === 'dark' ? 'white' : theme.palette.secondary.main,
-              boxShadow: '0 2px 8px rgba(139,92,246,0.08)',
-              whiteSpace: 'nowrap',
-                '&:hover': {
-                background: theme => theme.palette.mode === 'dark' ? theme.palette.secondary.dark : theme.palette.secondary.light,
-                color: 'white',
-                  transform: 'translateY(-2px)',
-              },
-              }}
-            >
-              Leaderboard
-            </Button>
-            <Button
-              size="small"
               startIcon={<EditIcon />}
               onClick={() => setStatusDialogOpen(true)}
               disabled={loading}
               sx={{ 
-                borderRadius: '12px',
+                borderRadius: '10px',
                 fontWeight: 600,
-              px: 1.5,
-              minWidth: 90,
-              background: theme => theme.palette.mode === 'dark' ? theme.palette.warning.main : 'white',
-              color: theme => theme.palette.mode === 'dark' ? 'white' : theme.palette.warning.main,
-              boxShadow: '0 2px 8px rgba(245,158,11,0.08)',
+                px: { xs: 0.5, sm: 1.5 },
+                minWidth: { xs: 48, sm: 90 },
+                fontSize: { xs: '0.80rem', sm: '0.95rem' },
+                height: { xs: 28, sm: 36 },
+                background: theme => theme.palette.mode === 'dark' ? theme.palette.warning.main : 'white',
+                color: theme => theme.palette.mode === 'dark' ? 'white' : theme.palette.warning.main,
+                boxShadow: '0 2px 8px rgba(245,158,11,0.08)',
               whiteSpace: 'nowrap',
+                flex: 1,
+                mb: { xs: 0, sm: 0 },
                 '&:hover': {
-                background: theme => theme.palette.mode === 'dark' ? theme.palette.warning.dark : theme.palette.warning.light,
+                  background: theme => theme.palette.mode === 'dark' ? theme.palette.warning.dark : theme.palette.warning.light,
                 color: 'white',
                   transform: 'translateY(-2px)',
               },
@@ -406,20 +466,60 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
             >
               Status
             </Button>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1, flex: 1, minWidth: 0 }}>
+            <Button
+              size="small"
+              startIcon={<LeaderboardIcon />}
+              onClick={() => { fetchLeaderboard(); setLeaderboardDialogOpen(true); }}
+              disabled={loading}
+              sx={{ 
+                borderRadius: '10px',
+                fontWeight: 600,
+                px: { xs: 0.5, sm: 2.5 },
+                minWidth: { xs: 48, sm: 120 },
+                maxWidth: '100%',
+                fontSize: { xs: '0.80rem', sm: '0.95rem' },
+                height: { xs: 28, sm: 36 },
+                background: theme => theme.palette.mode === 'dark' ? theme.palette.secondary.main : 'white',
+                color: theme => theme.palette.mode === 'dark' ? 'white' : theme.palette.secondary.main,
+                boxShadow: '0 2px 8px rgba(139,92,246,0.08)',
+              whiteSpace: 'nowrap',
+                flex: 1,
+                mb: { xs: 1, sm: 0 },
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+                '&:hover': {
+                  background: theme => theme.palette.mode === 'dark' ? theme.palette.secondary.dark : theme.palette.secondary.light,
+                color: 'white',
+                  transform: 'translateY(-2px)',
+              },
+              }}
+            >
+              Leaderboard
+            </Button>
           <Button
             size="small"
             startIcon={<DeleteIcon />}
             onClick={handleDelete}
             disabled={loading}
             sx={{ 
-              borderRadius: '12px',
+                borderRadius: '10px',
               fontWeight: 600,
-              px: 1.5,
-              minWidth: 90,
+                px: { xs: 0.5, sm: 1.5 },
+                minWidth: { xs: 48, sm: 90 },
+                fontSize: { xs: '0.80rem', sm: '0.95rem' },
+                height: { xs: 28, sm: 36 },
               background: theme => theme.palette.mode === 'dark' ? theme.palette.error.main : 'white',
               color: theme => theme.palette.mode === 'dark' ? 'white' : theme.palette.error.main,
               boxShadow: '0 2px 8px rgba(239,68,68,0.08)',
               whiteSpace: 'nowrap',
+                flex: 1,
+                mb: { xs: 0, sm: 0 },
               '&:hover': {
                 background: theme => theme.palette.mode === 'dark' ? theme.palette.error.dark : theme.palette.error.light,
                 color: 'white',
@@ -429,6 +529,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
           >
             Delete
           </Button>
+          </Box>
         </CardActions>
       </Card>
 
@@ -608,7 +709,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
       <Dialog 
         open={leaderboardDialogOpen} 
         onClose={handleLeaderboardClose}
-        maxWidth="md"
+        maxWidth={isDesktop ? 'md' : 'sm'}
         fullWidth
         PaperProps={{
           sx: {
@@ -663,6 +764,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
               {error}
             </Alert>
           ) : leaderboard.length > 0 ? (
+            isDesktop ? (
             <Box>
               {/* Top 3 Podium */}
               {leaderboard.length >= 3 && (
@@ -733,10 +835,12 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                           {leaderboard[1]?.name || 'N/A'}
                         </Typography>
                         <Typography sx={{ 
-                          fontWeight: 800, 
+                          fontWeight: 900, 
                           color: 'white', 
                           fontSize: '1.5rem',
-                          mt: 1
+                          mt: 1,
+                          textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                          letterSpacing: '0.5px',
                         }}>
                           {leaderboard[1]?.score || 0}%
                         </Typography>
@@ -805,10 +909,12 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                           {leaderboard[0]?.name || 'N/A'}
                         </Typography>
                         <Typography sx={{ 
-                          fontWeight: 800, 
+                          fontWeight: 900, 
                           color: 'white', 
                           fontSize: '1.8rem',
-                          mt: 1
+                          mt: 1,
+                          textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                          letterSpacing: '0.5px',
                         }}>
                           {leaderboard[0]?.score || 0}%
                         </Typography>
@@ -877,10 +983,12 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                           {leaderboard[2]?.name || 'N/A'}
                         </Typography>
                         <Typography sx={{ 
-                          fontWeight: 800, 
+                          fontWeight: 900, 
                           color: 'white', 
                           fontSize: '1.5rem',
-                          mt: 1
+                          mt: 1,
+                          textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                          letterSpacing: '0.5px',
                         }}>
                           {leaderboard[2]?.score || 0}%
                         </Typography>
@@ -949,9 +1057,11 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                           height: 48,
                           borderRadius: '50%',
                           background: index < 3 
-                            ? (index === 0 ? 'linear-gradient(135deg, #FFD700 0%, #F59E0B 100%)'
-                              : index === 1 ? 'linear-gradient(135deg, #94A3B8 0%, #64748B 100%)'
-                              : 'linear-gradient(135deg, #CD7F32 0%, #B8860B 100%)')
+                            ? (
+                              index === 0 ? 'linear-gradient(135deg, #FFD700 0%, #F59E0B 100%)' :
+                              index === 1 ? 'linear-gradient(135deg, #94A3B8 0%, #64748B 100%)' :
+                              'linear-gradient(135deg, #CD7F32 0%, #B8860B 100%)'
+                            )
                             : (theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #6366F1 0%, #6366F1 100%)' : 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)'),
                           mr: 2,
                           boxShadow: index < 3 ? '0 4px 15px rgba(0,0,0,0.2)' : '0 2px 8px rgba(99,102,241,0.2)'
@@ -960,9 +1070,10 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                             fontWeight: 900, 
                             color: 'white', 
                             fontSize: index < 3 ? '1.2rem' : '1rem',
-                            textShadow: theme.palette.mode === 'dark' ? '0 1px 4px #000' : '0 1px 2px rgba(0,0,0,0.3)'
-                    }}>
-                      {index + 1}
+                            textShadow: index < 3 ? '0 2px 8px rgba(0,0,0,0.25)' : (theme.palette.mode === 'dark' ? '0 1px 4px #000' : '0 1px 2px rgba(0,0,0,0.3)'),
+                            letterSpacing: index < 3 ? '0.5px' : undefined,
+                          }}>
+                            {index + 1}
                           </Typography>
                         </Box>
                         <Box sx={{ flex: 1 }}>
@@ -998,29 +1109,102 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                     <Chip 
                       label={`${participant.score}%`} 
                       color={participant.score >= 80 ? 'success' : participant.score >= 60 ? 'warning' : 'error'}
-                          sx={{ 
-                            fontWeight: 700, 
-                            fontSize: '1rem', 
-                            px: 2,
-                            py: 1,
-                            borderRadius: '12px',
-                            background: index < 3 
-                              ? (index === 0 
-                                  ? (theme.palette.mode === 'dark' ? 'rgba(245,158,11,0.18)' : 'rgba(255,215,0,0.1)')
-                                  : index === 1 
-                                    ? (theme.palette.mode === 'dark' ? 'rgba(100,116,139,0.18)' : 'rgba(148,163,184,0.1)')
-                                    : (theme.palette.mode === 'dark' ? 'rgba(184,134,11,0.18)' : 'rgba(205,127,50,0.1)'))
-                              : (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : undefined),
-                            color: theme.palette.mode === 'dark' ? '#fff' : undefined,
-                            boxShadow: theme.palette.mode === 'dark' ? '0 2px 8px rgba(0,0,0,0.18)' : undefined
-                          }}
-                        />
+                      sx={{ 
+                        fontWeight: 900, 
+                        fontSize: '1rem', 
+                        px: 2,
+                        py: 1,
+                        borderRadius: '12px',
+                        background: index < 3 
+                          ? (
+                            index === 0 ? 'linear-gradient(135deg, #FFD700 0%, #F59E0B 100%)' :
+                            index === 1 ? 'linear-gradient(135deg, #94A3B8 0%, #64748B 100%)' :
+                            'linear-gradient(135deg, #CD7F32 0%, #B8860B 100%)'
+                          )
+                          : (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : undefined),
+                        color: index < 3 ? '#fff' : (theme.palette.mode === 'dark' ? '#fff' : undefined),
+                        textShadow: index < 3 ? '0 2px 8px rgba(0,0,0,0.35)' : undefined,
+                        boxShadow: index < 3 ? '0 2px 12px rgba(0,0,0,0.18)' : (theme.palette.mode === 'dark' ? '0 2px 8px rgba(0,0,0,0.18)' : undefined),
+                        letterSpacing: index < 3 ? '0.7px' : undefined,
+                      }}
+                    />
                       </Box>
                     </motion.div>
                   ))}
                 </Card>
               </motion.div>
             </Box>
+            ) : (
+              // Mobile/Tablet: compact list
+              <Box>
+                {leaderboard.map((participant, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: { xs: 1, sm: 2 },
+                      borderRadius: '12px',
+                      mb: 1,
+                      background: theme.palette.mode === 'dark'
+                        ? (index < 3 ? 'rgba(99,102,241,0.10)' : 'rgba(255,255,255,0.03)')
+                        : (index < 3 ? 'rgba(99,102,241,0.07)' : 'rgba(99,102,241,0.03)'),
+                      border: index < 3 ? `1.5px solid ${theme.palette.primary.main}` : `1px solid ${theme.palette.divider}`,
+                      minHeight: { xs: 38, sm: 48 },
+                    }}
+                  >
+                    {/* Rank badge with hero icon for top 3 */}
+                    <Box sx={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: '50%',
+                      background: index === 0 ? '#FFD700' : index === 1 ? '#C0C0C0' : index === 2 ? '#CD7F32' : theme.palette.background.paper,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      fontSize: { xs: '0.95rem', sm: '1.1rem' },
+                      color: index < 3 ? '#fff' : theme.palette.text.primary,
+                      mr: 1,
+                      boxShadow: index < 3 ? '0 0 8px 2px rgba(99,102,241,0.12)' : 'none',
+                      border: index < 3 ? '2px solid #6366F1' : '1px solid #E0E7FF',
+                      position: 'relative',
+                    }}>
+                      {index === 0 && <span role="img" aria-label="gold">🥇</span>}
+                      {index === 1 && <span role="img" aria-label="silver">🥈</span>}
+                      {index === 2 && <span role="img" aria-label="bronze">🥉</span>}
+                      {index > 2 && (index + 1)}
+                    </Box>
+                    <Avatar
+                      sx={{
+                        width: { xs: 28, sm: 36 },
+                        height: { xs: 28, sm: 36 },
+                        fontSize: { xs: '0.95rem', sm: '1.1rem' },
+                        background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+                        fontWeight: 600,
+                        mr: 1.5,
+                      }}
+                    >
+                      {participant.name?.charAt(0)?.toUpperCase() || 'U'}
+                    </Avatar>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography variant="body2" sx={{ fontWeight: 700, fontSize: { xs: '0.92rem', sm: '1.08rem' }, color: theme.palette.text.primary, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {participant.name || 'Unknown User'}
+                      </Typography>
+                      <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontSize: { xs: '0.72rem', sm: '0.85rem' } }}>
+                        Score: {participant.score || 0}% • {new Date(participant.completedAt).toLocaleDateString()}
+                      </Typography>
+                    </Box>
+                    <Chip
+                      label={`${participant.score || 0}%`}
+                      color={participant.score >= 80 ? 'success' : participant.score >= 60 ? 'warning' : 'error'}
+                      size="small"
+                      sx={{ fontSize: { xs: '0.75rem', sm: '0.9rem' }, height: { xs: 22, sm: 28 }, ml: 1 }}
+                    />
+                  </Box>
+                ))}
+              </Box>
+            )
           ) : (
             <Box sx={{ textAlign: 'center', py: 8 }}>
               <TrophyIcon sx={{ fontSize: 64, color: 'text.secondary', mb: 2 }} />
