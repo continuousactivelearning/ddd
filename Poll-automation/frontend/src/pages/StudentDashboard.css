@@ -1,6 +1,7 @@
 .student-dashboard {
   min-height: 100vh;
-  color: #fff;
+  color: var(--text-primary);
+  background: var(--background);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -10,11 +11,14 @@
   padding-top: 40vh;
 }
 
+body[data-theme='light'] .student-dashboard {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+}
 
 .dashboard-page {
   min-height: 100vh;
-  background: #f8fafc;
-  color: #1a1c2e;
+  background: var(--background);
+  color: var(--text-primary);
 }
 
 /* Drag Prompt Styles */
@@ -40,38 +44,58 @@
 }
 
 .welcome-message {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  width: 100%;
 }
 
 .greeting {
-  color: #6366F1;
+  color: var(--primary);
   animation: colorShift 3s infinite;
 }
 
 .username {
-  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, #8B5CF6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: usernamePulse 3s infinite ease-in-out;
 }
 
 .welcome-text {
-  color: #fff;
-  animation: fadeIn 2s ease-out;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5em;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  letter-spacing: 0.5px;
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  background: none !important;
+  border: none !important;
+  transition: color 0.3s;
+}
+
+body[data-theme='light'] .welcome-text,
+body[data-theme='dark'] .welcome-text {
+  color: var(--primary);
+  background: none !important;
+  border: none !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
 .drag-instruction {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
@@ -91,7 +115,7 @@
   width: 40px;
   height: 40px;
   margin: 0 auto;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--text-primary);
   border-radius: 50%;
   position: relative;
   animation: bounce 2s infinite;
@@ -112,8 +136,8 @@
   transform: translate(-50%, -50%) rotate(45deg);
   width: 12px;
   height: 12px;
-  border-top: 2px solid rgba(255, 255, 255, 0.8);
-  border-left: 2px solid rgba(255, 255, 255, 0.8);
+  border-top: 2px solid var(--text-primary);
+  border-left: 2px solid var(--text-primary);
   margin-top: -4px;
 }
 
@@ -132,7 +156,7 @@
 }
 
 .stat-card {
-  background: white;
+  background: var(--background-paper);
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
@@ -140,6 +164,7 @@
   gap: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  border: 1px solid var(--border);
 }
 
 .stat-card:hover {
@@ -148,7 +173,7 @@
 }
 
 .stat-icon {
-  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, #8B5CF6 100%);
   padding: 0.8rem;
   border-radius: 10px;
   color: white;
@@ -157,14 +182,14 @@
 .stat-info h3 {
   margin: 0;
   font-size: 1rem;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 .stat-info p {
   margin: 0.25rem 0 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1a1c2e;
+  color: var(--text-primary);
 }
 
 .charts-container {
@@ -175,15 +200,16 @@
 }
 
 .chart-card {
-  background: white;
+  background: var(--background-paper);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
 }
 
 .chart-card h3 {
   margin: 0 0 1rem;
-  color: #1a1c2e;
+  color: var(--text-primary);
   font-size: 1.1rem;
 }
 
@@ -193,7 +219,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: var(--text-secondary);
   gap: 0.5rem;
 }
 
@@ -716,5 +742,14 @@
 
   .drag-prompt p {
     font-size: 1.2rem;
+  }
+}
+
+@keyframes welcomeFloat {
+  0%, 100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
   }
 } 

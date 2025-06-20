@@ -1,12 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Theme variables */
+:root {
+  --background: #f8fafc;
+  --background-paper: #ffffff;
+  --text-primary: #213547;
+  --text-secondary: #64748b;
+  --primary: #6366f1;
+  --secondary: #ec4899;
+  --border: #e5e7eb;
+}
+
+[data-theme="dark"] {
+  --background: #18192a;
+  --background-paper: #23243a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #a3aed6;
+  --primary: #6366f1;
+  --secondary: #ec4899;
+  --border: #23243a;
+}
+
 /* Global styles */
 :root {
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: #213547;
+  color: var(--text-primary);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +44,9 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  color: #213547;
+  color: var(--text-primary);
+  background: var(--background);
+  transition: background 0.3s, color 0.3s;
 }
 
 #root {
@@ -31,6 +54,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--background);
 }
 
 /* Loading Spinner */

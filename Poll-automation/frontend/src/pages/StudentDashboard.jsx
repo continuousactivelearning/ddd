@@ -63,8 +63,10 @@ const StudentDashboard = () => {
         <div className="drag-prompt">
           <div className="welcome-text-container">
             <h2 className="welcome-message">
-              <span className="greeting">Hey</span>
-              <span className="username">{user?.name?.split(' ')[0] || 'Student'}</span>
+              <span>
+                <span className="greeting">Hey</span>
+                <span className="username">{user?.name?.split(' ')[0] || 'Student'}</span>
+              </span>
               <span className="welcome-text">welcome to your dashboard!</span>
             </h2>
             <p className="drag-instruction">

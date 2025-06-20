@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import DashboardHeader from '../../components/DashboardHeader';
 import { Award, Calendar, CheckCircle, Clock, Users, BarChart2, Play, Trophy, Target, Plus, TrendingUp, Bookmark, Video } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -15,7 +15,17 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  LineChart,
+  Line,
+  Brush,
+  Area,
+  AreaChart,
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
 } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -64,45 +74,32 @@ const PieChartComponent = ({ data }) => {
 
 const Dashboard = () => {
   const { user } = useAuth();
-  
-  const [userStats, setUserStats] = useState({
-    totalMeets: 0,
-    averageScore: 0,
-    timeSpent: 0,
-    badgesEarned: 0
-  });
-  const [leaderboard, setLeaderboard] = useState([]);
-  const [stats, setStats] = useState({
-    totalScore: 850,
-    totalMeets: 12,
-    accuracy: 85.5,
-    currentStreak: 5,
-    totalQuestions: 120,
-    correctAnswers: 102,
-    weeklyProgress: [
-      { day: 'Mon', score: 75 },
-      { day: 'Tue', score: 85 },
-      { day: 'Wed', score: 65 },
-      { day: 'Thu', score: 90 },
-      { day: 'Fri', score: 80 },
-      { day: 'Sat', score: 95 },
-      { day: 'Sun', score: 70 }
-    ],
-    categoryBreakdown: [
-      { category: 'React', correct: 35, total: 40 },
-      { category: 'JavaScript', correct: 25, total: 30 },
-      { category: 'Node.js', correct: 18, total: 20 },
-      { category: 'CSS', correct: 8, total: 10 }
-    ],
-    recentActivity: [
-      { date: '2 hours ago', activity: 'Completed React Quiz' },
-      { date: '1 day ago', activity: 'Completed JavaScript Quiz' },
-      { date: '2 days ago', activity: 'Completed Node.js Quiz' }
-    ]
-  });
+  const [studentStats, setStudentStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const chartRef = useRef(null);
+  const [isChartHovered, setIsChartHovered] = useState(false);
+
+  // Helper: extract score from activity message
+  const extractScore = (msg) => {
+    const match = msg && msg.match(/scored (\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  // Prepare data for the multi-line chart (quiz attempts)
+  const activityChartData = (studentStats?.activity || [])
+    .filter(act => act.type === 'quiz_attempted')
+    .map((act, idx) => ({
+      quiz: `Quiz ${idx + 1}`,
+      score: extractScore(act.message),
+      accuracy: typeof studentStats?.accuracy === 'number' ? studentStats.accuracy : parseFloat(studentStats?.accuracy) || 0,
+      totalQuestions: typeof studentStats?.totalQuestions === 'number' ? studentStats.totalQuestions : parseInt(studentStats?.totalQuestions) || 0,
+      correctAnswers: typeof studentStats?.correctAnswers === 'number' ? studentStats.correctAnswers : parseInt(studentStats?.correctAnswers) || 0,
+    }));
+
+  const [zoomRange, setZoomRange] = useState([0, Math.max(4, activityChartData.length - 1)]);
+  const [selectedDay, setSelectedDay] = useState(0); // 0: Today, 1: Day 2, ...
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [activeQuizzes, setActiveQuizzes] = useState([]);
   const [quizCode, setQuizCode] = useState('');
@@ -110,20 +107,94 @@ const Dashboard = () => {
   const [showQuizCodeEntry, setShowQuizCodeEntry] = useState(false);
 
   useEffect(() => {
-    const initializeDashboard = async () => {
+    const fetchStudentStats = async () => {
       try {
+        const response = await axiosInstance.get('/api/student-stats/me');
+        setStudentStats(response.data);
         setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
+      } catch (err) {
+        if (err.response && err.response.status === 404) {
+          // No stats yet for this user, set all stats to 0/defaults
+          setStudentStats({
+            totalQuizzesAttempted: 0,
+            totalScore: 0,
+            averageScore: 0,
+            accuracy: 0,
+            totalQuestions: 0,
+            correctAnswers: 0,
+            totalTimeTaken: 0,
+            averageTimePerQuiz: 0,
+            activity: []
+          });
+          setLoading(false);
+        } else {
+          setError('Failed to load stats');
+          setLoading(false);
+        }
       }
     };
+    fetchStudentStats();
+  }, []);
 
-    if (isInitialRender) {
-      setIsInitialRender(false);
-      initializeDashboard();
-    }
-  }, [isInitialRender]);
+  // Stat card definitions based on real backend fields
+  const statCardDefs = [
+    {
+      key: 'totalQuizzesAttempted',
+      title: 'Total Quizzes',
+      description: 'Number of quizzes you have attempted',
+      icon: Users,
+      format: v => v
+    },
+    {
+      key: 'totalScore',
+      title: 'Total Score',
+      description: 'Sum of all your quiz scores',
+      icon: BarChart2,
+      format: v => v
+    },
+    {
+      key: 'averageScore',
+      title: 'Average Score',
+      description: 'Average score per quiz',
+      icon: TrendingUp,
+      format: v => v?.toFixed(1)
+    },
+    {
+      key: 'accuracy',
+      title: 'Accuracy',
+      description: 'Correct answers percentage',
+      icon: CheckCircle,
+      format: v => v?.toFixed(1) + '%'
+    },
+    {
+      key: 'totalQuestions',
+      title: 'Total Questions',
+      description: 'Total questions attempted',
+      icon: Target,
+      format: v => v
+    },
+    {
+      key: 'correctAnswers',
+      title: 'Correct Answers',
+      description: 'Total correct answers',
+      icon: Award,
+      format: v => v
+    },
+    {
+      key: 'totalTimeTaken',
+      title: 'Total Time Spent',
+      description: 'Total time spent on quizzes',
+      icon: Clock,
+      format: v => v ? `${Math.floor(v/60)}m ${v%60}s` : '0m 0s'
+    },
+    {
+      key: 'averageTimePerQuiz',
+      title: 'Avg Time/Quiz',
+      description: 'Average time per quiz',
+      icon: Clock,
+      format: v => (typeof v === 'number' && !isNaN(v)) ? `${(v/60).toFixed(2)}m` : '0.00m'
+    },
+  ];
 
   // Function to format time for display
   const formatTime = (seconds) => {
@@ -149,7 +220,7 @@ const Dashboard = () => {
       title: "Average Score",
       description: "Your overall performance across all quizzes",
       icon: BarChart2,
-      stats: `${stats.accuracy?.toFixed(1) || 0}%`,
+      stats: `${studentStats?.accuracy?.toFixed(1) || 0}%`,
       colorClass: "green",
     },
     {
@@ -157,7 +228,7 @@ const Dashboard = () => {
       title: "Time Spent",
       description: "Total time spent in learning sessions",
       icon: Clock,
-      stats: formatTime(stats.totalQuestions * 2 || 0),
+      stats: formatTime(studentStats?.totalQuestions * 2 || 0),
       colorClass: "purple",
     },
     {
@@ -165,7 +236,7 @@ const Dashboard = () => {
       title: "Achievements",
       description: "Badges and rewards earned",
       icon: Trophy,
-      stats: `${Math.floor(stats.totalScore / 100) || 0} Badges`,
+      stats: `${Math.floor(studentStats?.totalScore / 100) || 0} Badges`,
       colorClass: "orange",
     },
   ];
@@ -215,7 +286,7 @@ const Dashboard = () => {
         ),
         title: 'Average Score',
         description: 'Your overall performance across all quizzes',
-        value: `${stats.accuracy?.toFixed(1) || 0}%`,
+        value: `${studentStats?.accuracy?.toFixed(1) || 0}%`,
       },
       {
         id: 3,
@@ -227,7 +298,7 @@ const Dashboard = () => {
         ),
         title: 'Time Spent',
         description: 'Total time spent in learning sessions',
-        value: `${formatTime(stats.totalQuestions * 2 || 0)}`,
+        value: `${formatTime(studentStats?.totalQuestions * 2 || 0)}`,
       },
       {
         id: 4,
@@ -239,10 +310,66 @@ const Dashboard = () => {
         ),
         title: 'Achievements',
         description: 'Badges and rewards earned',
-        value: `${Math.floor(stats.totalScore / 100) || 0} Badges`,
+        value: `${Math.floor(studentStats?.totalScore / 100) || 0} Badges`,
       },
     ];
-  }, [activeQuizzes, stats, formatTime]);
+  }, [activeQuizzes, studentStats, formatTime]);
+
+  // Helper: format date for chart x-axis
+  const formatActivityDate = (dateStr) => {
+    const d = new Date(dateStr);
+    return `${d.getMonth() + 1}/${d.getDate()}`;
+  };
+
+  // Prepare data for the bar and line charts (score over time)
+  const activityBarData = (studentStats?.activity || []).map(act => ({
+    date: formatActivityDate(act.date),
+    score: typeof act.score === 'number' ? act.score : parseFloat(act.score) || 0,
+  }));
+
+  // Helper to generate mock weekly progress data
+  const getHeavyWeeklyProgress = (realData) => {
+    if (!realData || realData.length === 0) {
+      // No data: generate 7 plausible days
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      return days.map((day) => ({
+        day,
+        score: Math.round(40 + 60 * Math.random()),
+      }));
+    }
+    if (realData.length === 1) {
+      // One entry: use it as first, fill rest
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      const base = realData[0]?.score || 50;
+      return days.map((day, i) => ({
+        day,
+        score: i === 0 ? base : Math.round(base * (0.7 + 0.6 * Math.random())),
+      }));
+    }
+    return realData;
+  };
+
+  // Helper to generate mock category breakdown data
+  const getHeavyCategoryBreakdown = (realData) => {
+    if (!realData || realData.length === 0) {
+      // No data: generate 4 plausible categories
+      const categories = ['Math', 'Science', 'English', 'History'];
+      return categories.map((cat) => ({
+        category: cat,
+        correct: Math.round(5 + 15 * Math.random()),
+      }));
+    }
+    if (realData.length === 1) {
+      // One entry: use it as first, fill rest
+      const categories = ['Math', 'Science', 'English', 'History'];
+      const base = realData[0]?.correct || 10;
+      return categories.map((cat, i) => ({
+        category: i === 0 ? realData[0].category || cat : cat,
+        correct: i === 0 ? base : Math.round(base * (0.7 + 0.6 * Math.random())),
+      }));
+    }
+    return realData;
+  };
 
   // Define a color cycle for the meet cards
   const colors = [
@@ -314,6 +441,42 @@ const Dashboard = () => {
     navigate(`/quiz/${quiz.quizCode}`);
   };
 
+  // Pinch-to-zoom handler
+  const handleChartWheel = useCallback((e) => {
+    if (isChartHovered && e.ctrlKey && activityChartData.length > 1) {
+      e.preventDefault(); // Prevent browser zoom
+      const [start, end] = zoomRange;
+      const range = end - start;
+      if (e.deltaY < 0 && range > 1) {
+        // Zoom in
+        setZoomRange([start + 1, end - 1]);
+      } else if (e.deltaY > 0) {
+        // Zoom out: always show all available quizzes
+        setZoomRange([0, activityChartData.length - 1]);
+      }
+    }
+  }, [isChartHovered, activityChartData.length, zoomRange]);
+
+  useEffect(() => {
+    const chartElem = chartRef.current;
+    if (!chartElem) return;
+    const wheelHandler = (e) => handleChartWheel(e);
+    chartElem.addEventListener('wheel', wheelHandler, { passive: false });
+    return () => chartElem.removeEventListener('wheel', wheelHandler);
+  }, [handleChartWheel]);
+
+  // For now, all data is for Today; future: split by day
+  const days = ['Today', 'Day 2', 'Day 3'];
+  const chartData = activityChartData.slice(zoomRange[0], zoomRange[1] + 1);
+
+  // Add a theme-aware border color for charts
+  const getChartBorderColor = () => {
+    if (typeof document !== 'undefined' && document.body?.getAttribute('data-theme') === 'dark') {
+      return '#444857'; // dark border for dark mode
+    }
+    return 'var(--border)'; // default (light mode)
+  };
+
   if (loading) {
     return (
       <div className="dashboard-page">
@@ -332,6 +495,24 @@ const Dashboard = () => {
     );
   }
 
+  if (error || !studentStats) {
+    return (
+      <div className="dashboard-page">
+        <DashboardHeader />
+        <div className="dashboard-container">
+          <div className="dashboard-wrapper">
+            <div className="quick-actions">
+              <h1 className="dashboard-title">Student Dashboard</h1>
+            </div>
+            <div className="loading-content">
+              <Typography color="error">{error ? error : ''}</Typography>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard-page">
       <DashboardHeader />
@@ -341,68 +522,118 @@ const Dashboard = () => {
             <h1 className="dashboard-title">Student Dashboard</h1>
           </div>
 
-          {/* Stat Cards Grid - moved to top */}
+          {/* Stat Cards Grid - only real backend data */}
           <div className="cards-grid">
-            {cards.map((card) => {
-              const IconComponent = card.icon;
+            {statCardDefs.filter(def => studentStats[def.key] !== undefined && studentStats[def.key] !== null)
+              .map((def, idx) => {
+                // Assign color classes in a cycle (blue, green, purple, orange)
+                const colorClasses = ['blue', 'green', 'purple', 'orange'];
+                const colorClass = colorClasses[idx % colorClasses.length];
+                const IconComponent = def.icon;
               return (
-                <div key={card.id} className={`card card-${card.colorClass}`}>
+                  <div key={def.key} className={`card card-${colorClass}`}>
                   <div className="card-pattern"></div>
-                  <div className={`card-icon icon-${card.colorClass}`}>
+                    <div className={`card-icon icon-${colorClass}`}>
                     <IconComponent className="icon" />
                   </div>
                   <div className="card-content">
-                    <h3 className={`card-title title-${card.colorClass}`}>{card.title}</h3>
-                    <p className="card-description">{card.description}</p>
+                      <h3 className={`card-title title-${colorClass}`}>{def.title}</h3>
+                      <p className="card-description">{def.description}</p>
                     <div className="card-footer">
-                      <span className={`card-stats stats-${card.colorClass}`}>{card.stats}</span>
+                        <span className={`card-stats stats-${colorClass}`}>{def.format(studentStats[def.key])}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className={`card-hover-effect hover-${card.colorClass}`}></div>
+                    <div className={`card-hover-effect hover-${colorClass}`}></div>
                 </div>
               );
             })}
           </div>
 
-          {/* Show Quiz Code Entry Button */}
-          {!showQuizCodeEntry && (
-            <Box sx={{ mb: 4 }}>
-              <Button 
-                variant="outlined" 
-                onClick={() => setShowQuizCodeEntry(true)}
-                startIcon={<Plus />}
+          {/* Enter Quiz Code Card - styled like admin's Create New Quiz card */}
+          <motion.div
+            initial={{ scale: 1, boxShadow: '0 8px 32px rgba(99,102,241,0.10)' }}
+            whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(102, 126, 234, 0.18)' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            style={{
+              background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+              borderRadius: 20,
+              marginBottom: 32,
+              cursor: 'pointer',
+              color: '#fff',
+              boxShadow: '0 8px 32px rgba(99,102,241,0.10)',
+              padding: 0,
+              overflow: 'hidden',
+              maxWidth: 700,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              position: 'relative',
+            }}
+            onClick={() => !showQuizCodeEntry && setShowQuizCodeEntry(true)}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', p: { xs: 2, sm: 4 } }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 60,
+                  height: 60,
+                  borderRadius: '16px',
+                  background: 'rgba(255,255,255,0.18)',
+                  backdropFilter: 'blur(10px)',
+                  mr: 3,
+                  border: '2px solid rgba(255,255,255,0.25)'
+                }}
               >
+                <Plus size={32} color="#fff" />
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5, color: '#fff' }}>
                 Enter Quiz Code
-              </Button>
-            </Box>
-          )}
-
-          {/* Quiz Code Entry - Hidden by default */}
+                </Typography>
+                <Typography variant="body1" sx={{ opacity: 0.92, fontWeight: 500, color: '#fff' }}>
+                  Join a quiz instantly using a code from your teacher
+                </Typography>
           {showQuizCodeEntry && (
-            <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
-              <form onSubmit={handleQuizCodeSubmit} style={{ display: 'flex', gap: 8 }}>
+                  <form onClick={e => e.stopPropagation()} onSubmit={handleQuizCodeSubmit} style={{ marginTop: 18, display: 'flex', gap: 12, alignItems: 'center' }}>
                 <TextField
-                  label="Enter Quiz Code"
+                      label="Quiz Code"
                   value={quizCode}
                   onChange={e => setQuizCode(e.target.value)}
                   error={!!quizCodeError}
                   helperText={quizCodeError}
                   size="small"
-                  sx={{ minWidth: 200 }}
-                />
-                <Button type="submit" variant="contained" color="primary">
-                  Join Quiz
+                      variant="filled"
+                      sx={{
+                        minWidth: 180,
+                        background: 'rgba(255,255,255,0.18)',
+                        borderRadius: '8px',
+                        input: { color: '#fff', fontWeight: 700, background: 'transparent' },
+                        label: { color: '#e0e7ff', fontWeight: 600 },
+                        '.MuiFilledInput-root': {
+                          background: 'transparent',
+                          borderRadius: '8px',
+                          boxShadow: 'none',
+                          border: 'none',
+                        },
+                        '.MuiFilledInput-root:before, .MuiFilledInput-root:after': {
+                          borderBottom: 'none',
+                        },
+                        '.Mui-focused': {
+                          boxShadow: 'none',
+                          border: 'none',
+                        },
+                      }}
+                      InputLabelProps={{ style: { color: '#e0e7ff', fontWeight: 600 } }}
+                    />
+                    <Button type="submit" variant="contained" color="secondary" sx={{ fontWeight: 700, borderRadius: '8px', px: 3, py: 1 }}>
+                      Join
                 </Button>
               </form>
-              <Button 
-                variant="outlined" 
-                onClick={() => setShowQuizCodeEntry(false)}
-                size="small"
-              >
-                Cancel
-              </Button>
+                )}
+              </Box>
             </Box>
-          )}
+          </motion.div>
 
           {/* Active Quizzes List - moved below stat cards */}
           <section className="meets-section">
@@ -453,62 +684,157 @@ const Dashboard = () => {
           </section>
 
           {/* Charts Section */}
-          <div className="charts-container">
-            <div className="chart-card">
-              <h3>Weekly Progress</h3>
-              <div style={{ width: '100%', height: 300 }}>
+          <div className="charts-container" style={{ display: 'flex', flexDirection: 'row', gap: 32, justifyContent: 'center', alignItems: 'stretch', flexWrap: 'wrap' }}>
+            <div className="chart-card" style={{ background: 'var(--background-paper)', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.06)', padding: 32, width: '100%', maxWidth: 600, flex: '1 1 0', minWidth: 320, margin: 0 }}>
+              <h2 style={{
+                fontWeight: 800,
+                fontSize: 28,
+                marginBottom: 18,
+                color: 'var(--text-primary)',
+                letterSpacing: 0.5,
+                textAlign: 'left',
+              }}>Student Performance Analysis</h2>
+              <div
+                ref={chartRef}
+                onMouseEnter={() => setIsChartHovered(true)}
+                onMouseLeave={() => setIsChartHovered(false)}
+                style={{ width: '100%', height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', borderRadius: 12 }}
+              >
+                {chartData.length > 0 ? (
                 <ResponsiveContainer>
-                  <BarChart data={stats?.weeklyProgress}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="score" fill="#6366F1" />
-                  </BarChart>
+                    <AreaChart data={chartData} margin={{ top: 24, right: 32, left: 8, bottom: 24 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke={getChartBorderColor()} />
+                      <XAxis dataKey="quiz" tick={{ fontWeight: 600, fill: 'var(--text-secondary)' }} />
+                      <YAxis tick={{ fontWeight: 600, fill: 'var(--text-secondary)' }} />
+                      <Tooltip contentStyle={{ background: 'var(--background-paper)', color: 'var(--text-primary)', borderRadius: 8, boxShadow: '0 2px 8px var(--border)' }} />
+                      <Area type="monotone" dataKey="score" stroke="#2563eb" fill="url(#scoreFill)" strokeWidth={3} dot={{ r: 1, fill: '#2563eb' }} name="Score" />
+                      <Area type="monotone" dataKey="accuracy" stroke="#10B981" fill="url(#accuracyFill)" strokeWidth={3} dot={{ r: 1, fill: '#10B981' }} name="Accuracy (%)" />
+                      <Area type="monotone" dataKey="correctAnswers" stroke="#f59e42" fill="url(#correctFill)" strokeWidth={3} dot={{ r: 1, fill: '#f59e42' }} name="Correct Answers" />
+                      <defs>
+                        <linearGradient id="scoreFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#2563eb" stopOpacity={0.18} />
+                          <stop offset="100%" stopColor="#2563eb" stopOpacity={0.03} />
+                        </linearGradient>
+                        <linearGradient id="accuracyFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#10B981" stopOpacity={0.18} />
+                          <stop offset="100%" stopColor="#10B981" stopOpacity={0.03} />
+                        </linearGradient>
+                        <linearGradient id="correctFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#f59e42" stopOpacity={0.18} />
+                          <stop offset="100%" stopColor="#f59e42" stopOpacity={0.03} />
+                        </linearGradient>
+                      </defs>
+                    </AreaChart>
                 </ResponsiveContainer>
+                ) : (
+                  <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(99,102,241,0.07)', borderRadius: 3 }}>
+                    <BarChart2 size={64} color="#6366F1" style={{ marginBottom: 16 }} />
+                    <Typography variant="h5" sx={{ color: '#6366F1', fontWeight: 800, mb: 1 }}>No Quiz Activity</Typography>
+                    <Typography variant="body1" sx={{ color: '#6366F1', opacity: 0.7, fontWeight: 500 }}>Your quiz scores will appear here as you participate more!</Typography>
+                  </Box>
+                )}
+              </div>
+              {/* Custom Legend */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginTop: 16 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ width: 14, height: 14, borderRadius: '50%', background: '#2563eb', display: 'inline-block' }}></span> <span style={{ color: '#2563eb', fontWeight: 700 }}>Score</span></span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ width: 14, height: 14, borderRadius: '50%', background: '#10B981', display: 'inline-block' }}></span> <span style={{ color: '#10B981', fontWeight: 700 }}>Accuracy</span></span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ width: 14, height: 14, borderRadius: '50%', background: '#f59e42', display: 'inline-block' }}></span> <span style={{ color: '#f59e42', fontWeight: 700 }}>Correct Answers</span></span>
               </div>
             </div>
-
-            <div className="chart-card">
-              <h3>Category Breakdown</h3>
-              <div style={{ width: '100%', height: 300 }}>
+            {/* Radar Chart Section */}
+            <div className="chart-card" style={{ background: 'var(--background-paper)', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.06)', padding: 32, width: '100%', maxWidth: 600, flex: '1 1 0', minWidth: 320, margin: 0 }}>
+              <h2 style={{
+                fontWeight: 800,
+                fontSize: 24,
+                marginBottom: 18,
+                color: 'var(--text-primary)',
+                letterSpacing: 0.5,
+                textAlign: 'left',
+              }}>Quiz Attempt Breakdown</h2>
+              <div style={{ width: '100%', height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {activityChartData.length > 0 ? (
                 <ResponsiveContainer>
-                  <PieChart>
-                    <Pie
-                      data={stats?.categoryBreakdown}
-                      dataKey="correct"
-                      nameKey="category"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={100}
-                      label
-                    >
-                      {stats?.categoryBreakdown.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                    <Legend />
-                  </PieChart>
+                    <RadarChart cx="50%" cy="50%" outerRadius={120} data={[
+                      { metric: 'Score', first: activityChartData[activityChartData.length-1].score, second: activityChartData.length > 1 ? activityChartData[activityChartData.length-2].score : null },
+                      { metric: 'Accuracy', first: activityChartData[activityChartData.length-1].accuracy, second: activityChartData.length > 1 ? activityChartData[activityChartData.length-2].accuracy : null },
+                      { metric: 'Total Questions', first: activityChartData[activityChartData.length-1].totalQuestions, second: activityChartData.length > 1 ? activityChartData[activityChartData.length-2].totalQuestions : null },
+                      { metric: 'Correct Answers', first: activityChartData[activityChartData.length-1].correctAnswers, second: activityChartData.length > 1 ? activityChartData[activityChartData.length-2].correctAnswers : null },
+                    ]}>
+                      <PolarGrid stroke={getChartBorderColor()} />
+                      <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--text-secondary)', fontWeight: 600 }} />
+                      <PolarRadiusAxis angle={30} domain={[0, 'dataMax']} tick={{ fill: 'var(--text-secondary)' }} />
+                      <Radar name="Latest Attempt" dataKey="first" stroke="#f87171" fill="#f87171" fillOpacity={0.25} dot={{ r: 3, fill: '#f87171' }} />
+                      {activityChartData.length > 1 && (
+                        <Radar name="Previous Attempt" dataKey="second" stroke="#2563eb" fill="#2563eb" fillOpacity={0.18} dot={{ r: 3, fill: '#2563eb' }} />
+                      )}
+                      <Legend iconType="plainline" layout="horizontal" align="center" verticalAlign="top" wrapperStyle={{ top: -24 }} />
+                    </RadarChart>
                 </ResponsiveContainer>
+                ) : (
+                  <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(99,102,241,0.07)', borderRadius: 3 }}>
+                    <BarChart2 size={64} color="#6366F1" style={{ marginBottom: 16 }} />
+                    <Typography variant="h5" sx={{ color: '#6366F1', fontWeight: 800, mb: 1 }}>No Quiz Activity</Typography>
+                    <Typography variant="body1" sx={{ color: '#6366F1', opacity: 0.7, fontWeight: 500 }}>Your quiz breakdown will appear here as you participate more!</Typography>
+                  </Box>
+                )}
               </div>
             </div>
           </div>
           
 
           {/* Recent Activity */}
-          <div className="recent-activity">
-            
-            <h2>Recent Activity</h2>
-            <div className="activity-list">
-              {stats?.recentActivity.map((activity, index) => (
-                <div key={index} className="activity-item">
-                  <CheckCircle size={20} className="success" />
-                  <span>{activity.activity}</span>
-                  <span className="time">{activity.date}</span>
+          <div className="recent-activity" style={{ marginTop: 40 }}>
+            <h2 style={{ fontWeight: 800, fontSize: 22, marginBottom: 16, color: 'var(--text-primary)' }}>Recent Activity</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {(studentStats?.activity || [])
+                .filter(act => act.type === 'quiz_attempted')
+                .slice(-3)
+                .reverse()
+                .map((act, idx) => {
+                  const scoreMatch = act.message && act.message.match(/scored (\d+)/);
+                  const score = scoreMatch ? scoreMatch[1] : '?';
+                  const quizTitle = act.quizTitle || act.quizName || 'Quiz';
+                  const date = act.createdAt?.$date?.$numberLong
+                    ? new Date(Number(act.createdAt.$date.$numberLong))
+                    : act.createdAt
+                      ? new Date(act.createdAt)
+                      : null;
+                  const formattedDate = date ? date.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+                  return (
+                    <div
+                      key={act._id || idx}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 14,
+                        padding: '14px 20px',
+                        borderRadius: 12,
+                        background: 'linear-gradient(90deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.06) 100%)',
+                        borderLeft: '5px solid var(--primary)',
+                        boxShadow: '0 2px 12px rgba(99,102,241,0.06)',
+                        transition: 'background 0.2s, box-shadow 0.2s',
+                        cursor: 'pointer',
+                        position: 'relative',
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.background = 'linear-gradient(90deg, rgba(99,102,241,0.16) 0%, rgba(139,92,246,0.12) 100%)';
+                        e.currentTarget.style.boxShadow = '0 4px 18px rgba(99,102,241,0.13)';
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.background = 'linear-gradient(90deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.06) 100%)';
+                        e.currentTarget.style.boxShadow = '0 2px 12px rgba(99,102,241,0.06)';
+                      }}
+                    >
+                      <Trophy size={22} style={{ color: 'var(--primary)', flexShrink: 0, filter: 'drop-shadow(0 2px 6px rgba(99,102,241,0.12))' }} />
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <span style={{ fontWeight: 600, fontSize: 16, color: 'var(--text-primary)' }}>
+                          You scored <span style={{ color: '#f59e42', fontWeight: 700 }}>{score}</span> in <span style={{ fontWeight: 700, color: 'var(--primary)' }}>{quizTitle}</span>
+                        </span>
+                        <span style={{ fontSize: 13, color: 'var(--text-secondary)', fontWeight: 500 }}>{formattedDate}</span>
+                      </div>
                 </div>
-              ))}
+                  );
+                })}
             </div>
           </div>
 

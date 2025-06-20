@@ -18,6 +18,7 @@ const studentQuizRoutes = require('./routes/studentQuiz');
 const meetRoutes = require('./routes/meets');
 const answerRoutes = require('./routes/answer');
 const statsRoutes = require('./routes/stats');
+const studentStatRoutes = require('./routes/studentStatRoutes');
 
 // Initialize Express application
 const app = express();
@@ -57,6 +58,7 @@ app.use('/api/quiz', studentQuizRoutes); // Student quiz routes
 app.use('/api/meets', meetRoutes);   // Quiz/Meet management routes
 app.use('/api/answers', answerRoutes); // Answer submission and leaderboard routes
 app.use('/api/stats', statsRoutes);   // User statistics routes
+app.use('/api/student-stats', studentStatRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {
