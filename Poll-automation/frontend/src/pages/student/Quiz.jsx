@@ -53,6 +53,10 @@ const Quiz = () => {
   const [answerFeedback, setAnswerFeedback] = useState({});
   const lastAnswerRef = useRef(null);
   const [dynamicLeaderboard, setDynamicLeaderboard] = useState([]);
+  const [liveLeaderboard, setLiveLeaderboard] = useState([]);
+  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
+  const [leaderboardError, setLeaderboardError] = useState(null);
+  const leaderboardIntervalRef = useRef(null);
 
   // currentQuestion must be derived inside the component to react to state changes
   const currentQuestion = questions[currentQuestionIndex];
@@ -91,17 +95,6 @@ const Quiz = () => {
     }
   }, [quizStarted, quizEnded, timeLeft, quiz]);
 
-  // Auto-start quiz when loaded (for authenticated users)
-  useEffect(() => {
-    if (quiz && !loading && !quizStarted && !quizEnded) {
-      // Small delay to show quiz info before starting
-      const timer = setTimeout(() => {
-        setQuizStarted(true);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [quiz, loading, quizStarted, quizEnded]);
-
   // Update leaderboard dynamically as user answers
   useEffect(() => {
     // Simulate fetching previous leaderboard (replace with real API if available)
@@ -125,6 +118,33 @@ const Quiz = () => {
     leaderboard.sort((a, b) => b.score - a.score);
     setDynamicLeaderboard(leaderboard);
   }, [selectedAnswers, answerFeedback, user]);
+
+  // Fetch leaderboard from backend
+  const fetchLiveLeaderboard = async (quizId) => {
+    setLeaderboardLoading(true);
+    setLeaderboardError(null);
+    try {
+      const response = await axios.get(`/api/student-stats/leaderboard/${quizId}`);
+      setLiveLeaderboard(response.data.leaderboard || []);
+    } catch (err) {
+      setLeaderboardError('Failed to load leaderboard');
+    } finally {
+      setLeaderboardLoading(false);
+    }
+  };
+
+  // Poll leaderboard during quiz (not just after)
+  useEffect(() => {
+    if (quizStarted && quiz && quiz._id && !quizEnded) {
+      fetchLiveLeaderboard(quiz._id);
+      leaderboardIntervalRef.current = setInterval(() => {
+        fetchLiveLeaderboard(quiz._id);
+      }, 5000);
+      return () => clearInterval(leaderboardIntervalRef.current);
+    } else {
+      if (leaderboardIntervalRef.current) clearInterval(leaderboardIntervalRef.current);
+    }
+  }, [quizStarted, quiz, quizEnded]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -229,7 +249,23 @@ const Quiz = () => {
         console.log('Quiz submitted successfully:', result);
         console.log('Backend returned correctAnswers:', result.correctAnswers);
         console.log('Backend returned totalQuestions:', result.totalQuestions);
+        // Call the new endpoint to update student stats
+        try {
+          await axios.post('/api/student-stats/track-quiz', {
+            quizId: result.quizId || quiz._id,
+            score: result.score,
+            correctAnswers: result.correctAnswers,
+            totalQuestions: result.totalQuestions,
+            timeTaken: 600 - timeLeft // assuming 10 min timer, adjust if needed
+          });
+        } catch (statErr) {
+          console.error('Error updating student stats:', statErr);
+        }
         setQuizResults(result);
+        // Immediately refresh leaderboard after quiz submission
+        if (quiz && quiz._id) {
+          fetchLiveLeaderboard(quiz._id);
+        }
       } else {
         console.error('Failed to submit quiz');
         setError('Failed to submit quiz results. Please try again.');
@@ -311,50 +347,93 @@ const Quiz = () => {
         justifyContent: 'center', 
         alignItems: 'center', 
         minHeight: '100vh',
-        padding: '2rem'
+        padding: '2rem',
+        background: 'none',
       }}>
-        <Paper elevation={3} sx={{
-          p: 4,
-          borderRadius: '20px',
-          background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-          maxWidth: '600px',
+        <Paper elevation={12} className="quiz-start-modal" sx={theme => ({
+          p: { xs: 2.5, md: 6 },
+          borderRadius: '32px',
+          maxWidth: '540px',
           width: '100%',
-          textAlign: 'center'
-        }}>
-          <Typography variant="h4" sx={{ color: '#2c3e50', fontWeight: 700, mb: 3 }}>
-            Quiz: {quiz.topic}
+          textAlign: 'center',
+          background: theme.palette.mode === 'dark'
+            ? '#23243a'
+            : 'rgba(255,255,255,0.85)',
+          boxShadow: theme.palette.mode === 'dark'
+            ? '0 8px 40px 0 #23234a, 0 1.5px 8px 0 #353857'
+            : '0 8px 32px rgba(99,102,241,0.13)',
+          border: theme.palette.mode === 'dark'
+            ? '2px solid #6366F1' : '2px solid #e2e8f0',
+          color: theme.palette.text.primary,
+          backdropFilter: 'blur(18px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(18px) saturate(180%)',
+          position: 'relative',
+          overflow: 'hidden',
+        })}>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 0,
+            background: (theme) => theme.palette.mode === 'dark'
+              ? 'radial-gradient(circle at 60% 40%, #6366F1 0%, transparent 70%)'
+              : 'radial-gradient(circle at 60% 40%, #6366F1 0%, transparent 80%)',
+            opacity: 0.18,
+            pointerEvents: 'none',
+          }} />
+          <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, color: 'var(--primary, #6366F1)', letterSpacing: '-1px', zIndex: 1 }}>
+            {quiz.topic}
           </Typography>
-          
-          <Box sx={{ mb: 4, p: 3, bgcolor: '#f8f9fa', borderRadius: 2 }}>
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
-              Quiz Information
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Difficulty:</strong> {quiz.difficulty}
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Questions:</strong> {quiz.totalQuestions}
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Time Limit:</strong> 10 minutes
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Student:</strong> {user.name}
-            </Typography>
+          <Typography variant="subtitle1" sx={{ mb: 3, color: 'var(--text-secondary, #a3aed6)', zIndex: 1 }}>
+            {quiz.description || 'Get ready to test your knowledge!'}
+          </Typography>
+          <Box sx={{
+            mb: 4,
+            p: 3,
+            borderRadius: 3,
+            background: (theme) => theme.palette.mode === 'dark'
+              ? 'rgba(44,54,80,0.55)'
+              : 'rgba(99,102,241,0.07)',
+            boxShadow: (theme) => theme.palette.mode === 'dark'
+              ? '0 2px 12px rgba(44,54,80,0.18)'
+              : '0 2px 12px rgba(99,102,241,0.08)',
+            border: (theme) => theme.palette.mode === 'dark' ? '1px solid #353857' : '1px solid #e2e8f0',
+            color: (theme) => theme.palette.text.primary,
+            textAlign: 'left',
+            maxWidth: 400,
+            margin: '0 auto',
+            zIndex: 1,
+          }}>
+            <Typography variant="body1" sx={{ mb: 1 }}><strong>Difficulty:</strong> {quiz.difficulty}</Typography>
+            <Typography variant="body1" sx={{ mb: 1 }}><strong>Questions:</strong> {quiz.totalQuestions}</Typography>
+            <Typography variant="body1" sx={{ mb: 1 }}><strong>Time Limit:</strong> 10 minutes</Typography>
+            <Typography variant="body1" sx={{ mb: 1 }}><strong>Student:</strong> {user.name}</Typography>
           </Box>
-
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-            The quiz will start automatically in a few seconds...
-          </Typography>
-
           <Button
             variant="contained"
             size="large"
             onClick={() => setQuizStarted(true)}
-            sx={{ minWidth: 200 }}
+            className="start-quiz-button"
+            sx={{
+              minWidth: 220,
+              mt: 4,
+              fontWeight: 800,
+              fontSize: '1.25rem',
+              borderRadius: '16px',
+              boxShadow: (theme) => theme.palette.mode === 'dark'
+                ? '0 6px 24px #6366F1' : '0 4px 16px rgba(99,102,241,0.13)',
+              background: 'linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%)',
+              color: '#fff',
+              letterSpacing: 0.5,
+              transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
+              zIndex: 1,
+              '&:hover': {
+                background: 'linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%)',
+                boxShadow: '0 12px 32px #6366F1',
+                transform: 'scale(1.06)'
+              }
+            }}
           >
-            Start Quiz Now
+            Start Quiz
           </Button>
         </Paper>
       </div>
@@ -440,6 +519,34 @@ const Quiz = () => {
             </Grid>
           </Grid>
 
+          {/* Live Leaderboard */}
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+              Live Leaderboard
+            </Typography>
+            {leaderboardLoading ? (
+              <CircularProgress />
+            ) : leaderboardError ? (
+              <Typography color="error">{leaderboardError}</Typography>
+            ) : (
+              <Box sx={{ maxHeight: 300, overflowY: 'auto' }}>
+                <Grid container spacing={2}>
+                  {liveLeaderboard.map((entry, idx) => (
+                    <Grid item xs={12} key={entry.email || idx}>
+                      <Paper elevation={1} sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <EmojiEventsIcon color={idx === 0 ? 'warning' : 'disabled'} sx={{ mr: 1 }} />
+                        <Typography sx={{ minWidth: 120, fontWeight: 600 }}>{entry.name}</Typography>
+                        <Typography sx={{ minWidth: 80 }}>Score: {entry.score}</Typography>
+                        <Typography sx={{ minWidth: 100 }}>Time: {entry.timeTaken !== undefined ? `${Math.floor(entry.timeTaken / 60)}m ${entry.timeTaken % 60}s` : '-'}</Typography>
+                        <Typography sx={{ minWidth: 60 }}>#{entry.rank}</Typography>
+                      </Paper>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            )}
+          </Box>
+
           {/* Detailed Results */}
           {quizResults?.detailedResults && (
             <Box sx={{ mt: 3 }}>
@@ -499,6 +606,176 @@ const Quiz = () => {
 
   if (!quiz || questions.length === 0 || !currentQuestion) {
     return <div className="quiz-loading"><CircularProgress /> <Typography>Preparing Quiz...</Typography></div>;
+  }
+
+  // Modern two-column layout for quiz in progress
+  if (quiz && quizStarted && !quizEnded) {
+    return (
+      <Box className="quiz-modern-container" sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        p: { xs: 1, md: 4 },
+        gap: { xs: 2, md: 4 }
+      }}>
+        {/* Left: Quiz Content */}
+        <Paper elevation={4} sx={{
+          flex: 2,
+          borderRadius: 4,
+          p: { xs: 2, md: 4 },
+          mb: { xs: 2, md: 0 },
+          bgcolor: 'background.paper',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 3,
+          minWidth: 0
+        }}>
+          {/* Timer and Progress */}
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <AccessTimeIcon sx={{ color: timeLeft < 60 ? 'error.main' : 'primary.main' }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, color: timeLeft < 60 ? 'error.main' : 'primary.main' }}>
+                {formatTime(timeLeft)}
+              </Typography>
+            </Box>
+            <Box sx={{ flex: 1, mx: 2 }}>
+              <Box sx={{ width: '100%', height: 8, bgcolor: 'divider', borderRadius: 4, overflow: 'hidden' }}>
+                <Box sx={{
+                  width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
+                  height: '100%',
+                  bgcolor: 'primary.main',
+                  transition: 'width 0.3s ease'
+                }} />
+              </Box>
+              <Typography variant="caption" color="text.secondary">
+                Question {currentQuestionIndex + 1} / {questions.length}
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Question */}
+          <motion.div
+            key={currentQuestionIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'text.primary' }}>
+              {currentQuestion.question}
+            </Typography>
+            <Grid container spacing={2}>
+              {currentQuestion.options.map((option, index) => (
+                <Grid item xs={12} key={index}>
+                  <Button
+                    variant={selectedOption === index ? "contained" : "outlined"}
+                    fullWidth
+                    onClick={() => handleAnswer(index)}
+                    disabled={selectedOption !== null}
+                    sx={{
+                      py: 2,
+                      px: 3,
+                      textAlign: 'left',
+                      justifyContent: 'flex-start',
+                      borderRadius: 3,
+                      border: '2px solid',
+                      borderColor: selectedOption === index ? 'primary.main' : 'divider',
+                      bgcolor: selectedOption === index ? 'primary.main' : 'background.paper',
+                      color: selectedOption === index ? 'common.white' : 'text.primary',
+                      fontWeight: 600,
+                      fontSize: '1.1rem',
+                      boxShadow: selectedOption === index ? 4 : 0,
+                      '&:hover': {
+                        bgcolor: selectedOption === index ? 'primary.main' : 'action.hover',
+                        borderColor: 'primary.main'
+                      },
+                      '&:disabled': {
+                        bgcolor: selectedOption === index ? 'primary.main' : 'background.paper',
+                        color: selectedOption === index ? 'common.white' : 'text.disabled'
+                      }
+                    }}
+                  >
+                    <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                      {String.fromCharCode(65 + index)}. {option}
+                    </Typography>
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
+          </motion.div>
+
+          {/* Feedback */}
+          {showFeedback && (
+            <Box className={`feedback ${feedbackType}`} sx={{
+              mt: 2,
+              p: 2,
+              borderRadius: 2,
+              textAlign: 'center',
+              fontWeight: 600,
+              fontSize: '1.2rem',
+              bgcolor: feedbackType === 'correct' ? 'success.light' : 'error.light',
+              color: feedbackType === 'correct' ? 'success.main' : 'error.main',
+              border: '2px solid',
+              borderColor: feedbackType === 'correct' ? 'success.main' : 'error.main',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}>
+              {feedbackType === 'correct' ? '✅ Correct!' : '❌ Incorrect!'}
+            </Box>
+          )}
+        </Paper>
+
+        {/* Right: Live Leaderboard */}
+        <Paper elevation={4} sx={{
+          flex: 1,
+          borderRadius: 4,
+          p: { xs: 2, md: 4 },
+          bgcolor: 'background.paper',
+          minWidth: 0,
+          maxHeight: { md: '80vh' },
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2
+        }}>
+          <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+            Live Leaderboard
+          </Typography>
+          {leaderboardLoading ? (
+            <CircularProgress />
+          ) : leaderboardError ? (
+            <Typography color="error">{leaderboardError}</Typography>
+          ) : (
+            <Box>
+              <Grid container spacing={2}>
+                {liveLeaderboard.map((entry, idx) => (
+                  <Grid item xs={12} key={entry.email || idx}>
+                    <Paper elevation={1} sx={{
+                      p: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 2,
+                      bgcolor: entry.email === user.email ? 'primary.light' : 'background.paper',
+                      color: entry.email === user.email ? 'primary.contrastText' : 'text.primary',
+                      border: entry.email === user.email ? '2px solid' : '1px solid',
+                      borderColor: entry.email === user.email ? 'primary.main' : 'divider',
+                      fontWeight: entry.email === user.email ? 700 : 500
+                    }}>
+                      <EmojiEventsIcon color={idx === 0 ? 'warning' : 'disabled'} sx={{ mr: 1 }} />
+                      <Typography sx={{ minWidth: 120, fontWeight: 600 }}>{entry.name}</Typography>
+                      <Typography sx={{ minWidth: 80 }}>Score: {entry.score}</Typography>
+                      <Typography sx={{ minWidth: 100 }}>Time: {entry.timeTaken !== undefined ? `${Math.floor(entry.timeTaken / 60)}m ${entry.timeTaken % 60}s` : '-'}</Typography>
+                      <Typography sx={{ minWidth: 60 }}>#{entry.rank}</Typography>
+                    </Paper>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          )}
+        </Paper>
+      </Box>
+    );
   }
 
   return (

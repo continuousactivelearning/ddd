@@ -104,7 +104,7 @@ router.post('/:quizCode/check-answer', auth, async (req, res) => {
 router.post('/:quizCode/submit', auth, async (req, res) => {
   try {
     const { quizCode } = req.params;
-    const { answers } = req.body;
+    const { answers, timeTaken } = req.body;
     const { user } = req; // Get authenticated user
 
     const quiz = await Quiz.findOne({ 
@@ -142,7 +142,8 @@ router.post('/:quizCode/submit', auth, async (req, res) => {
       user: student._id,
       score: score,
       answers: processedAnswers,
-      completedAt: new Date()
+      completedAt: new Date(),
+      timeTaken: timeTaken
     };
 
     quiz.participants.push(participant);

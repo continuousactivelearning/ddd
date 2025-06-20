@@ -56,7 +56,8 @@ const quizSchema = new mongoose.Schema({
       selectedOption: Number,
       isCorrect: Boolean
     }],
-    completedAt: Date
+    completedAt: Date,
+    timeTaken: Number // in seconds
   }]
 }, {
   timestamps: true
