@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
         enum: ['student', 'admin'],
         default: 'student'
     },
-    avatar: String
+    avatar: String,
+    allowedStudents: [{ type: String }] // Only used for admin users
 }, {
     timestamps: true
 });

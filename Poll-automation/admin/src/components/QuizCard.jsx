@@ -28,7 +28,9 @@ import {
   useTheme,
   IconButton,
   Tooltip,
-  useMediaQuery
+  useMediaQuery,
+  TextField,
+  Stack
 } from '@mui/material';
 import {
   Visibility as ViewIcon,
@@ -283,7 +285,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
 
           {/* Stats Grid - custom layout for perfect alignment */}
           <Grid container spacing={2} sx={{ mb: 1 }}>
-            {/* First column: Participants (row 1), Avg Score (row 2) */}
+            {/* First column: Participants (row 1), Avg Score (row 2, xs only) */}
             <Grid item xs={6} sm={3} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Box sx={{
                 textAlign: 'center',
@@ -306,7 +308,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                 textAlign: 'center',
                 p: 1,
                 minHeight: { xs: 60, sm: 80 },
-                display: 'flex',
+                display: { xs: 'flex', sm: 'none' },
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -320,7 +322,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                 </Typography>
               </Box>
             </Grid>
-            {/* Second column: Completed (row 1), Duration (row 2) */}
+            {/* Second column: Completed (row 1), Duration (row 2, xs only) */}
             <Grid item xs={6} sm={3} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Box sx={{
                 textAlign: 'center',
@@ -343,7 +345,7 @@ const QuizCard = ({ quiz, onStatusUpdate, onDelete }) => {
                 textAlign: 'center',
                 p: 1,
                 minHeight: { xs: 60, sm: 80 },
-                display: 'flex',
+                display: { xs: 'flex', sm: 'none' },
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { LogOut, Trophy, Zap, ChevronDown, ChevronUp } from 'lucide-react';
 import './DashboardHeader.css';
+import md5 from 'blueimp-md5';
 
 const DashboardHeader = () => {
   const { user, logout } = useAuth();
@@ -149,6 +150,16 @@ const DashboardHeader = () => {
     color: '#1a1c2e',
   };
 
+  // Helper to get avatar URL (Gravatar fallback)
+  const getAvatarUrl = () => {
+    if (user?.avatar) return user.avatar;
+    if (user?.email) {
+      const hash = md5(user.email.trim().toLowerCase());
+      return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+    }
+    return '/placeholder.svg';
+  };
+
   return (
     <header style={headerStyle}>
       {/* Left: Logo and Title */}
@@ -241,9 +252,10 @@ const DashboardHeader = () => {
         }}
       >
         <img 
-          src={user?.avatar || '/placeholder.svg'} 
+          src={getAvatarUrl()} 
           alt={user?.name || 'User'} 
           style={avatarStyle}
+          onError={e => { e.target.onerror = null; e.target.src = '/placeholder.svg'; }}
         />
         <div>
           <div style={{ fontWeight: '600', color: '#1a1c2e' }}>

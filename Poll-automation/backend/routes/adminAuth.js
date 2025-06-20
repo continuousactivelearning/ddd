@@ -110,4 +110,35 @@ router.get('/logout', auth, isAdmin, (req, res) => {
   res.json({ message: 'Logged out successfully' });
 });
 
+// Add/Update allowed students for admin
+router.get('/allowed-students', auth, isAdmin, async (req, res) => {
+  try {
+    const admin = await User.findById(req.user._id);
+    if (!admin || admin.role !== 'admin') {
+      return res.status(403).json({ message: 'Not authorized' });
+    }
+    res.json({ allowedStudents: admin.allowedStudents || [] });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch allowed students' });
+  }
+});
+
+router.post('/allowed-students', auth, isAdmin, async (req, res) => {
+  try {
+    const { allowedStudents } = req.body;
+    if (!Array.isArray(allowedStudents)) {
+      return res.status(400).json({ message: 'allowedStudents must be an array of emails' });
+    }
+    const admin = await User.findById(req.user._id);
+    if (!admin || admin.role !== 'admin') {
+      return res.status(403).json({ message: 'Not authorized' });
+    }
+    admin.allowedStudents = allowedStudents;
+    await admin.save();
+    res.json({ message: 'Allowed students updated', allowedStudents });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update allowed students' });
+  }
+});
+
 module.exports = router; 

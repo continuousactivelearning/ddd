@@ -24,6 +24,12 @@ const DUMMY_USERS = [
   { name: 'John Davis', score: 70 }
 ];
 
+function getUserInitials(name) {
+  if (!name) return '';
+  const parts = name.split(' ');
+  return parts.length > 1 ? parts[0][0] + parts[1][0] : parts[0][0];
+}
+
 const Quiz = () => {
   const { quizCode } = useParams();
   const navigate = useNavigate();
@@ -46,6 +52,7 @@ const Quiz = () => {
   const [quizResults, setQuizResults] = useState(null);
   const [answerFeedback, setAnswerFeedback] = useState({});
   const lastAnswerRef = useRef(null);
+  const [dynamicLeaderboard, setDynamicLeaderboard] = useState([]);
 
   // currentQuestion must be derived inside the component to react to state changes
   const currentQuestion = questions[currentQuestionIndex];
@@ -94,6 +101,30 @@ const Quiz = () => {
       return () => clearTimeout(timer);
     }
   }, [quiz, loading, quizStarted, quizEnded]);
+
+  // Update leaderboard dynamically as user answers
+  useEffect(() => {
+    // Simulate fetching previous leaderboard (replace with real API if available)
+    let leaderboard = [...DUMMY_USERS];
+    // Add current user if not present
+    if (user && user.name) {
+      const existing = leaderboard.find(u => u.name === user.name);
+      if (!existing) {
+        leaderboard.push({ name: user.name, score: 0 });
+      }
+    }
+    // Update current user's score based on correct answers so far
+    let userScore = 0;
+    Object.keys(selectedAnswers).forEach(idx => {
+      if (answerFeedback[idx]?.isCorrect) userScore += 10;
+    });
+    leaderboard = leaderboard.map(u =>
+      u.name === user.name ? { ...u, score: userScore } : u
+    );
+    // Sort leaderboard by score descending
+    leaderboard.sort((a, b) => b.score - a.score);
+    setDynamicLeaderboard(leaderboard);
+  }, [selectedAnswers, answerFeedback, user]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -472,6 +503,7 @@ const Quiz = () => {
 
   return (
     <div className="quiz-container">
+      {/* Dynamic Leaderboard Panel removed */}
       {/* Header */}
       <div className="quiz-header">
         <div className="quiz-info">
