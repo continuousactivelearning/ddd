@@ -1,7 +1,7 @@
 .dashboard-card {
   position: relative;
   background: #fff;
-  color: #0e1116;
+  color: #22c7a9;
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -14,6 +14,7 @@
 .dashboard-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #0e1116;
 }
 
 .icon-circle {
@@ -31,8 +32,10 @@
 .main-value {
   font-size: 1.5rem;
   font-weight: 700;
+  color: #55ba7e !important;
   margin-bottom: 0.25rem;
 }
+
 
 .label {
   font-weight: 600;
@@ -49,7 +52,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  color: #22c55e;
+  color: #84e6a8;
   font-size: 0.875rem;
   font-weight: 600;
 }

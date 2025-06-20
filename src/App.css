@@ -8,9 +8,9 @@ body,
 html,
 #root {
   height: 100%;
-  color: #86f6e3;
+  color: #fafcfb;
   font-family: 'Inter', sans-serif;
-  background-color: rgb(183, 251, 232);
+  background-color: rgb(247, 253, 251);
   /*background: linear-gradient(135deg, #020202, #ebebed);
   background-size: 400% 400%;
   animation: gradientBreath 5s ease infinite;
@@ -124,5 +124,85 @@ html,
 
 .sidebar-nav li:hover {
   color: #6c63ff;
+}
+
+/* Light Theme (default) */
+body.light {
+  background-color: #8cfaf8;
+  color: #040404;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: #0e1c26;
+  color: #f0f0f0;
+}
+
+/* Card and component colors */
+body.dark .dashboard-card {
+  background-color: #1a2633;
+  border-color: #2d3e50;
+  color: #f5faff;
+}
+
+body.dark .card-content {
+  background-color: transparent;
+  color: #e0f7fa;
+}
+
+body.dark .label,
+body.dark .sublabel {
+  color: #b2ebf2;
+}
+
+body.dark .dashboard-heading {
+  color: #ffffff;
+}
+
+body.dark .theme-toggle-button {
+  background-color: #ffffff;
+  color: #0e1c26;
+  border: none;
+}
+
+body.light .theme-toggle-button {
+  background-color: #1e1e2f;
+  color: #81d2d6;
+  border: 1px solid #333;
+}
+
+/* Optional smooth transition for theme changes */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-new.light {
+  background-color: #f7fdfb;
+  color: #040404;
+}
+
+.dashboard-new.dark {
+  background-color: #0e1c26;
+  color: #f0f0f0;
+}
+
+.dashboard-new.dark .sidebar {
+  background-color: #1a2633;
+  color: #d0d4d9;
+}
+
+.dashboard-new.light .sidebar {
+  background-color: #ffffff;
+  color: rgb(42, 43, 40);
+}
+
+.dashboard-new.dark .dashboard {
+  background-color: #0e1c26;
+  color: #e4e6ea;
+}
+
+.dashboard-new.light .dashboard {
+  background-color: #f7fdfb;
+  color: #040404;
 }
 

@@ -97,6 +97,7 @@ html,
 .card-content {
   text-align: left;
   background-color: #ffffff0a;
+  color: #333;
 }
 
 card-content-badges {
@@ -173,4 +174,59 @@ card-content-badges {
   .minigames-card .button-group {
     flex-direction: column;
   }
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.theme-toggle-button {
+  background-color: #1e1e2f;
+  color: #81d2d6;
+  border: 1px solid #333;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+  background-color: #333;
+  color: #4ecdc4;
+}
+
+.dashboard-new.dark .dashboard-card {
+  background-color: #1a2633;
+  border-color: #2d3e50;
+  color: #f5faff;
+}
+
+.dashboard-new.dark .card-content {
+  background-color: transparent;
+  color: #e0f7fa;
+}
+
+.dashboard-new.dark .label,
+.dashboard-new.dark .sublabel {
+  color: #b2ebf2;
+}
+
+.dashboard-new.dark .dashboard-heading {
+  color: #ffffff;
+}
+
+.dashboard-new.dark .theme-toggle-button {
+  background-color: #ffffff;
+  color: #0e1c26;
+  border: none;
+}
+
+.dashboard-new.light .theme-toggle-button {
+  background-color: #1e1e2f;
+  color: #81d2d6;
+  border: 1px solid #333;
 }

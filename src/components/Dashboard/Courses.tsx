@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
+
 type Course = {
   id: number;
   title: string;
   progress: number;
-  rarity: 'common' | 'rare' | 'legendary';
+  rarity: 'common' | 'rare' | 'legendary' | 'epic';
   description: string;
   icon: string;
 };
@@ -13,7 +14,7 @@ const coursesData: Course[] = [
   { id: 1, title: 'Data Structure and Algorithms', progress: 75, rarity: 'rare', description: 'Master data structures & algorithms', icon: '⚡' },
   { id: 2, title: 'MERN Stack Development', progress: 40, rarity: 'common', description: 'Build modern web applications', icon: '🏗️' },
   { id: 3, title: 'SQL and Analytics', progress: 60, rarity: 'legendary', description: 'Understand machine learning fundamentals', icon: '🤖' },
-  { id: 4, title: 'Cloud Practitioner and Architect', progress: 25, rarity: 'rare', description: 'Design scalable system architectures', icon: '🏛️' },
+  { id: 4, title: 'Cloud Practitioner and Architect', progress: 25, rarity: 'epic', description: 'Design scalable system architectures', icon: '🏛️' },
 ];
 
 const getRarityColors = (rarity: string) => {
@@ -21,9 +22,11 @@ const getRarityColors = (rarity: string) => {
     case 'common':
       return { border: '#9CA3AF', bg: '#F9FAFB', text: '#374151', tag: '#6B7280' };
     case 'rare':
-      return { border: '#3B82F6', bg: '#EFF6FF', text: '#1E40AF', tag: '#2563EB' };
+      return { border: '#3B82F6', bg: '#EFF6FF', text: '#1E40AF', tag: '#22c55e' };
     case 'legendary':
       return { border: '#F59E0B', bg: '#FFFBEB', text: '#92400E', tag: '#D97706' };
+      case 'epic':
+      return { border: '#F59E0B', bg: '#c2f7d5', text: '#92400E', tag: '#6B7280' };
     default:
       return { border: '#9CA3AF', bg: '#F9FAFB', text: '#374151', tag: '#6B7280' };
   }

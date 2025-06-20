@@ -9,6 +9,7 @@ import Leaderboard from "../components/Leaderboard/Leaderboard";
 import Streak  from "../components/Dashboard/Streak";
 import Badges from "../components/Dashboard/Badges";
 import "./styles.css";
+import { useEffect, useState } from "react";
 
 const metrics = [
   {
@@ -27,10 +28,10 @@ const metrics = [
   },
   {
     icon: <BarChart3 size={24} />,
-    title: "Quiz Score",
-    value: "89%",
+    title: "Evaluation Completed",
+    value: "59%",
     subtitle: "Average",
-    change: "+3.5%",
+    change: "+1.5%",
   },
   {
     icon: <Flame size={24} />,
@@ -41,10 +42,33 @@ const metrics = [
   },
 ];
 
+
+
 const DashboardOverview = () => {
+
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    document.body.className = theme; // sets class on body
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
   return (
     <div className="dashboard-new">
-      <h1 className="dashboard-heading">Dashboard Overview</h1>
+      <div className="dashboard-header">
+        <h1 className="dashboard-heading">
+          PES Dashboard
+          <b>
+            <div className="label">Welcome to your Dashboard!</div>
+          </b>
+        </h1>
+        <button className="theme-toggle-button" onClick={toggleTheme}>
+          {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+        </button>
+      </div>
 
       {/* Top Metrics */}
       <div className="metrics-row">

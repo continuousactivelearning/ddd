@@ -1,0 +1,8002 @@
+[
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which component is the brain of the computer?",
+    "A": "RAM",
+    "B": "CPU",
+    "C": "Hard Drive",
+    "D": "GPU",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "What does the 'AS' keyword do in SQL?",
+    "A": "Deletes",
+    "B": "Renames",
+    "C": "Joins",
+    "D": "Creates",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which file type is commonly used for datasets?",
+    "A": ".exe",
+    "B": ".csv",
+    "C": ".mp4",
+    "D": ".js",
+    "answer": "B"
+  },
+  {
+    "question": "What is the smallest unit of data?",
+    "A": "Bit",
+    "B": "Byte",
+    "C": "Nibble",
+    "D": "Word",
+    "answer": "A"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "What does CSS stand for?",
+    "A": "Cascading Style Sheets",
+    "B": "Color Style Sheets",
+    "C": "Creative Style Syntax",
+    "D": "Computer Style Sheets",
+    "answer": "A"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "A": "Extract, Transform, Load",
+    "B": "Enter, Transmit, Load",
+    "C": "Extract, Train, Learn",
+    "D": "None",
+    "answer": "A"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "What is the time complexity of inserting an element in a max-heap?",
+    "A": "O(log n)",
+    "B": "O(n)",
+    "C": "O(1)",
+    "D": "O(n log n)",
+    "answer": "A"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which HTTP status code means 'Not Found'?",
+    "A": "200",
+    "B": "301",
+    "C": "404",
+    "D": "500",
+    "answer": "C"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What is the full form of CDN?",
+    "A": "Content Distribution Network",
+    "B": "Computer Data Node",
+    "C": "Cloud Data Network",
+    "D": "Central Distribution Node",
+    "answer": "A"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL keyword is used to sort results?",
+    "A": "ORDER BY",
+    "B": "GROUP BY",
+    "C": "SORT",
+    "D": "ALIGN",
+    "answer": "A"
+  },
+  {
+    "question": "What does a Load Balancer do?",
+    "A": "Stores Data",
+    "B": "Balances Network Load",
+    "C": "Encrypts Data",
+    "D": "Authenticates Users",
+    "answer": "B"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which number system uses only 0 and 1?",
+    "A": "Decimal",
+    "B": "Binary",
+    "C": "Octal",
+    "D": "Hexadecimal",
+    "answer": "B"
+  },
+  {
+    "question": "Which sorting algorithm is stable?",
+    "A": "Quick Sort",
+    "B": "Heap Sort",
+    "C": "Merge Sort",
+    "D": "Selection Sort",
+    "answer": "C"
+  },
+  {
+    "question": "Which HTML tag defines a hyperlink?",
+    "A": "<link>",
+    "B": "<a>",
+    "C": "<href>",
+    "D": "<hyper>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  },
+  {
+    "question": "Which library is commonly used in Python for data analysis?",
+    "A": "TensorFlow",
+    "B": "Matplotlib",
+    "C": "Pandas",
+    "D": "OpenCV",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which data structure is used in implementing recursion?",
+    "A": "Queue",
+    "B": "Array",
+    "C": "Stack",
+    "D": "Tree",
+    "answer": "C"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which constraint ensures a column cannot have NULL?",
+    "A": "UNIQUE",
+    "B": "NOT NULL",
+    "C": "PRIMARY KEY",
+    "D": "FOREIGN KEY",
+    "answer": "B"
+  },
+  {
+    "question": "What does IaaS stand for?",
+    "A": "Infrastructure as a Service",
+    "B": "Internet as a Source",
+    "C": "Interface as a Service",
+    "D": "None of the above",
+    "answer": "A"
+  },
+  {
+    "question": "Which term describes a graph showing data distribution?",
+    "A": "Line graph",
+    "B": "Bar chart",
+    "C": "Histogram",
+    "D": "Pie chart",
+    "answer": "C"
+  },
+  {
+    "question": "Which logic gate returns true only when inputs differ?",
+    "A": "AND",
+    "B": "OR",
+    "C": "XOR",
+    "D": "NAND",
+    "answer": "C"
+  },
+  {
+    "question": "Which traversal yields sorted order in BST?",
+    "A": "Preorder",
+    "B": "Inorder",
+    "C": "Postorder",
+    "D": "Level-order",
+    "answer": "B"
+  },
+  {
+    "question": "Which tag is used to insert JavaScript in HTML?",
+    "A": "<js>",
+    "B": "<script>",
+    "C": "<javascript>",
+    "D": "<code>",
+    "answer": "B"
+  },
+  {
+    "question": "Which SQL function is used to find the largest value?",
+    "A": "MAX()",
+    "B": "MIN()",
+    "C": "TOP()",
+    "D": "LARGE()",
+    "answer": "A"
+  },
+  {
+    "question": "Which service is AWS S3?",
+    "A": "Compute",
+    "B": "Storage",
+    "C": "Database",
+    "D": "Security",
+    "answer": "B"
+  }
+]
