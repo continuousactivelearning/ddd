@@ -1,3 +1,4 @@
+import "../styles/ViewQuestions.css"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -21,30 +22,25 @@ function ViewQuestions() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>📚 All Posted Questions</h2>
+    <div className="question-container">
+      <h2 className="section-title">📚 All Posted Questions</h2>
       {questions.length === 0 ? (
         <p>No questions posted yet.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        <ul className="question-list">
           {questions.map((q) => (
-            <li
-              key={q._id}
-              style={{
-                marginBottom: "20px",
-                borderBottom: "1px solid #ccc",
-                paddingBottom: "10px",
-              }}
-            >
-              <strong>Q:</strong> {q.questionText}
-              <ul>
+            <li key={q._id} className="question-item">
+              <p className="question-text"><strong>Q:</strong> {q.questionText}</p>
+              <ul className="option-list">
                 {q.options.map((opt, i) => (
-                  <li key={i}>{String.fromCharCode(65 + i)}. {opt}</li>
+                  <li key={i}>
+                    {String.fromCharCode(65 + i)}. {opt}
+                  </li>
                 ))}
               </ul>
-              <div style={{ marginTop: "10px" }}>
-                <Link to={`/responses/${q._id}`}>
-                  <button>📊 View Responses</button>
+              <div className="response-button">
+                <Link to={`/responses/${q._id}`} className="link-button">
+                  📊 View Responses
                 </Link>
               </div>
             </li>

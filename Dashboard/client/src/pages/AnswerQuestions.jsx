@@ -1,3 +1,4 @@
+import '../styles/AnswerQuestion.css'
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -59,10 +60,7 @@ function AnswerQuestions() {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Submitted successfully");
-
-      // Clear temporary local answers to prevent re-submission
       setAnswers({});
-      // Refresh question and score data
       fetchData();
     } catch (err) {
       alert(err.response?.data?.error || "Submit failed");
@@ -70,21 +68,23 @@ function AnswerQuestions() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="question-container">
       {score !== null && (
-        <h3 style={{ color: "purple" }}>🎯 Your Score: {score}</h3>
+        <h3 className="score-display">🎯 Your Score: {score}</h3>
       )}
 
       {unansweredQuestions.length > 0 && (
         <>
-          <h2>🆕 Unanswered Questions</h2>
+          <h2 className="section-title">Unanswered Questions</h2>
           {unansweredQuestions.map((q) => (
-            <div key={q._id} style={{ marginBottom: "20px" }}>
-              <p><strong>{q.questionText}</strong></p>
+            <div key={q._id} className="question-block">
+              <p className="question-text">
+                <strong>{q.questionText}</strong>
+              </p>
               {q.options.map((opt, idx) => {
                 const optionLetter = String.fromCharCode(65 + idx);
                 return (
-                  <label key={idx} style={{ display: "block" }}>
+                  <label key={idx} className="option-label">
                     <input
                       type="radio"
                       name={q._id}
@@ -98,27 +98,29 @@ function AnswerQuestions() {
               })}
             </div>
           ))}
-          <button onClick={handleSubmit} style={{ marginBottom: "30px" }}>
+          <button onClick={handleSubmit} className="submit-button">
             Submit Answers
           </button>
         </>
       )}
 
-      <h2>✅ Answered Questions</h2>
+      <h2 className="section-title">Answered Questions</h2>
       {answeredQuestions.map((q) => (
-        <div key={q._id} style={{ marginBottom: "20px", opacity: 0.9 }}>
-          <p><strong>{q.questionText}</strong></p>
+        <div key={q._id} className="question-block answered">
+          <p className="question-text">
+            <strong>{q.questionText}</strong>
+          </p>
           {q.options.map((opt, idx) => {
             const optionLetter = String.fromCharCode(65 + idx);
             const isCorrect = q.correctAnswer === optionLetter;
             const isSelected = answers[q._id] === optionLetter;
 
-            let color = "black";
-            if (isCorrect) color = "green";
-            if (isSelected && !isCorrect) color = "red";
+            let optionClass = "option-label";
+            if (isCorrect) optionClass += " correct";
+            if (isSelected && !isCorrect) optionClass += " incorrect";
 
             return (
-              <label key={idx} style={{ display: "block", color }}>
+              <label key={idx} className={optionClass}>
                 <input
                   type="radio"
                   name={q._id}

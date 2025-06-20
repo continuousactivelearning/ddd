@@ -1,3 +1,4 @@
+import '../styles/Profile.css'
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,7 +31,7 @@ function Profile() {
   if (!user) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="profile-container">
       <h2>Welcome, {user.name}</h2>
       <p>Email: {user.email}</p>
       <p>Role: {user.role}</p>
@@ -40,6 +41,7 @@ function Profile() {
         <div className="host-actions">
           <h3>Host Controls</h3>
           <Link to="/post-question" className="question">Post Questions</Link><br />
+          <Link to="/leadboard" className="Leadboard">Lead Board</Link><br />
           <Link to="/questions" className="link">View All Questions</Link>
         </div>
       )}

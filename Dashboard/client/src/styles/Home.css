@@ -1,0 +1,38 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background: #f8f9fa;
+}
+
+.home-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.link-button {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.link-button:hover {
+  background: linear-gradient(to right, #5a0ebf, #1a5efb);
+  transform: translateY(-2px);
+}

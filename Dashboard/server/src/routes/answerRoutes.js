@@ -3,7 +3,7 @@ const router = express.Router();
 const Answer = require("../models/Answer");
 const Question = require("../models/Question");
 const User = require("../models/User");
-const { authMiddleware } = require("../middleware/auth");
+const { authMiddleware, requireHost } = require("../middleware/auth");
 
 
 router.post("/submit", authMiddleware, async (req, res) => {
@@ -61,10 +61,8 @@ router.get("/score", authMiddleware, async (req, res) => {
   }
 });
 
-// Get all answers for a specific question (for hosts to visualize responses)
-router.get("/question/:questionId", authMiddleware, async (req, res) => {
+router.get("/question/:questionId", authMiddleware,requireHost, async (req, res) => {
   try {
-    // Optional: if you want only hosts to access this
     if (req.user.role !== "host") {
       return res.status(403).json({ error: "Access denied" });
     }
@@ -78,5 +76,47 @@ router.get("/question/:questionId", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/leaderboard", authMiddleware,requireHost, async (req, res) => {
+  try {
+    const leaderboard = await Answer.aggregate([
+      {
+        $group: {
+          _id: "$student",
+          totalScore: { $sum: "$score" },
+          lastSubmission: { $max: "$createdAt" }
+        }
+      },
+      {
+        $sort: {
+          totalScore: -1,      
+          lastSubmission: -1     
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "_id",
+          foreignField: "_id",
+          as: "studentInfo"
+        }
+      },
+      { $unwind: "$studentInfo" },
+      {
+        $project: {
+          _id: 0,
+          studentId: "$_id",
+          name: "$studentInfo.name",
+          totalScore: 1,
+          lastSubmission: 1
+        }
+      }
+    ]);
+
+    res.status(200).json(leaderboard);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch leaderboard", error });
+  }
+});
 
 module.exports = router;

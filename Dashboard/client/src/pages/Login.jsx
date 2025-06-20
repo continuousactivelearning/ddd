@@ -1,8 +1,7 @@
-
+import '../styles/Auth.css'
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +11,10 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
       localStorage.setItem("token", res.data.token);
       navigate("/profile");
     } catch (err) {
@@ -21,13 +23,28 @@ export default function Login() {
   };
 
   return (
-    <>
-    <form onSubmit={handleLogin}>
-      <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button type="submit">Login</button>
-    </form>
-    <Link to="/register" className="link">Register</Link>
-    </>
+    <div className="auth-container">
+      <h2 className="auth-title">Login</h2>
+      <form onSubmit={handleLogin} className="auth-form">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          className="auth-input"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          className="auth-input"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="auth-button">Login</button>
+      </form>
+      <p className="auth-footer">
+        Don't have an account? <Link to="/register" className="auth-link">Register</Link>
+      </p>
+    </div>
   );
 }

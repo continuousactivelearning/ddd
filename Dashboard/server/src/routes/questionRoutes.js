@@ -4,7 +4,6 @@ const Question = require("../models/Question");
 const Answer = require("../models/Answer");
 const { authMiddleware, requireHost } = require("../middleware/auth");
 
-// Create a new question
 router.post("/", authMiddleware, requireHost, async (req, res) => {
   const { questionText, options, correctAnswer } = req.body;
 
@@ -30,7 +29,6 @@ router.post("/", authMiddleware, requireHost, async (req, res) => {
   }
 });
 
-// Get all questions
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const questions = await Question.find();
@@ -40,7 +38,6 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-// Get a single question by ID (used for insight page)
 router.get("/:id", authMiddleware, requireHost, async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
@@ -53,7 +50,6 @@ router.get("/:id", authMiddleware, requireHost, async (req, res) => {
   }
 });
 
-// Get responses for a specific question
 router.get("/responses/:questionId", authMiddleware, requireHost, async (req, res) => {
   try {
     const questionId = req.params.questionId;

@@ -1,0 +1,61 @@
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.profile-container h2 {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.profile-container p {
+  font-size: 1rem;
+  margin: 6px 0;
+  color: #555;
+}
+
+.profile-container .link,
+.profile-container .question,
+.profile-container .Leadboard {
+  display: inline-block;
+  margin: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.profile-container .link:hover,
+.profile-container .question:hover,
+.profile-container .Leadboard:hover {
+  background: linear-gradient(to right, #5a0ebf, #1a5efb);
+}
+
+.profile-container .host-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.profile-container button {
+  margin-top: 24px;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.profile-container button:hover {
+  background-color: #c82333;
+}
