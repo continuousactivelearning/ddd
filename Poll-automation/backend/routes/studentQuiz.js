@@ -5,9 +5,14 @@ const User = require('../models/User');
 const { auth } = require('../middleware/auth');
 
 // Get all active quizzes (for student dashboard) - MUST BE BEFORE /:quizCode route
-router.get('/active', async (req, res) => {
+router.get('/active', auth, async (req, res) => {
   try {
-    const quizzes = await Quiz.find({ status: 'active' })
+    const studentEmail = req.user.email;
+    // Find all admins who have allowed this student
+    const admins = await User.find({ role: 'admin', allowedStudents: studentEmail }).select('_id');
+    const adminIds = admins.map(a => a._id);
+    // Find quizzes created by these admins
+    const quizzes = await Quiz.find({ status: 'active', createdBy: { $in: adminIds } })
       .select('topic difficulty quizCode createdBy createdAt')
       .populate('createdBy', 'name');
     res.json(quizzes);

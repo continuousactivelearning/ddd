@@ -20,6 +20,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CircularProgress, Typography, TextField, Button, Box } from '@mui/material';
+import axiosInstance from '../../utils/axios';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -283,10 +284,8 @@ const Dashboard = () => {
   const fetchActiveQuizzes = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/quiz/active');
-      if (!response.ok) throw new Error('Failed to fetch active quizzes');
-      const data = await response.json();
-      setActiveQuizzes(data);
+      const response = await axiosInstance.get('/api/quiz/active');
+      setActiveQuizzes(response.data);
       setLoading(false);
     } catch (error) {
       setError(error.message);
@@ -342,6 +341,42 @@ const Dashboard = () => {
             <h1 className="dashboard-title">Student Dashboard</h1>
           </div>
 
+          {/* Stat Cards Grid - moved to top */}
+          <div className="cards-grid">
+            {cards.map((card) => {
+              const IconComponent = card.icon;
+              return (
+                <div key={card.id} className={`card card-${card.colorClass}`}>
+                  <div className="card-pattern"></div>
+                  <div className={`card-icon icon-${card.colorClass}`}>
+                    <IconComponent className="icon" />
+                  </div>
+                  <div className="card-content">
+                    <h3 className={`card-title title-${card.colorClass}`}>{card.title}</h3>
+                    <p className="card-description">{card.description}</p>
+                    <div className="card-footer">
+                      <span className={`card-stats stats-${card.colorClass}`}>{card.stats}</span>
+                    </div>
+                  </div>
+                  <div className={`card-hover-effect hover-${card.colorClass}`}></div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Show Quiz Code Entry Button */}
+          {!showQuizCodeEntry && (
+            <Box sx={{ mb: 4 }}>
+              <Button 
+                variant="outlined" 
+                onClick={() => setShowQuizCodeEntry(true)}
+                startIcon={<Plus />}
+              >
+                Enter Quiz Code
+              </Button>
+            </Box>
+          )}
+
           {/* Quiz Code Entry - Hidden by default */}
           {showQuizCodeEntry && (
             <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -369,20 +404,7 @@ const Dashboard = () => {
             </Box>
           )}
 
-          {/* Show Quiz Code Entry Button */}
-          {!showQuizCodeEntry && (
-            <Box sx={{ mb: 4 }}>
-              <Button 
-                variant="outlined" 
-                onClick={() => setShowQuizCodeEntry(true)}
-                startIcon={<Plus />}
-              >
-                Enter Quiz Code
-              </Button>
-            </Box>
-          )}
-
-          {/* Active Quizzes List */}
+          {/* Active Quizzes List - moved below stat cards */}
           <section className="meets-section">
             <h2 className="section-title">
               Available Quizzes
@@ -394,16 +416,28 @@ const Dashboard = () => {
                 {activeQuizzes.map((quiz, index) => (
                   <motion.div
                     key={quiz.quizCode}
-                    className="meet-card"
-                    style={{ cursor: 'pointer', padding: '1.5rem', border: '1px solid #eee', borderRadius: '16px', marginBottom: '1rem', background: '#fff' }}
-                    whileHover={{ scale: 1.03, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}
+                    className="meet-card quiz-card-redesign"
+                    style={{
+                      cursor: 'pointer',
+                      padding: '2rem',
+                      border: 'none',
+                      borderRadius: '20px',
+                      marginBottom: '1.5rem',
+                      background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+                      color: '#fff',
+                      boxShadow: '0 8px 32px rgba(99,102,241,0.10)',
+                    }}
+                    whileHover={{ scale: 1.04, boxShadow: '0 12px 32px rgba(99,102,241,0.18)' }}
                     onClick={() => handleQuizCardClick(quiz)}
                   >
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>{quiz.topic}</Typography>
-                    <Typography variant="body2" color="text.secondary">Difficulty: {quiz.difficulty}</Typography>
-                    <Typography variant="body2" color="text.secondary">Quiz Code: <strong>{quiz.quizCode}</strong></Typography>
-                    <Typography variant="body2" color="text.secondary">Created by: {quiz.createdBy?.name || 'Unknown'}</Typography>
-                    <Typography variant="body2" color="text.secondary">Created at: {new Date(quiz.createdAt).toLocaleString()}</Typography>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '1rem' }}>
+                      <Trophy size={32} style={{ color: '#fff', background: 'rgba(255,255,255,0.12)', borderRadius: '50%', padding: 6 }} />
+                      <Typography variant="h5" sx={{ fontWeight: 800, color: '#fff', letterSpacing: '-0.5px' }}>{quiz.topic}</Typography>
+                    </div>
+                    <Typography variant="body1" sx={{ fontWeight: 500, color: 'rgba(255,255,255,0.92)' }}>Difficulty: <b>{quiz.difficulty}</b></Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.85)' }}>Quiz Code: <strong>{quiz.quizCode}</strong></Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.85)' }}>Created by: {quiz.createdBy?.name || 'Unknown'}</Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.85)' }}>Created at: {new Date(quiz.createdAt).toLocaleString()}</Typography>
                   </motion.div>
                 ))}
               </div>
@@ -417,41 +451,6 @@ const Dashboard = () => {
               </div>
             )}
           </section>
-
-          {/* Cards Grid */}
-          <div className="cards-grid">
-            {cards.map((card) => {
-              const IconComponent = card.icon;
-              return (
-                <div key={card.id} className={`card card-${card.colorClass}`}>
-                  {/* Background Pattern */}
-                  <div className="card-pattern">
-                    {/* Note: The inner pattern circle is handled by CSS nth-child, not a separate element here */}
-                  </div>
-
-                  {/* Icon */}
-                  <div className={`card-icon icon-${card.colorClass}`}>
-                    <IconComponent className="icon" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="card-content">
-                    <h3 className={`card-title title-${card.colorClass}`}>{card.title}</h3>
-                    <p className="card-description">{card.description}</p>
-
-                    {/* Stats */}
-                    <div className="card-footer">
-                      <span className={`card-stats stats-${card.colorClass}`}>{card.stats}</span>
-                      {/* Arrow removed as per user request */}
-                    </div>
-                  </div>
-
-                  {/* Hover Effect */}
-                  <div className={`card-hover-effect hover-${card.colorClass}`}></div>
-                </div>
-              );
-            })}
-          </div>
 
           {/* Charts Section */}
           <div className="charts-container">
