@@ -539,7 +539,7 @@
 }
 
 .meets-section {
-  padding: 2rem;
+  padding: 0;
   background: var(--background-paper);
   border-radius: 1rem;
   margin-top: 2rem;
@@ -1107,6 +1107,90 @@ body[data-theme='dark'] .card-stats-dynamic {
   .card-stats-dynamic {
     font-size: 1.3rem;
   }
+  .quiz-code-card {
+    padding: 0.7rem !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin: 0 0.1rem !important;
+    border-radius: 14px !important;
+  }
+  .quiz-code-form {
+    flex-direction: row !important;
+    gap: 8px !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+  }
+  .quiz-code-form .MuiTextField-root,
+  .quiz-code-form .MuiButton-root {
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 0.98rem !important;
+  }
+  .quiz-code-form .MuiTextField-root {
+    flex: 2 1 0%;
+    min-width: 0 !important;
+  }
+  .quiz-code-form .MuiButton-root {
+    flex: 1 1 0%;
+    min-width: 0 !important;
+    max-width: 90px;
+    white-space: nowrap;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  .quiz-code-card .MuiBox-root > div:first-child {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    margin-right: 0.7rem !important;
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem !important;
+  }
+  .quiz-code-card .MuiBox-root > div:first-child svg {
+    width: 2.2em !important;
+    height: 2.2em !important;
+  }
+  .quiz-code-card .MuiTypography-h5 {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.2rem !important;
+  }
+  .quiz-code-card .MuiTypography-body1 {
+    font-size: 0.92rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .quiz-code-card .MuiButton-root {
+    font-size: 1rem !important;
+    padding: 0.5rem 0.7rem !important;
+    border-radius: 7px !important;
+  }
+  .quiz-code-card .MuiBox-root {
+    padding: 0.7rem !important;
+  }
+  .quiz-code-card .MuiBox-root > div:first-child {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    margin-right: 0.7rem !important;
+    border-radius: 10px !important;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .card {
+    padding: 1rem !important;
+    min-width: 0 !important;
+    font-size: 0.98rem !important;
+  }
+  .charts-container {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
 }
 
 body[data-theme='dark'] .card {
@@ -1166,4 +1250,11 @@ body[data-theme='dark'] .dashboard-page .dashboard-container .dashboard-wrapper 
 body[data-theme='dark'] .chart-card {
   background: var(--background-paper, #181a2a);
   border: 1.5px solid #353857 !important;
+}
+
+/* For QuizComplete stat-item dark mode */
+body[data-theme='dark'] .stat-item {
+  background: #23243a !important;
+  color: #e0e7ff !important;
+  border: 1px solid #353857 !important;
 } 

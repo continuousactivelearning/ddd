@@ -31,6 +31,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CircularProgress, Typography, TextField, Button, Box } from '@mui/material';
 import axiosInstance from '../../utils/axios';
+import Chatbot from '../../components/ui/Chatbot';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -477,6 +478,31 @@ const Dashboard = () => {
     return 'var(--border)'; // default (light mode)
   };
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 600;
+
+  // Custom tooltip for AreaChart
+  const CustomChartTooltip = ({ active, payload, label }) => {
+    if (!active || !payload || !payload.length) return null;
+    if (isMobile) {
+      return (
+        <div style={{ background: 'var(--background-paper)', color: 'var(--text-primary)', borderRadius: 8, boxShadow: '0 2px 8px var(--border)', padding: 8, fontWeight: 700 }}>
+          {label}
+        </div>
+      );
+    }
+    // Default desktop tooltip
+    return (
+      <div style={{ background: 'var(--background-paper)', color: 'var(--text-primary)', borderRadius: 8, boxShadow: '0 2px 8px var(--border)', padding: 12 }}>
+        <div style={{ fontWeight: 700, marginBottom: 4 }}>{label}</div>
+        {payload.map((entry, idx) => (
+          <div key={idx} style={{ color: entry.color, fontWeight: 600 }}>
+            {entry.name}: {entry.value}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   if (loading) {
     return (
       <div className="dashboard-page">
@@ -551,6 +577,7 @@ const Dashboard = () => {
 
           {/* Enter Quiz Code Card - styled like admin's Create New Quiz card */}
           <motion.div
+            className="quiz-code-card"
             initial={{ scale: 1, boxShadow: '0 8px 32px rgba(99,102,241,0.10)' }}
             whileHover={{ scale: 1.02, boxShadow: '0 25px 50px rgba(102, 126, 234, 0.18)' }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -595,7 +622,7 @@ const Dashboard = () => {
                   Join a quiz instantly using a code from your teacher
                 </Typography>
           {showQuizCodeEntry && (
-                  <form onClick={e => e.stopPropagation()} onSubmit={handleQuizCodeSubmit} style={{ marginTop: 18, display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <form className="quiz-code-form" onClick={e => e.stopPropagation()} onSubmit={handleQuizCodeSubmit} style={{ marginTop: 18, display: 'flex', gap: 12, alignItems: 'center' }}>
                 <TextField
                       label="Quiz Code"
                   value={quizCode}
@@ -706,7 +733,7 @@ const Dashboard = () => {
                       <CartesianGrid strokeDasharray="3 3" stroke={getChartBorderColor()} />
                       <XAxis dataKey="quiz" tick={{ fontWeight: 600, fill: 'var(--text-secondary)' }} />
                       <YAxis tick={{ fontWeight: 600, fill: 'var(--text-secondary)' }} />
-                      <Tooltip contentStyle={{ background: 'var(--background-paper)', color: 'var(--text-primary)', borderRadius: 8, boxShadow: '0 2px 8px var(--border)' }} />
+                      <Tooltip content={<CustomChartTooltip />} />
                       <Area type="monotone" dataKey="score" stroke="#2563eb" fill="url(#scoreFill)" strokeWidth={3} dot={{ r: 1, fill: '#2563eb' }} name="Score" />
                       <Area type="monotone" dataKey="accuracy" stroke="#10B981" fill="url(#accuracyFill)" strokeWidth={3} dot={{ r: 1, fill: '#10B981' }} name="Accuracy (%)" />
                       <Area type="monotone" dataKey="correctAnswers" stroke="#f59e42" fill="url(#correctFill)" strokeWidth={3} dot={{ r: 1, fill: '#f59e42' }} name="Correct Answers" />
@@ -840,6 +867,7 @@ const Dashboard = () => {
 
         </div>
       </div>
+      <Chatbot />
     </div>
   );
 };

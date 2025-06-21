@@ -4,6 +4,7 @@ import { Clock, Users, Award, BarChart2, Calendar, CheckCircle, XCircle } from '
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './StudentDashboard.css';
+import Chatbot from '../components/ui/Chatbot';
 
 const StudentDashboard = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -58,13 +59,14 @@ const StudentDashboard = () => {
       }}
     >
       <Header />
+      <Chatbot />
 
       {!showMainContent && (
         <div className="drag-prompt">
           <div className="welcome-text-container">
             <h2 className="welcome-message">
               <span>
-                <span className="greeting">Hey</span>
+                <span className="greeting">Hey</span>{' '}
                 <span className="username">{user?.name?.split(' ')[0] || 'Student'}</span>
               </span>
               <span className="welcome-text">welcome to your dashboard!</span>

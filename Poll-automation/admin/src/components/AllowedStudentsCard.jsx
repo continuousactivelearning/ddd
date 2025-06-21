@@ -138,10 +138,10 @@ const AllowedStudentsCard = () => {
 
   return (
     <Paper elevation={4} sx={{
-      p: { xs: 2, sm: 4 },
-      maxWidth: 700,
-      minWidth: 320,
-      width: '100%',
+      p: { xs: 1.5, sm: 4 },
+      maxWidth: { xs: '100%', sm: 700 },
+      minWidth: 0,
+      width: { xs: '100%', sm: '100%' },
       borderRadius: 2,
       minHeight: 420,
       bgcolor: theme => theme.palette.mode === 'dark' ? theme.palette.background.paper : '#f8fafc',
@@ -150,20 +150,33 @@ const AllowedStudentsCard = () => {
       border: theme => theme.palette.mode === 'dark' ? undefined : '1.5px solid #e0e7ff',
       mb: '20px',
       transition: 'box-shadow 0.2s, border-color 0.2s',
+      boxSizing: 'border-box',
       '&:hover': {
         borderColor: theme => theme.palette.primary.main,
         boxShadow: theme => theme.palette.mode === 'dark'
           ? '0 4px 24px 0 rgba(99,102,241,0.18)'
           : '0 4px 24px 0 #b6c6f9',
       },
+      '@media (max-width:600px)': {
+        p: 1.5,
+        borderRadius: 2,
+        minWidth: 0,
+        maxWidth: '100%',
+        width: '100%',
+        marginLeft: 0,
+        marginRight: 0,
+        boxSizing: 'border-box',
+        mb: '10px',
+        fontSize: '0.8rem',
+      },
     }}>
-      <Box display="flex" alignItems="center" gap={1} mb={1}>
-        <GroupIcon color="primary" sx={{ fontSize: 32 }} />
-        <Typography variant="h6" fontWeight={700}>
+      <Box display="flex" alignItems="center" gap={1} mb={1} sx={{ '@media (max-width:600px)': { gap: 0.3 } }}>
+        <GroupIcon color="primary" sx={{ fontSize: { xs: 18, sm: 32 } }} />
+        <Typography variant="h6" fontWeight={700} sx={{ fontSize: { xs: '0.95rem', sm: '1.25rem' } }}>
           Allowed Students
         </Typography>
       </Box>
-      <Typography variant="body2" color="text.secondary" mb={2}>
+      <Typography variant="body2" color="text.secondary" mb={2} sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }}>
         Only these students will be able to access your quizzes. Add individually, in bulk, or import from Excel/CSV.
       </Typography>
       <Divider sx={{ mb: 2 }} />
@@ -174,7 +187,7 @@ const AllowedStudentsCard = () => {
         indicatorColor="primary"
         textColor="primary"
         variant="fullWidth"
-        sx={{ mb: 2, outline: 'none', boxShadow: 'none', border: 'none', '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' } }}
+        sx={{ mb: 2, outline: 'none', boxShadow: 'none', border: 'none', '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' }, minHeight: { xs: 24, sm: 48 }, fontSize: { xs: '0.8rem', sm: '1rem' } }}
         TabIndicatorProps={{ sx: { height: 3, borderRadius: 2 } }}
       >
         {tabOptions.map(opt => (
@@ -187,6 +200,8 @@ const AllowedStudentsCard = () => {
               outline: 'none',
               boxShadow: 'none',
               border: 'none',
+              fontSize: { xs: '0.8rem', sm: '1rem' },
+              minHeight: { xs: 24, sm: 48 },
               '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' },
               '&.Mui-selected': {
                 background: theme => theme.palette.action.selected,
@@ -203,7 +218,7 @@ const AllowedStudentsCard = () => {
       </Tabs>
       {/* Single Add */}
       {tab === 'single' && (
-        <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+        <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2, px: { xs: 1, sm: 0 } }}>
           <TextField
             label="Add student email"
             size="small"
@@ -211,7 +226,7 @@ const AllowedStudentsCard = () => {
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') handleAdd(); }}
             disabled={loading}
-            sx={{ flex: 1 }}
+            sx={{ width: { xs: '100%', sm: 'auto' }, boxSizing: 'border-box', '@media (max-width:600px)': { fontSize: '0.9rem', minHeight: 32 } }}
             InputProps={{ sx: { outline: 'none', boxShadow: 'none', border: 'none', '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' } } }}
           />
           <Button
@@ -219,16 +234,7 @@ const AllowedStudentsCard = () => {
             startIcon={<AddCircleOutlineIcon />}
             onClick={handleAdd}
             disabled={loading || !input.trim() || emails.includes(input.trim().toLowerCase())}
-            sx={{
-              outline: 'none',
-              boxShadow: 'none',
-              border: 'none',
-              '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' },
-              '&:hover': {
-                background: theme => theme.palette.primary.light,
-                color: theme => theme.palette.primary.contrastText,
-              },
-            }}
+            sx={{ width: { xs: '100%', sm: 'auto' }, boxSizing: 'border-box', '@media (max-width:600px)': { fontSize: '0.9rem', minHeight: 32 } }}
             disableRipple
           >
             Add
@@ -237,7 +243,7 @@ const AllowedStudentsCard = () => {
       )}
       {/* Bulk Add */}
       {tab === 'bulk' && (
-        <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 2 }}>
+        <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 2, px: { xs: 1, sm: 0 } }}>
           <TextField
             label="Bulk add (comma, semicolon, or newline separated)"
             size="small"
@@ -246,23 +252,14 @@ const AllowedStudentsCard = () => {
             value={bulkInput}
             onChange={e => setBulkInput(e.target.value)}
             disabled={loading}
-            sx={{ flex: 1 }}
+            sx={{ width: { xs: '100%', sm: 'auto' }, boxSizing: 'border-box', '@media (max-width:600px)': { fontSize: '0.9rem', minHeight: 32 } }}
             InputProps={{ sx: { outline: 'none', boxShadow: 'none', border: 'none', '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' } } }}
           />
           <Button
             variant="outlined"
             onClick={handleBulkAdd}
             disabled={loading || !bulkInput.trim()}
-            sx={{
-              outline: 'none',
-              boxShadow: 'none',
-              border: 'none',
-              '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' },
-              '&:hover': {
-                background: theme => theme.palette.action.hover,
-                color: theme => theme.palette.primary.main,
-              },
-            }}
+            sx={{ width: { xs: '100%', sm: 'auto' }, boxSizing: 'border-box', '@media (max-width:600px)': { fontSize: '0.9rem', minHeight: 32 } }}
             disableRipple
           >
             Bulk Add
@@ -271,22 +268,13 @@ const AllowedStudentsCard = () => {
       )}
       {/* Excel/CSV Import */}
       {tab === 'excel' && (
-        <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+        <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2, px: { xs: 1, sm: 0 } }}>
           <Button
             variant="outlined"
             component="label"
             startIcon={<UploadFileIcon />}
             disabled={loading}
-            sx={{
-              outline: 'none',
-              boxShadow: 'none',
-              border: 'none',
-              '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' },
-              '&:hover': {
-                background: theme => theme.palette.action.hover,
-                color: theme => theme.palette.primary.main,
-              },
-            }}
+            sx={{ width: { xs: '100%', sm: 'auto' }, boxSizing: 'border-box', '@media (max-width:600px)': { fontSize: '0.9rem', minHeight: 32 } }}
             disableRipple
           >
             Import Excel/CSV
@@ -306,38 +294,28 @@ const AllowedStudentsCard = () => {
         variant="outlined"
         startIcon={<TableViewIcon />}
         onClick={() => setShowList(v => !v)}
-        sx={{
-          mb: 2,
-          outline: 'none',
-          boxShadow: 'none',
-          border: 'none',
-          '&:focus': { outline: 'none', boxShadow: 'none', border: 'none' },
-          '&:hover': {
-            background: theme => theme.palette.action.hover,
-            color: theme => theme.palette.primary.main,
-          },
-        }}
+        sx={{ width: { xs: '100%', sm: 'auto' }, boxSizing: 'border-box', '@media (max-width:600px)': { fontSize: '0.9rem', minHeight: 32 } }}
         disabled={emails.length === 0}
         disableRipple
       >
         {showList ? 'Hide Students' : 'Show Students'}
       </Button>
       <Collapse in={showList}>
-        <TableContainer component={Paper} sx={{ boxShadow: 0, mt: 1, mb: 2, maxHeight: 320, borderRadius: 2 }}>
-          <Table size="small" stickyHeader>
+        <TableContainer sx={{ mt: 2, '@media (max-width:600px)': { maxWidth: '100%', width: '100%', overflowX: 'auto', boxSizing: 'border-box', fontSize: '0.8rem', p: 0 } }}>
+          <Table size="small" stickyHeader sx={{ '@media (max-width:600px)': { fontSize: '0.8rem' } }}>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: 700 }}>#</TableCell>
-                <TableCell sx={{ fontWeight: 700 }}>Email</TableCell>
-                <TableCell align="right" sx={{ fontWeight: 700 }}>Action</TableCell>
+                <TableCell sx={{ '@media (max-width:600px)': { fontSize: '0.8rem', p: '4px 6px' } }}>#</TableCell>
+                <TableCell sx={{ '@media (max-width:600px)': { fontSize: '0.8rem', p: '4px 6px' } }}>Email</TableCell>
+                <TableCell align="right" sx={{ '@media (max-width:600px)': { fontSize: '0.8rem', p: '4px 6px' } }}>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {emails.map((email, idx) => (
                 <TableRow key={email} hover>
-                  <TableCell>{idx + 1}</TableCell>
-                  <TableCell>{email}</TableCell>
-                  <TableCell align="right">
+                  <TableCell sx={{ '@media (max-width:600px)': { fontSize: '0.8rem', p: '4px 6px' } }}>{idx + 1}</TableCell>
+                  <TableCell sx={{ '@media (max-width:600px)': { fontSize: '0.8rem', p: '4px 6px' } }}>{email}</TableCell>
+                  <TableCell align="right" sx={{ '@media (max-width:600px)': { fontSize: '0.8rem', p: '4px 6px' } }}>
                     <Tooltip title="Remove">
                       <span>
                         <IconButton
