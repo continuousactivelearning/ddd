@@ -18,3 +18,5 @@ Day 10
 Today, I make a DDD-chatbot
 Today 11
 Today I make student profile
+Today 12
+Today I make snake game for dashboard
