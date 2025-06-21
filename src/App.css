@@ -46,12 +46,12 @@ html,
 
 /* Sidebar */
 .sidebar {
-  position: fixed;         /* Keep it locked to the left */
+  position: fixed;         
   top: 0;
   left: 0;
-  width: 200px;            /* Adjust as needed */
+  width: 200px;            
   height: 100vh;
-  color: rgb(242, 243, 238);
+  color: rgba(242, 243, 238, 0);
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -187,18 +187,18 @@ body {
 }
 
 .dashboard-new.dark .sidebar {
-  background-color: #1a2633;
+  background-color: #1a332b;
   color: #d0d4d9;
 }
 
 .dashboard-new.light .sidebar {
-  background-color: #ffffff;
+  background-color: #4fc676;
   color: rgb(42, 43, 40);
 }
 
 .dashboard-new.dark .dashboard {
   background-color: #0e1c26;
-  color: #e4e6ea;
+  color: #4fba78;
 }
 
 .dashboard-new.light .dashboard {

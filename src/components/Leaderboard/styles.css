@@ -1,6 +1,6 @@
 .leaderboard-container {
   padding: 1.5rem;
-  background: #f9fbfd;
+  background: transparent;
   border-radius: 16px;
   color: #111;
   animation: fadeSlideIn 0.7s ease-in-out forwards;

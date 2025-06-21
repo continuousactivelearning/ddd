@@ -12,7 +12,7 @@ const PerformanceMeter = () => {
   return (
     <div
       style={{
-        backgroundColor: '#f9fafb',
+        backgroundColor: 'transparent',
         padding: '24px',
         borderRadius: '16px',
         boxShadow: '0 4px 8px rgba(0,0,0,0.05)',
@@ -91,6 +91,7 @@ const PerformanceMeter = () => {
           justifyContent: 'space-around',
           width: '100%',
           padding: '0 32px',
+          background:'transparent'
         }}
       >
         <div style={{ textAlign: 'center' }}>

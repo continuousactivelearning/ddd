@@ -120,8 +120,8 @@ const Badges: React.FC = () => {
 
   const containerStyle: React.CSSProperties = {
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    padding: '150px',
-    backgroundColor: '#f8fafc',
+    padding: '100px',
+    backgroundColor: 'transparent',
     height: '100vh',
     justifyContent: 'center',
     alignItems: 'center'
@@ -275,7 +275,7 @@ const Badges: React.FC = () => {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

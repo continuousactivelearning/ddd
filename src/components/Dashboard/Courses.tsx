@@ -40,7 +40,7 @@ const Courses: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', background: '#F9FAFB', minHeight: '100vh' }}>
+    <div style={{ padding: '24px', background: 'transparent', minHeight: '100vh' }}>
       <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1F2937', textAlign: 'center', marginBottom: '32px' }}>
         Courses Overview
       </h1>
