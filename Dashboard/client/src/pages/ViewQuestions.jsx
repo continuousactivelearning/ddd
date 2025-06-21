@@ -23,6 +23,7 @@ function ViewQuestions() {
 
   return (
     <div className="question-container">
+      <Link to='/profile' className="link-button">Back</Link>
       <h2 className="section-title">📚 All Posted Questions</h2>
       {questions.length === 0 ? (
         <p>No questions posted yet.</p>

@@ -1,11 +1,22 @@
-import "../styles/LeadBoard.css"
+import '../styles/LeadBoard.css'
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Leaderboard = () => {
   const [responses, setResponses] = useState([]);
+  const [userId, setUserId] = useState(null);
   const prevRankingsRef = useRef({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUserId(decoded.id);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchLeaderboard = () => {
@@ -23,7 +34,6 @@ const Leaderboard = () => {
     const intervalId = setInterval(fetchLeaderboard, 5000);
     return () => clearInterval(intervalId);
   }, []);
-
   const sortedResponses = [...responses].sort((a, b) => {
     if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
     return new Date(a.lastSubmission) - new Date(b.lastSubmission);
@@ -49,7 +59,10 @@ const Leaderboard = () => {
 
   return (
     <div className="leaderboard-container">
-      <h2 className="board-heading">🏆 Leaderboard</h2>
+      <div>
+        <Link to="/profile" className="link-button">Back</Link>
+        <h2 className="board-heading">🏆 Leaderboard</h2>
+      </div>
       <table className="leaderboard-table">
         <thead>
           <tr>
@@ -60,54 +73,58 @@ const Leaderboard = () => {
           </tr>
         </thead>
         <tbody>
-          <AnimatePresence>
-            {sortedResponses.map((res, index) => {
-              const movement = getRankChange(res._id);
-              const rowBg =
-                movement === "up"
-                  ? "bg-green-50"
-                  : movement === "down"
-                  ? "bg-red-50"
-                  : "bg-white";
+  <AnimatePresence initial={false}>
+    {sortedResponses.map((res, index) => {
+      const movement = getRankChange(res._id);
+      const isCurrentUser = userId === res.studentId;
 
-              return (
-                <motion.tr
-                  key={res._id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
-                  className={`transition-colors duration-500 ${rowBg}`}
-                >
-                  <td className="px-4 py-2 flex items-center gap-2 font-semibold">
-                    {index + 1}
-                    <motion.span
-                      key={res._id + movement}
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.3 }}
-                      className="rank-icon"
-                    >
-                      {movement === "up" && (
-                        <span className="text-green-500">▲</span>
-                      )}
-                      {movement === "down" && (
-                        <span className="text-red-500">▼</span>
-                      )}
-                    </motion.span>
-                  </td>
-                  <td className="px-4 py-2">{res.name || "Unnamed"}</td>
-                  <td className="px-4 py-2">{res.totalScore}</td>
-                  <td className="px-4 py-2">
-                    {new Date(res.lastSubmission).toLocaleString()}
-                  </td>
-                </motion.tr>
-              );
-            })}
-          </AnimatePresence>
-        </tbody>
+      const rowBg =
+        movement === "up"
+          ? "bg-green-50"
+          : movement === "down"
+          ? "bg-red-50"
+          : "bg-white";
+
+      const badge =
+        index === 0
+          ? "🥇"
+          : index === 1
+          ? "🥈"
+          : index === 2
+          ? "🥉"
+          : null;
+
+      return (
+        <motion.tr
+          key={res.studentId}
+          layout
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ type: "spring", stiffness: 80, damping: 15 }}
+          className={`transition-colors duration-500 ${rowBg} ${
+            isCurrentUser ? "highlight-row" : ""
+          }`}
+        >
+          <td className="px-4 py-2 font-semibold flex items-center gap-2">
+            {badge && <span className="text-xl">{badge}</span>}
+            {index + 1}
+            {isCurrentUser && (
+              <span className="text-purple-600 ml-1">(You)</span>
+            )}
+          </td>
+          <td className="px-4 py-2">{res.name || "Unnamed"}</td>
+          <td className="px-4 py-2">{res.totalScore}</td>
+          <td className="px-4 py-2">
+            {new Date(res.lastSubmission).toLocaleString()}
+          </td>
+        </motion.tr>
+      );
+    })}
+  </AnimatePresence>
+</tbody>
+
+
       </table>
     </div>
   );

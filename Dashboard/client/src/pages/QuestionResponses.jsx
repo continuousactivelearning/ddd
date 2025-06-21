@@ -1,10 +1,17 @@
 import "../styles/QuestionResponses.css";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer,Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
-const COLORS = ["#4caf50", "#ff9800"];
+const COLORS = ["#9575cd", "#ff7043", "#4db6ac", "#fdd835"];
 
 function QuestionResponses() {
   const { questionId } = useParams();
@@ -53,24 +60,31 @@ function QuestionResponses() {
 
   return (
     <div className="question-container">
-      <h2 className="section-title">Responses for Question</h2>
+      <Link to='/questions' className="link-button">Back</Link>
+      <h2 className="section-title" style={{ textAlign: "center" }}>
+        📊 Responses for Question
+      </h2>
+
       {question && (
         <>
-      <div className="question-block">
-          <h3 style={{ color: "#444", marginBottom: "1rem" }}>
-            {question.questionText}
-          </h3>
+          <div className="question-block">
+            <h3 style={{ color: "#444", marginBottom: "1rem" }}>
+              {question.questionText}
+            </h3>
 
-          <ul className="option-list">
-            {question.options.map((opt, idx) => (
-              <li key={idx}>
-                {String.fromCharCode(65 + idx)}. {opt}
-              </li>
-            ))}
-          </ul>
+            <ul className="option-list">
+              {question.options.map((opt, idx) => (
+                <li key={idx}>
+                  {String.fromCharCode(65 + idx)}. {opt}
+                </li>
+              ))}
+            </ul>
           </div>
+
           <div className="chart-wrapper">
-            <h2>Correctly and incorrectly answered</h2>
+            <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
+              Answer Distribution
+            </h2>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -78,29 +92,35 @@ function QuestionResponses() {
                   dataKey="count"
                   nameKey="answer"
                   outerRadius={100}
-                  innerRadius={75}
+                  innerRadius={70}
                   label={({ count, percent }) =>
                     `${count} (${(percent * 100).toFixed(0)}%)`
                   }
                 >
                   {answerCounts.map((entry, index) => (
-                    <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    <Cell
+                      key={index}
+                      fill={COLORS[index % COLORS.length]}
+                    />
                   ))}
                 </Pie>
                 <Tooltip />
                 <Legend
                   payload={[
                     { value: "Correct", type: "square", color: COLORS[0] },
-                    { value: "In-correct", type: "square", color: COLORS[1] },
+                    { value: "Incorrect", type: "square", color: COLORS[1] },
                   ]}
                 />
               </PieChart>
             </ResponsiveContainer>
           </div>
+
           <div className="response-table">
-            <h4>📋 Student Responses</h4>
+            <h4 style={{ textAlign: "center", marginTop: "2rem" }}>
+              📋 Student Responses
+            </h4>
             {responses.length === 0 ? (
-              <p>No responses yet.</p>
+              <p style={{ textAlign: "center" }}>No responses yet.</p>
             ) : (
               <table className="styled-table">
                 <thead>
@@ -123,7 +143,15 @@ function QuestionResponses() {
                         <td>{resp.student?.name || "Anonymous"}</td>
                         <td>{resp.student?.email || "N/A"}</td>
                         <td>{resp.answer}</td>
-                        <td>
+                        <td
+                          style={{
+                            color:
+                              resp.answer === question.correctAnswer
+                                ? "#4caf50"
+                                : "#ff5722",
+                            fontWeight: "bold",
+                          }}
+                        >
                           {resp.answer === question.correctAnswer ? 1 : 0}
                         </td>
                         <td>

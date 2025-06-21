@@ -37,11 +37,11 @@ function Profile() {
       <p>Role: {user.role}</p>
 
       <Link to="/answer" className="link">Answer the question</Link><br />
+      <Link to="/leadboard" className="Leadboard">Lead Board</Link><br />
       {user.role === "host" && (
         <div className="host-actions">
           <h3>Host Controls</h3>
           <Link to="/post-question" className="question">Post Questions</Link><br />
-          <Link to="/leadboard" className="Leadboard">Lead Board</Link><br />
           <Link to="/questions" className="link">View All Questions</Link>
         </div>
       )}

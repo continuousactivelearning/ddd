@@ -1,6 +1,8 @@
 import '../styles/AnswerQuestion.css'
+import "../styles/Auth.css"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 function AnswerQuestions() {
   const [questions, setQuestions] = useState([]);
@@ -134,6 +136,7 @@ function AnswerQuestions() {
           })}
         </div>
       ))}
+      <Link to="/profile" className="link-button">Back</Link>
     </div>
   );
 }

@@ -76,7 +76,7 @@ router.get("/question/:questionId", authMiddleware,requireHost, async (req, res)
   }
 });
 
-router.get("/leaderboard", authMiddleware,requireHost, async (req, res) => {
+router.get("/leaderboard", authMiddleware, async (req, res) => {
   try {
     const leaderboard = await Answer.aggregate([
       {

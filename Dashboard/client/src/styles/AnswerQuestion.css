@@ -24,12 +24,11 @@
 }
 
 .question-block {
-  margin-bottom: 24px;
-  padding: 18px;
-  background: #f5f5f5;
+  background: #f3e8ff;
+  padding: 20px;
   border-radius: 10px;
-  border: 1px solid #eee;
-  transition: transform 0.2s ease;
+  border-left: 6px solid #9d4edd;
+  margin-bottom: 30px;
 }
 
 .question-block:hover {
@@ -62,14 +61,14 @@
 }
 
 .option-label.correct {
-  background-color: #e6fce6;
-  color: #217821;
+  background-color: #15a11573;
+  color: #15a115;
   font-weight: bold;
 }
 
 .option-label.incorrect {
-  background-color: #fde6e6;
-  color: #c01c1c;
+  background-color: #df13138a;
+  color: #df1313;
   font-weight: bold;
 }
 

@@ -1,8 +1,57 @@
+.question-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.question-block {
+  background: #f3e8ff;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 6px solid #9d4edd;
+  margin-bottom: 30px;
+}
+
+.option-list {
+  list-style-type: none;
+  padding-left: 1rem;
+  margin-top: 10px;
+}
+
+.option-list li {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
 .chart-wrapper {
-  margin-top: 40px;
+  margin-top: 30px;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  background: #fdfdfd;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+.response-table {
+  margin-top: 40px;
+}
+
+.response-table h4 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #444;
+  margin-bottom: 1rem;
 }
 
 .styled-table {
@@ -13,11 +62,12 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .styled-table thead {
-  background-color: #f0f0f0;
+  background: linear-gradient(to right, #7b2cbf, #9d4edd);
+  color: white;
 }
 
 .styled-table th,
@@ -29,20 +79,24 @@
 
 .styled-table th {
   font-weight: 600;
-  color: #333;
+  color: white;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f7f0ff;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+  background-color: #fefaff;
 }
 
 .styled-table tbody tr:hover {
-  background-color: #fafafa;
+  background-color: #ede3ff;
   transition: background-color 0.3s ease;
 }
 
 .styled-table tbody tr:last-child td {
   border-bottom: none;
-}
-
-.styled-table tbody tr:nth-child(even) {
-  background-color: #fcfcfc;
 }
 
 @media screen and (max-width: 768px) {
@@ -51,13 +105,8 @@
     overflow-x: auto;
     white-space: nowrap;
   }
-}
 
-.question-block {
-  margin-bottom: 24px;
-  padding: 18px;
-  background: #f5f5f5;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  transition: transform 0.2s ease;
+  .question-container {
+    padding: 1rem;
+  }
 }
