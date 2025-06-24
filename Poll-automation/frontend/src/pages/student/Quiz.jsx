@@ -57,6 +57,7 @@ const Quiz = () => {
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const [leaderboardError, setLeaderboardError] = useState(null);
   const leaderboardIntervalRef = useRef(null);
+  const hasSubmittedRef = useRef(false);
 
   // currentQuestion must be derived inside the component to react to state changes
   const currentQuestion = questions[currentQuestionIndex];
@@ -188,24 +189,16 @@ const Quiz = () => {
   };
 
   const handleQuizEnd = async () => {
+    if (hasSubmittedRef.current) return;
     setQuizEnded(true);
     try {
-      // Use a callback to get the latest selectedAnswers state
       setSelectedAnswers(prevSelectedAnswers => {
-        // Prepare answers array using the stored selected answers
         const answers = questions.map((question, index) => ({
           questionIndex: index,
           selectedOption: prevSelectedAnswers[index] !== undefined ? prevSelectedAnswers[index] : null
         }));
-
-        console.log('Submitting answers:', answers);
-        console.log('Selected answers state:', prevSelectedAnswers);
-        console.log('Questions count:', questions.length);
-
-        // Submit the answers
         submitAnswers(answers);
-        
-        return prevSelectedAnswers; // Return the same state
+        return prevSelectedAnswers;
       });
     } catch (error) {
       console.error('Error in handleQuizEnd:', error);
@@ -214,6 +207,8 @@ const Quiz = () => {
   };
 
   const submitAnswers = async (answers) => {
+    if (hasSubmittedRef.current) return;
+    hasSubmittedRef.current = true;
     try {
       // Ensure we have all answers, including the last one
       let finalAnswers = [...answers];
@@ -233,31 +228,20 @@ const Quiz = () => {
       console.log('Final answers to submit:', finalAnswers);
 
       const response = await axios.post(`/api/quiz/${quizCode}/submit`, {
-        answers: finalAnswers
+        answers: finalAnswers,
+        timeTaken: 600 - timeLeft // send timeTaken with submission
       });
 
       if (response.status === 200) {
         const result = response.data;
         console.log('Quiz submitted successfully:', result);
-        console.log('Backend returned correctAnswers:', result.correctAnswers);
-        console.log('Backend returned totalQuestions:', result.totalQuestions);
-        // Call the new endpoint to update student stats
-        try {
-          await axios.post('/api/student-stats/track-quiz', {
-            quizId: result.quizId || quiz._id,
-            score: result.score,
-            correctAnswers: result.correctAnswers,
-            totalQuestions: result.totalQuestions,
-            timeTaken: 600 - timeLeft // assuming 10 min timer, adjust if needed
-          });
-        } catch (statErr) {
-          console.error('Error updating student stats:', statErr);
-        }
         setQuizResults(result);
         // Immediately refresh leaderboard after quiz submission
         if (quiz && quiz._id) {
           fetchLiveLeaderboard(quiz._id);
         }
+        // Optionally, navigate to dashboard or show stats inline
+        // navigate('/student'); // Uncomment to redirect to dashboard
       } else {
         console.error('Failed to submit quiz');
         setError('Failed to submit quiz results. Please try again.');

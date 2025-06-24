@@ -3,6 +3,7 @@ const router = express.Router();
 const Quiz = require('../models/Quiz');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
+const { handleQuizSubmission } = require('../services/quizSubmissionHandler');
 
 // Get all active quizzes (for student dashboard) - MUST BE BEFORE /:quizCode route
 router.get('/active', auth, async (req, res) => {
@@ -137,6 +138,12 @@ router.post('/:quizCode/submit', auth, async (req, res) => {
     // Use authenticated user
     const student = user;
 
+    // Prevent double submission: check if this user already submitted
+    const alreadySubmitted = quiz.participants.some(p => p.user.toString() === student._id.toString());
+    if (alreadySubmitted) {
+      return res.status(400).json({ message: 'You have already submitted this quiz.' });
+    }
+
     // Add participant to quiz
     const participant = {
       user: student._id,
@@ -148,6 +155,16 @@ router.post('/:quizCode/submit', auth, async (req, res) => {
 
     quiz.participants.push(participant);
     await quiz.save();
+
+    // Update student stats after successful submission
+    await handleQuizSubmission({
+      userId: student._id,
+      quizId: quiz._id,
+      score: score,
+      correctAnswers: correctAnswers,
+      totalQuestions: quiz.questions.length,
+      timeTaken: timeTaken
+    });
 
     res.json({
       message: 'Quiz submitted successfully',
