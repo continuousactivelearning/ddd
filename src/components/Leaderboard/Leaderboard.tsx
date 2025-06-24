@@ -45,17 +45,6 @@ const users = [
     position: 4,
     you: true
   },
-  {
-    name: 'SK',
-    level: 32,
-    badges: 9,
-    score: 2450,
-    xp: 10200,
-    streak: 14,
-    change: 67,
-    position: 5,
-    you: false
-  },
 ];
 
 const Leaderboard = () => {

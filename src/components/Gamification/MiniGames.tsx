@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Sparkles, Brain, Map } from "lucide-react";
+import { Sparkles, Brain, Map, Snowflake} from "lucide-react";
 import type { CSSProperties } from "react";
 
 const MiniGames = () => {
@@ -26,6 +26,13 @@ const MiniGames = () => {
       color: "linear-gradient(to bottom right, #fbbf24, #ef4444)",
       path: "/hangman",
       description: "Classic word guessing fun",
+    },
+    {
+      name: "Snake Game",
+      icon: <Snowflake size={28} />,
+      color: "linear-gradient(to bottom right,rgb(100, 195, 141),rgb(159, 62, 146))",
+      path: "/snake-game",
+      description: "The classic snake game",
     },
   ];
 
