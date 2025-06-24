@@ -8,7 +8,7 @@ const circleData = [
 
 const COLORS = ['#2C9A65', '#e0e0e0'];
 
-const PerformanceMeter = () => {
+const EvaluationMeter = () => {
   return (
     <div
       style={{
@@ -23,6 +23,7 @@ const PerformanceMeter = () => {
         flexDirection: 'column',
         alignItems: 'flex-start',
         fontFamily: 'Arial, sans-serif',
+        color: '#1f2937',
       }}
     >
       <h2
@@ -111,4 +112,4 @@ const PerformanceMeter = () => {
   );
 };
 
-export default PerformanceMeter;
+export default EvaluationMeter;

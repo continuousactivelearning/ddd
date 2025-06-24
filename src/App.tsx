@@ -4,7 +4,7 @@ import DashboardOverview from './pages/Dashboard';
 import Quiz from './pages/Quiz';
 import MatchmakingGame from './components/Gamification/matchmaking_game';
 import HangmanGame from './components/Gamification/Hangman';
-
+import SnakeGame from './components/Gamification/snake-game';
 import MyCourses from './pages/MyCourses';
 import CourseActivity from './pages/CourseActivity';
 import Achievements from './pages/Achievements';
@@ -24,6 +24,7 @@ const App = () => {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/matchmaking" element={<MatchmakingGame />} />
             <Route path="/hangman" element={<HangmanGame />} />
+            <Route path="/snake-game" element={<SnakeGame />} />
             <Route path="/my-courses" element={<MyCourses />} />
             <Route path="/course-activity" element={<CourseActivity />} />
             <Route path="/achievements" element={<Achievements />} />

@@ -125,7 +125,7 @@ const ProgressChart = () => {
           <h2 style={{
             fontSize: '1.25rem',
             fontWeight: '600',
-            color: '#fff',
+            color: '#5ae66a',
             marginBottom: '0.25rem'
           }}>
             Learning Progress
