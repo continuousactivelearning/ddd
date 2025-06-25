@@ -1,77 +1,51 @@
-import { Radar } from 'react-chartjs-2';
+import React from "react";
 import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend
-} from 'chart.js';
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  Radar,
+  ResponsiveContainer,
+} from "recharts";
+import { motion } from "framer-motion";
+import { getUserDataById } from "../../data/SampleUserData";
 
-ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+interface PeerComparisonRadarProps {
+  userId: string;
+}
 
-const PeerComparisonRadar = () => {
-  const data = {
-    labels: ['Teamwork', 'Communication', 'Creativity', 'Consistency', 'Initiative'],
-    datasets: [
-      {
-        label: 'You',
-        data: [8, 6, 7, 9, 8],
-        backgroundColor: 'rgba(34, 197, 94, 0.4)',
-        borderColor: 'rgba(34, 197, 94, 1)',
-        borderWidth: 2
-      },
-      {
-        label: 'Class Avg',
-        data: [6, 7, 6, 7, 6],
-        backgroundColor: 'rgba(59, 130, 246, 0.3)',
-        borderColor: 'rgba(59, 130, 246, 1)',
-        borderWidth: 2
-      }
-    ]
-  };
+const PeerComparisonRadar: React.FC<PeerComparisonRadarProps> = ({ userId }) => {
+  const user = getUserDataById(userId);
+  if (!user) return null;
 
-  const options = {
-    scales: {
-      r: {
-        angleLines: { display: true },
-        suggestedMin: 0,
-        suggestedMax: 10,
-        pointLabels: {
-          font: {
-            size: 16 
-          },
-          color: '#1e293b'
-        },
-        ticks: {
-          stepSize: 1,
-          backdropColor: 'transparent',
-          color: '#334155',
-          font: {
-            size: 14 
-          }
-        }
-      }
-    },
-    plugins: {
-      legend: {
-        labels: {
-          font: {
-            size: 14 
-          }
-        }
-      }
-    },
-    responsive: true,
-    maintainAspectRatio: false 
-  };
+  const data = user.peerComparison.map((value, index) => ({
+    subject: `Metric ${index + 1}`,
+    value,
+  }));
 
   return (
-    <div className="bg-white shadow-md rounded-xl p-4" style={{ height: '500px' }}>
-      <h2 className="text-xl font-bold mb-4">Peer Comparison</h2>
-      <Radar data={data} options={options} />
-    </div>
+    <motion.div
+      className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition-all"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h3 className="text-lg font-semibold text-blue-600 mb-4">
+        Peer Comparison
+      </h3>
+      <ResponsiveContainer width="100%" height={250}>
+        <RadarChart data={data}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="subject" />
+          <Radar
+            name="User"
+            dataKey="value"
+            stroke="#3b82f6"
+            fill="#3b82f6"
+            fillOpacity={0.6}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
+    </motion.div>
   );
 };
 

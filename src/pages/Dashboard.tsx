@@ -16,14 +16,14 @@ import { useEffect, useState } from "react";
 const metrics = [
   {
     icon: <Clock size={24} />,
-    title: "Watch Time",
+    title: "Work Time",
     value: "12h 30m",
     subtitle: "Weekly Total",
     change: "+5.4%",
   },
   {
     icon: <ListChecks size={24} />,
-    title: "Videos Completed",
+    title: "Evaluation pending",
     value: "36",
     subtitle: "In This Week",
     change: "+8.2%",
@@ -118,7 +118,7 @@ const DashboardOverview = () => {
        {/* ✅ Peer Comparison Section */}
       <div className="dashboard-card">
         <div className="card-content">
-          <PeerComparisonRadar />
+          <PeerComparisonRadar userId="user_001" />
         </div>
       </div>
 

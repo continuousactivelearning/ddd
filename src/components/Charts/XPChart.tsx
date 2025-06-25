@@ -1,5 +1,3 @@
-// src/components/charts/XPChart.tsx
-
 import {
   BarChart,
   Bar,
@@ -12,18 +10,15 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-
-const data = [
-  { day: "Mon", xp: 120, bonus: 20 },
-  { day: "Tue", xp: 200, bonus: 50 },
-  { day: "Wed", xp: 150, bonus: 30 },
-  { day: "Thu", xp: 180, bonus: 40 },
-  { day: "Fri", xp: 250, bonus: 70 },
-  { day: "Sat", xp: 220, bonus: 60 },
-  { day: "Sun", xp: 190, bonus: 35 },
-];
+import { getUserDataById } from '../../data/SampleUserData';
+ // import sample data
 
 const XPChart = () => {
+  const user = getUserDataById("user_001"); // use static userId for now
+  if (!user) return null;
+
+  const data = user.xp.daily;
+
   return (
     <motion.div
       className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition-all"
