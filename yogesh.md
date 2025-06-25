@@ -25,4 +25,4 @@ Today I Connect backend with frontend login/profile
 Today 14
 Today I make a calender
 Day 15 
-Today I work on backend
+Today I work on the routes and sampling the data for use
