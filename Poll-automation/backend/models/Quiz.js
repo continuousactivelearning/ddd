@@ -27,6 +27,10 @@ const quizSchema = new mongoose.Schema({
       max: 3
     }
   }],
+  transcript: {
+    type: String,
+    required: false
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

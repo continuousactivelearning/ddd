@@ -757,19 +757,23 @@ const Quiz = () => {
                   }
                 }
                 return (
-                  <Grid item xs={12} sm={6} md={3} key={index}>
+                  <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex', alignItems: 'stretch' }}>
                   <Button
                       variant="outlined"
                     fullWidth
                     onClick={() => handleAnswer(index)}
                     disabled={selectedOption !== null}
                     sx={{
-                        height: { xs: 70, sm: 100, md: 160 },
+                        minHeight: 70,
+                        width: '100%',
+                        maxWidth: '100%',
+                        flex: '1 1 auto',
+                        boxSizing: 'border-box',
                         borderRadius: { xs: 2, md: 5 },
                         fontWeight: 700,
                         fontSize: { xs: '0.98rem', sm: '1.1rem', md: '1.35rem' },
                         display: 'flex',
-                        alignItems: 'center',
+                        alignItems: 'stretch',
                         justifyContent: 'center',
                         boxShadow: optionState === 'correct' ? (theme.palette.mode === 'dark' ? '0 0 0 3px #10b981' : '0 0 0 3px #6366F1') : optionState === 'incorrect' ? '0 0 0 3px #ef4444' : 2,
                         bgcolor: optionState === 'correct'
@@ -790,34 +794,37 @@ const Quiz = () => {
                             : (theme.palette.mode === 'dark' ? 'divider' : '#8B5CF6'),
                         position: 'relative',
                         transition: 'all 0.2s',
-                      '&:hover': {
-                          bgcolor: optionState === 'correct'
-                            ? (theme.palette.mode === 'dark' ? '#bbf7d0' : '#8B5CF6')
-                            : optionState === 'incorrect'
-                              ? (theme.palette.mode === 'dark' ? '#fecaca' : '#fee2e2')
-                              : (theme.palette.mode === 'dark' ? 'action.hover' : 'linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 100%)'),
-                          borderColor: optionState === 'correct'
-                            ? (theme.palette.mode === 'dark' ? '#10b981' : '#fff')
-                            : optionState === 'incorrect'
-                              ? '#ef4444'
-                              : (theme.palette.mode === 'dark' ? 'primary.main' : '#6366F1'),
-                      },
-                      '&:disabled': {
-                          bgcolor: optionState === 'correct'
-                            ? (theme.palette.mode === 'dark' ? '#d1fae5' : 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)')
-                            : optionState === 'incorrect'
-                              ? (theme.palette.mode === 'dark' ? '#fee2e2' : '#fef2f2')
-                              : (theme.palette.mode === 'dark' ? 'background.paper' : 'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)'),
-                          color: optionState === 'correct'
-                            ? (theme.palette.mode === 'dark' ? '#065f46' : '#fff')
-                            : optionState === 'incorrect'
-                              ? (theme.palette.mode === 'dark' ? '#991b1b' : '#b91c1c')
-                              : (theme.palette.mode === 'dark' ? 'text.disabled' : '#6366F1'),
+                        '&:hover': {
+                            bgcolor: optionState === 'correct'
+                              ? (theme.palette.mode === 'dark' ? '#bbf7d0' : '#8B5CF6')
+                              : optionState === 'incorrect'
+                                ? (theme.palette.mode === 'dark' ? '#fecaca' : '#fee2e2')
+                                : (theme.palette.mode === 'dark' ? 'action.hover' : 'linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 100%)'),
+                            borderColor: optionState === 'correct'
+                              ? (theme.palette.mode === 'dark' ? '#10b981' : '#fff')
+                              : optionState === 'incorrect'
+                                ? '#ef4444'
+                                : (theme.palette.mode === 'dark' ? 'primary.main' : '#6366F1'),
+                        },
+                        '&:disabled': {
+                            bgcolor: optionState === 'correct'
+                              ? (theme.palette.mode === 'dark' ? '#d1fae5' : 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)')
+                              : optionState === 'incorrect'
+                                ? (theme.palette.mode === 'dark' ? '#fee2e2' : '#fef2f2')
+                                : (theme.palette.mode === 'dark' ? 'background.paper' : 'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)'),
+                            color: optionState === 'correct'
+                              ? (theme.palette.mode === 'dark' ? '#065f46' : '#fff')
+                              : optionState === 'incorrect'
+                                ? (theme.palette.mode === 'dark' ? '#991b1b' : '#b91c1c')
+                                : (theme.palette.mode === 'dark' ? 'text.disabled' : '#6366F1'),
                         }
                       }}
                     >
                       <Box sx={{
                         width: '100%',
+                        maxWidth: '100%',
+                        flex: '1 1 auto',
+                        boxSizing: 'border-box',
                         textAlign: 'center',
                         fontSize: { xs: '0.98rem', sm: '1.1rem', md: '1.35rem' },
                         fontWeight: 700,
@@ -825,7 +832,6 @@ const Quiz = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        height: '100%',
                         color:
                           optionState === 'correct'
                             ? (theme.palette.mode === 'dark' ? '#065f46' : '#111827')
@@ -836,6 +842,9 @@ const Quiz = () => {
                           optionState === 'correct' && theme.palette.mode !== 'dark'
                             ? '0 1px 6px rgba(0,0,0,0.10)'
                             : 'none',
+                        wordBreak: 'break-word',
+                        whiteSpace: 'normal',
+                        padding: '0 6px',
                       }}>
                         {option}
                         {showFeedbackLabel && (

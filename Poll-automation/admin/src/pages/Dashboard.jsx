@@ -34,7 +34,8 @@ import {
   AutoAwesome as SparklesIcon,
   FlashOn as ZapIcon,
   TrackChanges as TargetIcon,
-  NoteAlt as NoteAltIcon
+  NoteAlt as NoteAltIcon,
+  Mic as MicIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -43,6 +44,7 @@ import QuizCard from '../components/QuizCard';
 import axios from '../utils/axios';
 import Chatbot from '../components/Chatbot';
 import AllowedStudentsCard from '../components/AllowedStudentsCard';
+import VoiceRecorder from '../components/VoiceRecorder';
 
 // Create motion components
 const MotionCard = motion(Card);
@@ -181,6 +183,11 @@ const Dashboard = () => {
           </Box>
         </Box>
 
+        {/* Voice Recorder Section */}
+        <Box sx={{ mb: 6, px: { xs: 2, md: 4 } }}>
+          <VoiceRecorder onSave={(blob) => { alert('Audio ready to upload!'); }} />
+        </Box>
+
         {/* Enhanced Stats Cards - Full Width, 6 per row */}
         <Grid container spacing={3} sx={{ mb: 6, mt: 4, px: { xs: 0, md: 4 }, width: '100%' }} justifyContent="center">
           {[
@@ -272,7 +279,7 @@ const Dashboard = () => {
         </Grid>
 
         {/* Beautiful Create Quiz Card - Responsive, right-aligned on desktop */}
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, mb: 6, px: { xs: 2, md: 4 } }}>
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: { xs: 'center', md: 'flex-start' }, mb: 6, px: { xs: 2, md: 4 }, gap: 4 }}>
           <MotionCard
             variants={cardVariants}
             initial="hidden"
@@ -394,7 +401,127 @@ const Dashboard = () => {
                       }
                     }}
                   >
-                    Get Started
+                    Create Quiz
+                  </Button>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </MotionCard>
+          {/* New Start Recording Card */}
+          <MotionCard
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.8 }}
+            sx={{
+              width: '100%',
+              maxWidth: 700,
+              background: 'linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%)',
+              borderRadius: '24px',
+              position: 'relative',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              ml: { xs: 0, md: 4 },
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)',
+                transform: 'translateX(-100%)',
+                transition: 'transform 0.8s',
+              },
+              '&:hover::before': {
+                transform: 'translateX(100%)',
+              },
+              '&:hover': {
+                transform: 'translateY(-4px) scale(1.01)',
+                boxShadow: '0 25px 50px rgba(255, 126, 179, 0.4)',
+              }
+            }}
+            onClick={() => { console.log('Card clicked'); navigate('/admin/voice-quiz'); }}
+          >
+            <CardContent sx={{ p: { xs: 2, sm: 4 }, color: 'white' }}>
+              <Grid container alignItems="center" spacing={3}>
+                <Grid item xs={12} md={8}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 60,
+                        height: 60,
+                        borderRadius: '16px',
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        backdropFilter: 'blur(10px)',
+                        mr: 2,
+                        border: '2px solid rgba(255, 255, 255, 0.3)'
+                      }}
+                    >
+                      <MicIcon sx={{ fontSize: 32, color: 'white' }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="h4" sx={{ fontWeight: 800, mb: 0.5, fontSize: { xs: '1.3rem', sm: '1.7rem' } }}>
+                        Start Recording
+                      </Typography>
+                      <Typography variant="body1" sx={{ opacity: 0.9, fontWeight: 500, fontSize: { xs: '0.95rem', sm: '1.1rem' } }}>
+                        Create quizzes from your voice in seconds
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                    <Chip 
+                      icon={<MicIcon />} 
+                      label="Voice to Quiz" 
+                      sx={{ 
+                        background: 'rgba(255, 255, 255, 0.2)', 
+                        color: 'white', 
+                        fontWeight: 600,
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        fontSize: { xs: '0.8rem', sm: '1rem' }
+                      }} 
+                    />
+                    <Chip 
+                      icon={<SparklesIcon />} 
+                      label="AI Question Generation" 
+                      sx={{ 
+                        background: 'rgba(255, 255, 255, 0.2)', 
+                        color: 'white', 
+                        fontWeight: 600,
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        fontSize: { xs: '0.8rem', sm: '1rem' }
+                      }} 
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={4} sx={{ textAlign: { xs: 'left', md: 'right' }, mt: { xs: 2, md: 0 } }}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    startIcon={<MicIcon />}
+                    type="button"
+                    sx={{ 
+                      px: 4, 
+                      py: 2,
+                      borderRadius: '16px',
+                      background: 'rgba(255, 255, 255, 0.2)',
+                      backdropFilter: 'blur(10px)',
+                      border: '2px solid rgba(255, 255, 255, 0.3)',
+                      color: 'white',
+                      fontWeight: 700,
+                      fontSize: { xs: '1rem', sm: '1.1rem' },
+                      '&:hover': {
+                        background: 'rgba(255, 255, 255, 0.3)',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 8px 25px rgba(255, 255, 255, 0.3)',
+                      }
+                    }}
+                    onClick={e => { e.stopPropagation(); console.log('Button clicked'); navigate('/admin/voice-quiz'); }}
+                  >
+                    Start Recording
                   </Button>
                 </Grid>
               </Grid>
