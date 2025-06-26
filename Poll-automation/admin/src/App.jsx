@@ -6,6 +6,7 @@ import createAppTheme from './theme';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CreateQuiz from './pages/CreateQuiz';
+import VoiceQuizPage from './pages/VoiceQuizPage';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { ThemeProvider as CustomThemeProvider, useTheme } from './contexts/ThemeContext';
 
@@ -44,6 +45,14 @@ function AppRoutes() {
             element={
               <ProtectedRoute>
                 <CreateQuiz />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/voice-quiz"
+            element={
+              <ProtectedRoute>
+                <VoiceQuizPage />
               </ProtectedRoute>
             }
           />
