@@ -3,6 +3,7 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
+  PolarRadiusAxis,
   Radar,
   ResponsiveContainer,
 } from "recharts";
@@ -36,6 +37,7 @@ const PeerComparisonRadar: React.FC<PeerComparisonRadarProps> = ({ userId }) => 
         <RadarChart data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
+          <PolarRadiusAxis angle={30} domain={[0, 10]} /> {/* ✅ Add this */}
           <Radar
             name="User"
             dataKey="value"

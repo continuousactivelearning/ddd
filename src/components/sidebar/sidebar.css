@@ -4,7 +4,7 @@
 }
 
 .sidebar {
-  background: transparent;
+  background: transparent !important;
   color: #333;
 }
 .sidebar h2 {
@@ -18,7 +18,7 @@
   list-style: none;
   padding: 0;
   color: #333;
-  background-color: #ffffff0a;
+  background-color: transparent;
   margin-top: 1rem;
   width: 100%;
 }

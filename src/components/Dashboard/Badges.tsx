@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { getUserDataById } from '../../data/SampleUserData'; // adjust import path as needed
+
+interface BadgesProps {
+  userId: string;
+}
 
 interface Badge {
   name: string;
@@ -15,80 +20,87 @@ interface Badge {
   checkmark?: boolean;
 }
 
-const badges: Badge[] = [
-  { 
-    name: 'Early Bird', 
-    icon: '⛰️', 
-    gradient: 'linear-gradient(135deg, #ea580c, #dc2626)',
-    shadowColor: 'rgba(234, 88, 12, 0.4)',
-    description: 'Complete 5 lessons before 9 AM',
-    isEarned: true,
-    earnedDate: '1/15/2024',
-    rarity: 'common',
-    checkmark: true
-  },
-  { 
-    name: 'Streak Master', 
-    icon: '🔥', 
-    gradient: 'linear-gradient(135deg, #dc2626, #991b1b)',
-    shadowColor: 'rgba(220, 38, 38, 0.4)',
-    description: 'Maintain a 7-day learning streak',
-    isEarned: true,
-    earnedDate: '1/18/2024',
-    rarity: 'rare',
-    checkmark: true
-  },
-  { 
-    name: 'Quiz Champion', 
-    icon: '🏆', 
-    gradient: 'linear-gradient(135deg, #059669, #047857)',
-    shadowColor: 'rgba(5, 150, 105, 0.4)',
-    description: 'Score 100% on 10 quizzes',
-    isEarned: true,
-    earnedDate: '1/20/2024',
-    rarity: 'epic',
-    checkmark: true
-  },
-  { 
-    name: 'Speed Learner', 
-    icon: '⚡', 
-    gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-    shadowColor: 'rgba(59, 130, 246, 0.4)',
-    description: 'Complete 20 lessons in one day',
-    isEarned: false,
-    progress: 13,
-    maxProgress: 20,
-    progressLabel: '13 of 20 completed',
-    rarity: 'rare'
-  },
-  { 
-    name: 'Perfectionist', 
-    icon: '⭐', 
-    gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)',
-    shadowColor: 'rgba(6, 182, 212, 0.4)',
-    description: 'Achieve 100% completion on all modules',
-    isEarned: false,
-    progress: 10,
-    maxProgress: 12,
-    progressLabel: '10 of 12 completed',
-    rarity: 'legendary'
-  },
-  { 
-    name: 'Social Learner', 
-    icon: '👥', 
-    gradient: 'linear-gradient(135deg, #6b7280, #4b5563)',
-    shadowColor: 'rgba(107, 114, 128, 0.4)',
-    description: 'Help 5 other students with questions',
-    isEarned: false,
-    progress: 2,
-    maxProgress: 5,
-    progressLabel: '2 of 5 completed',
-    rarity: 'common'
-  },
-];
+const Badges: React.FC<BadgesProps> = ({ userId }) => {
+  const user = getUserDataById(userId);
+  if (!user) return null;
 
-const Badges: React.FC = () => {
   const [selectedBadge, setSelectedBadge] = useState<Badge | null>(null);
+
+  const earnedBadgeNames = user.badges;
+
+  // Dynamic base badges (add your styling info per badge)
+  const baseBadges: Omit<Badge, 'isEarned'>[] = [
+    {
+      name: 'Early Bird',
+      icon: '⛰️',
+      gradient: 'linear-gradient(135deg, #ea580c, #dc2626)',
+      shadowColor: 'rgba(234, 88, 12, 0.4)',
+      description: 'Complete 5 lessons before 9 AM',
+      earnedDate: "2025-06-15",
+      rarity: 'common',
+      checkmark: true
+    },
+    {
+      name: 'Streak Master',
+      icon: '🔥',
+      gradient: 'linear-gradient(135deg, #dc2626, #991b1b)',
+      shadowColor: 'rgba(220, 38, 38, 0.4)',
+      description: 'Maintain a 7-day learning streak',
+      earnedDate: '1/18/2024',
+      rarity: 'rare',
+      checkmark: true
+    },
+    {
+      name: 'Quiz Champion',
+      icon: '🏆',
+      gradient: 'linear-gradient(135deg, #059669, #047857)',
+      shadowColor: 'rgba(5, 150, 105, 0.4)',
+      description: 'Score 100% on 10 quizzes',
+      earnedDate: '1/20/2024',
+      rarity: 'epic',
+      checkmark: true
+    },
+    {
+      name: 'Speed Learner',
+      icon: '⚡',
+      gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+      shadowColor: 'rgba(59, 130, 246, 0.4)',
+      description: 'Complete 20 lessons in one day',
+      progress: 13,
+      maxProgress: 20,
+      progressLabel: '13 of 20 completed',
+      rarity: 'rare'
+    },
+    {
+      name: 'Perfectionist',
+      icon: '⭐',
+      gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+      shadowColor: 'rgba(6, 182, 212, 0.4)',
+      description: 'Achieve 100% completion on all modules',
+      progress: 10,
+      maxProgress: 12,
+      progressLabel: '10 of 12 completed',
+      rarity: 'legendary'
+    },
+    {
+      name: 'Social Learner',
+      icon: '👥',
+      gradient: 'linear-gradient(135deg, #6b7280, #4b5563)',
+      shadowColor: 'rgba(107, 114, 128, 0.4)',
+      description: 'Help 5 other students with questions',
+      progress: 2,
+      maxProgress: 5,
+      progressLabel: '2 of 5 completed',
+      rarity: 'common'
+    }
+  ];
+
+  // Final badge array, marking isEarned from user sample data
+const badges: Badge[] = baseBadges.map((badge) => ({
+    ...badge,
+    isEarned: earnedBadgeNames.includes(badge.name),
+  }));
+
 
   const handleBadgeClick = (badge: Badge) => {
     setSelectedBadge(badge);

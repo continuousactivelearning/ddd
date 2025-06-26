@@ -13,6 +13,8 @@ import PeerComparisonRadar from "../components/Charts/PeerComparisonRadar";
 import "./styles.css";
 import { useEffect, useState } from "react";
 
+const userId = "user_001"; 
+
 const metrics = [
   {
     icon: <Clock size={24} />,
@@ -74,7 +76,7 @@ const DashboardOverview = () => {
         </button>
       </div>
 
-      {/* Top Metrics */}
+      
       <div className="metrics-row">
         {metrics.map((m) => (
           <DashboardCard
@@ -88,11 +90,11 @@ const DashboardOverview = () => {
         ))}
       </div>
 
-      {/* Charts Section */}
+
       <div className="vertical-charts">
         <div className="dashboard-card">
           <div className="card-content">
-            <ProgressChart />
+            <ProgressChart userId="user_001" />
             <div className="label">Weekly Progress</div>
             <div className="sublabel">Your learning growth</div>
           </div>
@@ -108,21 +110,21 @@ const DashboardOverview = () => {
 
         <div className="dashboard-card">
           <div className="card-content">
-            <EvaluationMeter />
+            <EvaluationMeter userId="user_001" />
             <div className="label">Today's Meter</div>
             <div className="sublabel">Activity Summary</div>
           </div>
         </div>
       </div>
 
-       {/* ✅ Peer Comparison Section */}
+     
       <div className="dashboard-card">
         <div className="card-content">
-          <PeerComparisonRadar userId="user_001" />
+          <PeerComparisonRadar userId={userId} />
         </div>
       </div>
 
-      {/* Mini Games */}
+      
       <div className="dashboard-card minigames-card">
         <div className="card-content">
           <h3 className="label">Mini Games</h3>
@@ -136,7 +138,7 @@ const DashboardOverview = () => {
         </div>
       </div>
 
-      {/* Streak & Badges Section */}
+      
       <div className="streaks-badges-section">
         <div className="dashboard-card">
           <div className="card-content">
@@ -146,13 +148,13 @@ const DashboardOverview = () => {
         </div>
         <div className="dashboard-card">
           <div className="card-content-badges">
-            <Badges />
-             <h3 className="label">Achievement Badges</h3>
+            <Badges userId="user_002" />
+            <h3 className="label">Achievement Badges</h3>
           </div>
         </div>
       </div>
 
-      {/* Leaderboard */}
+      
       <div className="dashboard-card leaderboard-card">
         <div className="card-content">
           <Leaderboard />
@@ -160,7 +162,7 @@ const DashboardOverview = () => {
         </div>
       </div>
 
-      {/* Enhanced Floating Chat Icon */}
+      
       <div 
         onClick={toggleChat}
         style={{
@@ -190,7 +192,7 @@ const DashboardOverview = () => {
         }}
       >
         <MessageCircle color="white" size={28} />
-        {/* Notification dot */}
+        
         <div style={{
           position: 'absolute',
           top: '8px',
@@ -204,7 +206,7 @@ const DashboardOverview = () => {
         }} />
       </div>
 
-      {/* Enhanced Floating Chat Window */}
+      
       {isChatOpen && (
         <div style={{
           position: 'fixed',
@@ -220,7 +222,7 @@ const DashboardOverview = () => {
           border: '1px solid #e5e7eb',
           animation: 'slideUp 0.3s ease-out'
         }}>
-          {/* Enhanced Chat Header */}
+          
           <div style={{
             background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
             color: 'white',
@@ -267,7 +269,7 @@ const DashboardOverview = () => {
             </button>
           </div>
           
-          {/* Chat Content */}
+          
           <div style={{ height: 'calc(100% - 72px)' }}>
             <EducationalChatbot />
           </div>
