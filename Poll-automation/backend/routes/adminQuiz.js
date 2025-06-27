@@ -382,35 +382,8 @@ router.post('/generate-questions-from-transcript', auth, isAdmin, async (req, re
         throw new Error('Failed to parse questions from Gemini response.');
       }
     }
-    // Create a new quiz for this transcript
-    const generateQuizCode = () => {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      let result = '';
-      for (let i = 0; i < 6; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return result;
-    };
-    let quizCode;
-    let isUnique = false;
-    while (!isUnique) {
-      quizCode = generateQuizCode();
-      const existingQuiz = await Quiz.findOne({ quizCode });
-      if (!existingQuiz) {
-        isUnique = true;
-      }
-    }
-    const quiz = new Quiz({
-      topic,
-      difficulty,
-      questions,
-      transcript,
-      createdBy: req.user._id,
-      status: 'active',
-      quizCode
-    });
-    await quiz.save();
-    res.json({ quizId: quiz._id, quizCode, topic, difficulty, questions, transcript });
+    // Only return the generated data, do not create/save a quiz here
+    res.json({ topic, difficulty, questions, transcript });
   } catch (error) {
     console.error('Error generating questions from transcript:', error?.response?.data || error);
     res.status(500).json({ message: 'Failed to generate questions', error: error?.response?.data || error.message });
