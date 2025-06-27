@@ -4,6 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GoogleGenAI } from "@google/genai";
 
+// Voice recognition setup
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
 const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 function PostQuestion() {
@@ -14,7 +17,46 @@ function PostQuestion() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [isRecording, setIsRecording] = useState(false);
+  const [recognitionInstance, setRecognitionInstance] = useState(null);
+
   const navigate = useNavigate();
+
+  const handleRecord = () => {
+    if (!SpeechRecognition) {
+      alert("Speech recognition is not supported in this browser.");
+      return;
+    }
+    if (isRecording) {
+      recognitionInstance?.stop();
+      setIsRecording(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setContent((prev) => prev + " " + transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+      alert("Speech recognition error: " + event.error);
+      setIsRecording(false);
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+
+    setRecognitionInstance(recognition);
+    setIsRecording(true);
+    recognition.start();
+  };
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -27,7 +69,7 @@ Return the response as a single valid JSON array of objects.
 
 Each object must include:
 - "question": (string)
-- "options": (an array of 4 plain strings — do NOT prefix with A), B), etc.)
+- "options": (an array of 4 plain strings — do NOT prefix with A), B), etc.))
 - "answer": (a single letter: "A", "B", "C", or "D", indicating the correct option)
 
       Content: """${content}"""
@@ -97,6 +139,14 @@ Each object must include:
         onChange={(e) => setContent(e.target.value)}
         className="auth-input"
       ></textarea>
+
+      <button
+        onClick={handleRecord}
+        className="auth-button"
+        style={{ marginBottom: "10px" }}
+      >
+        {isRecording ? "Stop Recording" : "Start Recording"}
+      </button>
 
       <button
         onClick={handleGenerate}
