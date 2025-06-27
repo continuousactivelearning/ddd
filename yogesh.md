@@ -28,3 +28,5 @@ Day 15
 Today I work on the routes and sampling the data for use
 Day 16
 Created sample user data for the Dopamine Driving Dashboard (DDD) to support immediate frontend integration and user testing without requiring manual input or authentication.
+Day 17
+Today, I worked on sample user data to allow the frontend to directly access it without requiring login.
