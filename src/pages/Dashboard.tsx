@@ -12,39 +12,46 @@ import EducationalChatbot from "./DDD-chatbot";
 import PeerComparisonRadar from "../components/Charts/PeerComparisonRadar";
 import "./styles.css";
 import { useEffect, useState } from "react";
+import { getDashboardMetricsById } from "../data/SampleUserData";
 
-const userId = "user_001"; 
 
-const metrics = [
-  {
-    icon: <Clock size={24} />,
-    title: "Work Time",
-    value: "12h 30m",
-    subtitle: "Weekly Total",
-    change: "+5.4%",
-  },
-  {
-    icon: <ListChecks size={24} />,
-    title: "Evaluation pending",
-    value: "36",
-    subtitle: "In This Week",
-    change: "+8.2%",
-  },
-  {
-    icon: <BarChart3 size={24} />,
-    title: "Evaluation Completed",
-    value: "59%",
-    subtitle: "Average",
-    change: "+1.5%",
-  },
-  {
-    icon: <Flame size={24} />,
-    title: "Current Streak",
-    value: "7 Days",
-    subtitle: "Daily Activity",
-    change: "🔥",
-  },
-];
+const userId = "user_002"; 
+
+const userMetrics = getDashboardMetricsById(userId);
+
+const metrics = userMetrics
+  ? [
+      {
+        icon: <Clock size={24} />,
+        title: "Work Time",
+        value: userMetrics.workTime,
+        subtitle: "Weekly Total",
+        change: "+5.4%",
+      },
+      {
+        icon: <ListChecks size={24} />,
+        title: "Evaluation pending",
+        value: `${userMetrics.evaluationsPending}`,
+        subtitle: "In This Week",
+        change: "+8.2%",
+      },
+      {
+        icon: <BarChart3 size={24} />,
+        title: "Evaluation Completed",
+        value: userMetrics.evaluationsCompleted,
+        subtitle: "Average",
+        change: "+1.5%",
+      },
+      {
+        icon: <Flame size={24} />,
+        title: "Current Streak",
+        value: userMetrics.streak,
+        subtitle: "Daily Activity",
+        change: "🔥",
+      },
+    ]
+  : [];
+
 
 const DashboardOverview = () => {
   const [theme, setTheme] = useState("light");
@@ -142,13 +149,13 @@ const DashboardOverview = () => {
       <div className="streaks-badges-section">
         <div className="dashboard-card">
           <div className="card-content">
-            <Streak />
+            <Streak userId={userId} />
             <h3 className="label">Your Streak</h3>
           </div>
         </div>
         <div className="dashboard-card">
           <div className="card-content-badges">
-            <Badges userId="user_002" />
+            <Badges userId={userId} />
             <h3 className="label">Achievement Badges</h3>
           </div>
         </div>

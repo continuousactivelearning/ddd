@@ -1,34 +1,24 @@
 import React from 'react';
 import './styles.css';
+import { getUserDataById } from '../../data/SampleUserData';
 
-const streakData = {
-  currentStreak: 12,
-  longestStreak: 25,
-  bestStreakPercent: 48,
-  week: [
-    { day: 'M', date: '01/15', completed: true },
-    { day: 'T', date: '01/16', completed: true },
-    { day: 'W', date: '01/17', completed: true },
-    { day: 'T', date: '01/18', completed: true },
-    { day: 'F', date: '01/19', completed: true },
-    { day: 'S', date: '01/20', completed: true },
-    { day: 'S', date: '01/21', completed: false },
-  ],
-  milestone: {
-    goal: 30,
-    current: 12,
-    label: 'Monthly Master Badge',
-  },
-  achievements: [
-    { title: '7 Day Streak', desc: 'Week Warrior Badge', unlocked: true },
-    { title: '14 Day Streak', desc: 'Consistency Champion', unlocked: true },
-    { title: '30 Day Streak', desc: 'Monthly Master Badge', unlocked: false },
-    { title: '100 Day Streak', desc: 'Century Streak Legend', unlocked: false },
-  ],
-};
+interface StreakProps {
+  userId: string;
+}
 
-const Streak: React.FC = () => {
-  const { currentStreak, longestStreak, bestStreakPercent, week, milestone, achievements } = streakData;
+const Streak: React.FC<StreakProps> = ({ userId }) => {
+  const user = getUserDataById(userId);
+  if (!user) return null;
+
+  const { current, longest, bestPercent, week } = user.streak;
+
+  const milestoneGoal = 30;
+  const achievements = [
+    { title: '7 Day Streak', desc: 'Week Warrior Badge', unlocked: current >= 7 },
+    { title: '14 Day Streak', desc: 'Consistency Champion', unlocked: current >= 14 },
+    { title: '30 Day Streak', desc: 'Monthly Master Badge', unlocked: current >= 30 },
+    { title: '100 Day Streak', desc: 'Century Streak Legend', unlocked: current >= 100 },
+  ];
 
   return (
     <div className="streak-card">
@@ -39,7 +29,7 @@ const Streak: React.FC = () => {
       </div>
 
       <div className="streak-count">
-        <div className="count">{currentStreak}</div>
+        <div className="count">{current}</div>
         <div className="label">Current Streak (days)</div>
       </div>
 
@@ -56,24 +46,27 @@ const Streak: React.FC = () => {
 
       <div className="streak-metrics">
         <div>
-          <div className="metric-value">{longestStreak}</div>
+          <div className="metric-value">{longest}</div>
           <div className="metric-label">Longest Streak</div>
         </div>
         <div>
-          <div className="metric-value">{bestStreakPercent}%</div>
+          <div className="metric-value">{bestPercent}%</div>
           <div className="metric-label">of Best Streak</div>
         </div>
       </div>
 
       <div className="milestone-progress">
         <div className="milestone-label">Next Milestone</div>
-        <div className="milestone-title">{milestone.label}</div>
+        <div className="milestone-title">Monthly Master Badge</div>
         <div className="progress-bar">
-          <div className="progress-fill" style={{ width: `${(milestone.current / milestone.goal) * 100}%` }} />
+          <div
+            className="progress-fill"
+            style={{ width: `${(current / milestoneGoal) * 100}%` }}
+          />
         </div>
         <div className="milestone-stats">
-          {milestone.current}/{milestone.goal} days
-          <span className="milestone-remaining">{milestone.goal - milestone.current} days to go</span>
+          {current}/{milestoneGoal} days
+          <span className="milestone-remaining">{milestoneGoal - current} days to go</span>
         </div>
       </div>
 

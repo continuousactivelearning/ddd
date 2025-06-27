@@ -241,3 +241,71 @@ export const sampleUserData: UserDashboardData[] = [
 export const getUserDataById = (id: string): UserDashboardData | undefined => {
   return sampleUserData.find((user) => user.id === id);
 };
+
+export const invitations = [
+  { id: 1, name: "Anshika Shukla", topic: "Teamwork", instructor: "Dr. A. Kumar", deadline: "Tomorrow", rating: 4.5 },
+  { id: 2, name: "Gaurpad Shukla", topic: "Communication", instructor: "Prof. R. Rao", deadline: "Friday", rating: 4.2 },
+  { id: 3, name: "Yogesh Tharwani", topic: "Creativity", instructor: "Dr. M. Singh", deadline: "Monday", rating: 4.8 },
+];
+
+export const activeReviews = [
+  { id: 4, name: "Jhalak", topic: "Problem Solving", progress: 60 },
+  { id: 5, name: "Anshika Shukla", topic: "Technical Skills", progress: 30 },
+  { id: 6, name: "Gaurpad Shukla", topic: "Leadership", progress: 80 },
+];
+
+export const pastReviews = [
+  { id: 7, name: "Anshika Shukla", topic: "Teamwork", summary: "Excellent collaborator.", score: 9 },
+  { id: 8, name: "Jhalak", topic: "Communication", summary: "Clear and concise.", score: 8 },
+  { id: 9, name: "Yogesh Tharwani", topic: "Initiative", summary: "Great leadership.", score: 10 },
+];
+
+export const weeklyFeedback = [
+  { label: 'Week 1', MERN: 8, DataStructuresAndAlgorithms: 7, SQLAnalytics: 6 , CloudComputing: 5},
+  { label: 'Week 2', MERN: 9, DataStructuresAndAlgorithms: 8, SQLAnalytics: 7 , CloudComputing: 6},
+  { label: 'Week 3', MERN: 7, DataStructuresAndAlgorithms: 9, SQLAnalytics: 8 , CloudComputing: 7},
+  { label: 'Week 4', MERN: 8, DataStructuresAndAlgorithms: 7, SQLAnalytics: 9 , CloudComputing: 8},
+];
+
+export const monthlyFeedback = [
+  { label: 'Jan', MERN: 7, DataStructuresAndAlgorithms: 6, SQLAnalytics: 5, CloudComputing: 4 },
+  { label: 'Feb', MERN: 8, DataStructuresAndAlgorithms: 7, SQLAnalytics: 7, CloudComputing: 5 },
+  { label: 'Mar', MERN: 9, DataStructuresAndAlgorithms: 8, SQLAnalytics: 8, CloudComputing: 6 },
+  { label: 'Apr', MERN: 9, DataStructuresAndAlgorithms: 9, SQLAnalytics: 9, CloudComputing: 7 },
+];
+
+export const leaderboardUsers = sampleUserData.map((user, index) => {
+  const totalXP = user.xp.daily.reduce((sum, entry) => sum + entry.xp + entry.bonus, 0);
+  const totalScore = user.performance.score + user.performance.accuracy + user.performance.totalQuestions;
+  return {
+    name: user.name,
+    level: Math.floor(user.performance.score / 2) + 20, // Simple level logic
+    badges: user.badges.length,
+    score: totalScore * 10, // Derived score
+    xp: totalXP,
+    streak: user.streak.current,
+    change: [125, 89, -23, 156][index] || 0, // Dummy change data
+    position: index + 1,
+    you: user.name === 'Yogesh', // Highlight this user
+  };
+});
+
+export const getDashboardMetricsById = (userId: string) => {
+  const user = sampleUserData.find((u) => u.id === userId);
+  if (!user) return null;
+
+  // Calculate work time from total hours
+  const totalMinutes = Math.round(user.progress.totalHours * 60);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const workTime = `${hours}h ${minutes}m`;
+
+  return {
+    workTime,
+    evaluationsPending: 36, // Static or can be calculated if data available
+    evaluationsCompleted: "59%", // Static for now
+    streak: `${user.streak.current} Days`,
+  };
+};
+
+
