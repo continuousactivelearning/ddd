@@ -183,11 +183,6 @@ const Dashboard = () => {
           </Box>
         </Box>
 
-        {/* Voice Recorder Section */}
-        <Box sx={{ mb: 6, px: { xs: 2, md: 4 } }}>
-          <VoiceRecorder onSave={(blob) => { alert('Audio ready to upload!'); }} />
-        </Box>
-
         {/* Enhanced Stats Cards - Full Width, 6 per row */}
         <Grid container spacing={3} sx={{ mb: 6, mt: 4, px: { xs: 0, md: 4 }, width: '100%' }} justifyContent="center">
           {[
