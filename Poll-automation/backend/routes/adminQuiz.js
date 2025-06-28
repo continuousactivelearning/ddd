@@ -6,6 +6,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const axios = require('axios');
+const NotificationService = require('../services/notificationService');
 
 // Initialize Google AI
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY);
@@ -84,6 +85,15 @@ router.post('/create', auth, isAdmin, async (req, res) => {
     });
 
     await quiz.save();
+
+    // Notify all students about the new quiz
+    try {
+      const notifiedCount = await NotificationService.notifyStudentsForNewQuiz(quiz, createdBy);
+      console.log(`Notified ${notifiedCount} students about new quiz: ${quiz.topic}`);
+    } catch (notificationError) {
+      console.error('Error sending notifications:', notificationError);
+      // Don't fail the quiz creation if notifications fail
+    }
 
     // Generate student-facing URL
     const studentUrl = `http://localhost:5173/quiz/${quizCode}`;

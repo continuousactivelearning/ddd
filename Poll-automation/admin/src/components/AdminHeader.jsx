@@ -14,7 +14,9 @@ import {
   Play,
   Pause,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  BookOpen,
+  Trophy
 } from 'lucide-react';
 import { 
   Box, 
@@ -34,6 +36,8 @@ import {
   ListItemText,
   Chip
 } from '@mui/material';
+import axios from '../utils/axios';
+import { io } from 'socket.io-client';
 import './AdminHeader.css';
 
 const AdminHeader = () => {
@@ -44,6 +48,8 @@ const AdminHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [notificationAnchorEl, setNotificationAnchorEl] = useState(null);
   const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [socket, setSocket] = useState(null);
 
   // Debug: Log user data
   useEffect(() => {
@@ -55,46 +61,64 @@ const AdminHeader = () => {
     }
   }, [user]);
 
-  // Mock notifications based on quiz status changes
+  // Initialize Socket.IO connection
   useEffect(() => {
-    const mockNotifications = [
-      {
-        id: 1,
-        type: 'quiz_activated',
-        message: 'Quiz "JavaScript Basics" is now active',
-        quizName: 'JavaScript Basics',
-        time: '2 minutes ago',
-        read: false
-      },
-      {
-        id: 2,
-        type: 'quiz_deactivated',
-        message: 'Quiz "React Fundamentals" set to inactive',
-        quizName: 'React Fundamentals',
-        time: '15 minutes ago',
-        read: false
-      },
-      {
-        id: 3,
-        type: 'quiz_completed',
-        message: 'Quiz "Python Basics" completed by 25 students',
-        quizName: 'Python Basics',
-        time: '1 hour ago',
-        read: true
-      },
-      {
-        id: 4,
-        type: 'quiz_created',
-        message: 'New quiz "Database Design" created',
-        quizName: 'Database Design',
-        time: '2 hours ago',
-        read: true
-      }
-    ];
-    setNotifications(mockNotifications);
-  }, []);
+    if (user) {
+      const newSocket = io('http://localhost:5000');
+      setSocket(newSocket);
 
-  const unreadCount = notifications.filter(n => !n.read).length;
+      // Authenticate with the server
+      newSocket.emit('authenticate', user._id);
+
+      // Listen for new notifications
+      newSocket.on('new_notification', (notification) => {
+        setNotifications(prev => [notification, ...prev]);
+        setUnreadCount(prev => prev + 1);
+      });
+
+      return () => {
+        newSocket.disconnect();
+      };
+    }
+  }, [user]);
+
+  // Fetch notifications from API
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('/api/notifications');
+        setNotifications(response.data);
+        
+        // Calculate unread count
+        const unread = response.data.filter(n => !n.read).length;
+        setUnreadCount(unread);
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+      }
+    };
+
+    if (user) {
+      fetchNotifications();
+    }
+  }, [user]);
+
+  // Fetch unread count periodically
+  useEffect(() => {
+    const fetchUnreadCount = async () => {
+      try {
+        const response = await axios.get('/api/notifications/unread-count');
+        setUnreadCount(response.data.count);
+      } catch (error) {
+        console.error('Error fetching unread count:', error);
+      }
+    };
+
+    if (user) {
+      fetchUnreadCount();
+      const interval = setInterval(fetchUnreadCount, 30000); // Check every 30 seconds
+      return () => clearInterval(interval);
+    }
+  }, [user]);
 
   // Handle scroll effect
   useEffect(() => {
@@ -126,6 +150,33 @@ const AdminHeader = () => {
     logout();
   };
 
+  const handleNotificationItemClick = async (notification) => {
+    try {
+      if (!notification.read) {
+        await axios.patch(`/api/notifications/${notification._id}/read`);
+        setNotifications(prev => 
+          prev.map(n => 
+            n._id === notification._id ? { ...n, read: true } : n
+          )
+        );
+        setUnreadCount(prev => Math.max(0, prev - 1));
+      }
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
+  };
+
+  const formatTimeAgo = (dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+
+    if (diffInSeconds < 60) return 'Just now';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    return `${Math.floor(diffInSeconds / 86400)} days ago`;
+  };
+
   const getNotificationIcon = (type) => {
     switch (type) {
       case 'quiz_activated':
@@ -136,6 +187,10 @@ const AdminHeader = () => {
         return <CheckCircle size={16} color="#3B82F6" />;
       case 'quiz_created':
         return <AlertCircle size={16} color="#8B5CF6" />;
+      case 'new_quiz_available':
+        return <BookOpen size={16} color="#10B981" />;
+      case 'quiz_result':
+        return <Trophy size={16} color="#F59E0B" />;
       default:
         return <Bell size={16} />;
     }
@@ -144,8 +199,10 @@ const AdminHeader = () => {
   const getNotificationColor = (type) => {
     switch (type) {
       case 'quiz_activated':
+      case 'new_quiz_available':
         return 'success';
       case 'quiz_deactivated':
+      case 'quiz_result':
         return 'warning';
       case 'quiz_completed':
         return 'info';
@@ -598,7 +655,8 @@ const AdminHeader = () => {
             {notifications.length > 0 ? (
               notifications.map((notification) => (
                 <ListItem
-                  key={notification.id}
+                  key={notification._id}
+                  onClick={() => handleNotificationItemClick(notification)}
                   sx={{
                     py: 2,
                     px: 3,
@@ -612,7 +670,8 @@ const AdminHeader = () => {
                       background: theme.palette.mode === 'dark'
                         ? 'rgba(255, 255, 255, 0.05)'
                         : 'rgba(0, 0, 0, 0.05)',
-                    }
+                    },
+                    cursor: 'pointer'
                   }}
                 >
                   <ListItemIcon sx={{ minWidth: 40 }}>
@@ -622,10 +681,10 @@ const AdminHeader = () => {
                     primary={
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                         <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                          {notification.quizName}
+                          {notification.quizName || notification.title}
                         </Typography>
                         <Chip 
-                          label={notification.type.replace('quiz_', '')} 
+                          label={notification.type.replace(/_/g, ' ')} 
                           color={getNotificationColor(notification.type)}
                           size="small"
                           sx={{ height: 20, fontSize: '0.7rem' }}
@@ -638,7 +697,7 @@ const AdminHeader = () => {
                           {notification.message}
                         </Typography>
                         <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
-                          {notification.time}
+                          {formatTimeAgo(notification.createdAt)}
                         </Typography>
                       </Box>
                     }
