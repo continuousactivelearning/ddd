@@ -4,6 +4,7 @@ const Quiz = require('../models/Quiz');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
 const { handleQuizSubmission } = require('../services/quizSubmissionHandler');
+const NotificationService = require('../services/notificationService');
 
 // Get all active quizzes (for student dashboard) - MUST BE BEFORE /:quizCode route
 router.get('/active', auth, async (req, res) => {
@@ -165,6 +166,20 @@ router.post('/:quizCode/submit', auth, async (req, res) => {
       totalQuestions: quiz.questions.length,
       timeTaken: timeTaken
     });
+
+    // Send notifications
+    try {
+      // Notify admin about quiz completion
+      await NotificationService.notifyAdminForQuizCompletion(quiz, student, score);
+      
+      // Notify student about their result
+      await NotificationService.notifyStudentForQuizResult(quiz, student, score);
+      
+      console.log(`Notifications sent for quiz completion: ${quiz.topic} by ${student.name}`);
+    } catch (notificationError) {
+      console.error('Error sending notifications:', notificationError);
+      // Don't fail the quiz submission if notifications fail
+    }
 
     res.json({
       message: 'Quiz submitted successfully',
