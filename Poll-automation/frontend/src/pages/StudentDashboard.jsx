@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useRef, useEffect, useCallback } from 'react';
-import Header from '../components/Header';
+import DashboardHeader from '../components/DashboardHeader';
 import { Clock, Users, Award, BarChart2, Calendar, CheckCircle, XCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -44,13 +44,44 @@ const StudentDashboard = () => {
     setIsDragging(false);
   };
 
+  const handleTouchStart = (e) => {
+    if (!hasDraggedRef.current && e.touches && e.touches.length === 1) {
+      setIsDragging(true);
+      setStartY(e.touches[0].clientY);
+      setCurrentY(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging || !e.touches || e.touches.length !== 1) return;
+    setCurrentY(e.touches[0].clientY);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    const dragDistance = startY - currentY;
+    if (dragDistance > 100 && !hasDraggedRef.current) {
+      setShowMainContent(true);
+      hasDraggedRef.current = true;
+      setTimeout(() => {
+        navigate('/student/dashboard');
+      }, 1000);
+    } else {
+      setCurrentY(startY);
+    }
+    setIsDragging(false);
+  };
+
   return (
     <div 
       className="student-dashboard"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp} 
+      onMouseLeave={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       style={{
         height: showMainContent ? 'auto' : '100vh',
         overflowY: showMainContent ? 'auto' : 'hidden',
@@ -58,7 +89,7 @@ const StudentDashboard = () => {
         background: 'linear-gradient(135deg, #1a1c2e 0%, #2d1b69 100%)',
       }}
     >
-      <Header />
+      <DashboardHeader />
       <Chatbot />
 
       {!showMainContent && (
