@@ -32,4 +32,6 @@ Day 17
 Today, I worked on sample user data to allow the frontend to directly access it without requiring login.
 Day 18
 Today, I began modularizing backend code to support future scalability and improve team collaboration by separating route logic, controllers, and models.
+Day 19
+Today, I made a teacher dashboard
 
