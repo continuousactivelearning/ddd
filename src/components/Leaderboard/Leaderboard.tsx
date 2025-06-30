@@ -1,4 +1,5 @@
 import './styles.css';
+import "../../pages/styles.css";
 import { leaderboardUsers } from '../../data/SampleUserData'; // Adjust path as needed
 
 const Leaderboard = () => {

@@ -5,21 +5,31 @@ import {
   Settings,
   Medal,
   Users,
-  BarChart3 // ✅ NEW ICON
+  BarChart3
 } from "lucide-react";
-import "./sidebar.css";
-import userAvatar from '../../assets/user-avatar.jpg';
+import userAvatarFallback from '../../assets/user-avatar.jpg';
 import { useNavigate } from "react-router-dom";
+import { getUserDataById } from "../../data/SampleUserData";
+import "../../pages/styles.css"; 
+
+const userId = "user_001"; 
+const user = getUserDataById(userId);
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
+  if (!user) return null;
+
   return (
     <aside className="sidebar">
       <div className="user-profile">
-        <img src={userAvatar} alt="User Avatar" className="user-avatar" />
-        <h2 className="user-name">Gaurpad Shukla</h2>
-        <div className="user-role">Student</div>
+        <img
+          src={user.avatar || userAvatarFallback}
+          alt="User Avatar"
+          className="user-avatar"
+        />
+        <h2 className="user-name">{user.name}</h2>
+        <div className="user-role">{user.role || "Student"}</div>
       </div>
 
       <ul className="menu">
@@ -28,7 +38,7 @@ const Sidebar = () => {
         <li onClick={() => navigate("/achievements")}><Medal size={20} /> Achievements</li>
         <li onClick={() => navigate("/calendar")}><CalendarDays size={20} /> Calendar</li>
         <li onClick={() => navigate("/peer-review")}><Users size={20} /> Peer Reviews</li>
-        <li onClick={() => navigate("/feedback-trends")}><BarChart3 size={20} /> Feedback Trends</li> {/* ✅ NEW */}
+        <li onClick={() => navigate("/feedback-trends")}><BarChart3 size={20} /> Feedback Trends</li>
         <li onClick={() => navigate("/settings")}><Settings size={20} /> Settings</li>
       </ul>
     </aside>

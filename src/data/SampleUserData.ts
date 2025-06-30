@@ -1,6 +1,8 @@
 export interface UserDashboardData {
   id: string;
   name: string;
+  avatar?: string; 
+  role?: string;
   performance: {
     score: number;
     accuracy: number;
@@ -31,6 +33,8 @@ export const sampleUserData: UserDashboardData[] = [
   {
     id: "user_001",
     name: "Gaurpad",
+    avatar: "src/assets/user-avatar.jpg",
+    role: "Student",
     performance: { score: 80, accuracy: 90, totalQuestions: 10, quizScore: "7.5/10" },
     peerComparison: [8, 6, 7, 9, 8],
     progress: {
@@ -83,6 +87,8 @@ export const sampleUserData: UserDashboardData[] = [
   {
     id: "user_002",
     name: "Anshika",
+    avatar: "src/assets/anshika.jpg", 
+    role: "Student",
     performance: { score: 88, accuracy: 87, totalQuestions: 12, quizScore: "8.1/10" },
     peerComparison: [7, 8, 6, 8, 7],
     progress: {
@@ -135,6 +141,8 @@ export const sampleUserData: UserDashboardData[] = [
   {
     id: "user_003",
     name: "Jhalak",
+    avatar: "src/assets/jhalak.jpg", 
+    role: "Student",
     performance: { score: 82, accuracy: 85, totalQuestions: 14, quizScore: "7.8/10" },
     peerComparison: [6, 6, 7, 7, 6],
     progress: {
@@ -187,6 +195,8 @@ export const sampleUserData: UserDashboardData[] = [
   {
     id: "user_004",
     name: "Yogesh",
+    avatar: "../../assets/user-avatar.jpg", 
+    role: "Student",
     performance: { score: 90, accuracy: 93, totalQuestions: 16, quizScore: "9.1/10" },
     peerComparison: [9, 9, 8, 8, 9],
     progress: {

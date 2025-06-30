@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import '../../pages/styles.css';
 import { getUserDataById } from '../../data/SampleUserData';
 
 interface StreakProps {

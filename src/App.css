@@ -8,7 +8,7 @@ body,
 html,
 #root {
   height: 100%;
-  color: #fafcfb;
+  color: #a72b2b;
   font-family: 'Inter', sans-serif;
   background-color: rgb(247, 253, 251);
   /*background: linear-gradient(135deg, #020202, #ebebed);
@@ -177,7 +177,7 @@ body {
 }
 
 .dashboard-new.light {
-  background-color: #f7fdfb;
+  background-color: #67ad96;
   color: #040404;
 }
 

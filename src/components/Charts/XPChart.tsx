@@ -11,10 +11,11 @@ import {
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { getUserDataById } from '../../data/SampleUserData';
- // import sample data
 
+
+ const userId = "user_001"; // Replace with the actual user ID you want to fetch data for
 const XPChart = () => {
-  const user = getUserDataById("user_001"); // use static userId for now
+  const user = getUserDataById(userId);
   if (!user) return null;
 
   const data = user.xp.daily;

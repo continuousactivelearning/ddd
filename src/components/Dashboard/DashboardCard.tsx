@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import '../../pages/styles.css';
 
 export interface CardProps {
   icon: React.ReactNode;
