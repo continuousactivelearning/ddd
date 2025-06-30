@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import DashboardHeader from '../../components/DashboardHeader';
+import Header from '../../components/Header';
 import { Award, Calendar, CheckCircle, Clock, Users, BarChart2, Play, Trophy, Target, Plus, TrendingUp, Bookmark, Video } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import './Dashboard.css';
@@ -32,6 +32,7 @@ import { motion } from 'framer-motion';
 import { CircularProgress, Typography, TextField, Button, Box } from '@mui/material';
 import axiosInstance from '../../utils/axios';
 import Chatbot from '../../components/ui/Chatbot';
+import DashboardHeader from '../../components/DashboardHeader';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
