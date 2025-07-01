@@ -1,6 +1,7 @@
 const Notification = require('../models/Notification');
 const User = require('../models/User');
 const { sendNotification, sendNotificationToMultipleUsers } = require('../utils/socketNotifications');
+const { sendMail } = require('../utils/mail');
 
 class NotificationService {
   // Create a notification for a specific user
@@ -44,7 +45,11 @@ class NotificationService {
         role: 'student'
       });
 
-      // Create notifications for each student
+      // Debug logs
+      console.log('Allowed students:', allowedStudents);
+      console.log('Student users found:', studentUsers.map(s => s.email));
+
+      // Create notifications for each student user (existing in DB)
       const notifications = studentUsers.map(student => ({
         recipientId: student._id,
         type: 'new_quiz_available',
@@ -69,8 +74,18 @@ class NotificationService {
         quizName: quiz.topic,
         createdAt: new Date()
       };
-      
       sendNotificationToMultipleUsers(studentIds, realTimeNotification);
+
+      // Send email to all allowedStudents (even if not in DB)
+      const quizUrl = `http://localhost:5173/quiz/${quiz.quizCode}`;
+      await Promise.all(allowedStudents.map(email =>
+        sendMail({
+          to: email,
+          subject: `🚀 New Quiz: ${quiz.topic} (from ${admin.name})`,
+          text: `Hello,\n\nA new quiz titled "${quiz.topic}" has just been created by ${admin.name}.\n\nYou can access and attempt the quiz directly from your dashboard or by clicking the link below:\n${quizUrl}\n\nGood luck!\n\nBest regards,\nQuiz Team`,
+          html: `<div style=\"font-family:sans-serif;max-width:500px;margin:auto;\"><h2>New Quiz Available!</h2><p>Hello,</p><p>A new quiz titled <b>"${quiz.topic}"</b> has just been created by <b>${admin.name}</b>.</p><p style=\"margin:20px 0;\"><a href=\"${quizUrl}\" style=\"background:#4CAF50;color:#fff;padding:10px 20px;text-decoration:none;border-radius:5px;display:inline-block;\">Attempt the Quiz</a></p><p>Or copy and paste this link in your browser:<br/><a href=\"${quizUrl}\">${quizUrl}</a></p><hr/><p style=\"font-size:12px;color:#888;\">Best regards,<br/>Quiz Team</p></div>`
+        })
+      ));
 
       return notifications.length;
     } catch (error) {

@@ -4,6 +4,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { auth, isAdmin } = require('../middleware/auth');
+const { sendMail } = require('../utils/mail');
 
 const router = express.Router();
 
@@ -133,8 +134,22 @@ router.post('/allowed-students', auth, isAdmin, async (req, res) => {
     if (!admin || admin.role !== 'admin') {
       return res.status(403).json({ message: 'Not authorized' });
     }
+    // Find newly added students
+    const previousAllowed = admin.allowedStudents || [];
+    const newlyAdded = allowedStudents.filter(email => !previousAllowed.includes(email));
     admin.allowedStudents = allowedStudents;
     await admin.save();
+    // Send email to newly added students
+    if (newlyAdded.length > 0) {
+      await Promise.all(newlyAdded.map(email =>
+        sendMail({
+          to: email,
+          subject: 'You have been granted access to quizzes',
+          text: `Hello,\n\nYou have been granted access to quizzes by ${admin.name}. You can now log in and participate in quizzes on the platform.\n\nBest regards,\nQuiz Team`,
+          html: `<p>Hello,</p><p>You have been granted access to quizzes by <b>${admin.name}</b>. You can now log in and participate in quizzes on the platform.</p><p>Best regards,<br/>Quiz Team</p>`
+        })
+      ));
+    }
     res.json({ message: 'Allowed students updated', allowedStudents });
   } catch (error) {
     res.status(500).json({ message: 'Failed to update allowed students' });
