@@ -34,4 +34,6 @@ Day 18
 Today, I began modularizing backend code to support future scalability and improve team collaboration by separating route logic, controllers, and models.
 Day 19
 Today, I made a teacher dashboard
+Day 20
+Today I made assignment sumbission component
 
