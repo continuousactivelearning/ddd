@@ -2,6 +2,7 @@ export interface UserDashboardData {
   id: string;
   name: string;
   avatar?: string; 
+  email?: string;
   role?: string;
   performance: {
     score: number;
@@ -35,6 +36,7 @@ export const sampleUserData: UserDashboardData[] = [
     name: "Gaurpad",
     avatar: "src/assets/user-avatar.jpg",
     role: "Student",
+    email: "gaurpadshukla@gmail.com",
     performance: { score: 80, accuracy: 90, totalQuestions: 10, quizScore: "7.5/10" },
     peerComparison: [8, 6, 7, 9, 8],
     progress: {
@@ -89,6 +91,7 @@ export const sampleUserData: UserDashboardData[] = [
     name: "Anshika",
     avatar: "src/assets/anshika.jpg", 
     role: "Student",
+    email: "anshikashukla0410@gmail.com",
     performance: { score: 88, accuracy: 87, totalQuestions: 12, quizScore: "8.1/10" },
     peerComparison: [7, 8, 6, 8, 7],
     progress: {
@@ -289,14 +292,14 @@ export const leaderboardUsers = sampleUserData.map((user, index) => {
   const totalScore = user.performance.score + user.performance.accuracy + user.performance.totalQuestions;
   return {
     name: user.name,
-    level: Math.floor(user.performance.score / 2) + 20, // Simple level logic
+    level: Math.floor(user.performance.score / 2) + 20, 
     badges: user.badges.length,
-    score: totalScore * 10, // Derived score
+    score: totalScore * 10, 
     xp: totalXP,
     streak: user.streak.current,
-    change: [125, 89, -23, 156][index] || 0, // Dummy change data
+    change: [125, 89, -23, 156][index] || 0, 
     position: index + 1,
-    you: user.name === 'Yogesh', // Highlight this user
+    you: user.name === 'Yogesh', 
   };
 });
 
@@ -304,7 +307,6 @@ export const getDashboardMetricsById = (userId: string) => {
   const user = sampleUserData.find((u) => u.id === userId);
   if (!user) return null;
 
-  // Calculate work time from total hours
   const totalMinutes = Math.round(user.progress.totalHours * 60);
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
@@ -312,10 +314,34 @@ export const getDashboardMetricsById = (userId: string) => {
 
   return {
     workTime,
-    evaluationsPending: 36, // Static or can be calculated if data available
-    evaluationsCompleted: "59%", // Static for now
+    evaluationsPending: 36, 
+    evaluationsCompleted: "59%", 
     streak: `${user.streak.current} Days`,
   };
+};
+
+export const getUserByCredentials = (name: string, email: string) => {
+  const localUsers = JSON.parse(localStorage.getItem("sampleUserData") || "[]") as UserDashboardData[];
+  const allUsers = localUsers.length ? localUsers : sampleUserData;
+  return allUsers.find(u => u.name.toLowerCase() === name.toLowerCase() && u.email?.toLowerCase() === email.toLowerCase());
+};
+
+
+export const loadUsers = (): UserDashboardData[] => {
+  const localData = localStorage.getItem("sampleUserData");
+  return localData ? JSON.parse(localData) : sampleUserData;
+};
+
+// Save all users back to localStorage
+export const saveUsers = (users: UserDashboardData[]) => {
+  localStorage.setItem("sampleUserData", JSON.stringify(users));
+};
+
+// Add a new user
+export const addUser = (newUser: UserDashboardData) => {
+  const users = loadUsers();
+  users.push(newUser);
+  saveUsers(users);
 };
 
 
