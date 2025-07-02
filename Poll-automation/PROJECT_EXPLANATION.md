@@ -8,6 +8,7 @@
   - [Main Models](#main-models)
   - [Routes & Services](#routes--services)
   - [Quiz/Meet/Stat Logic](#quizmeetstat-logic)
+  - [Email Notifications](#email-notifications)
 - [Frontend Architecture](#frontend-architecture)
   - [Tech Stack](#frontend-tech-stack)
   - [Main Pages & Components](#main-pages--components)
@@ -105,6 +106,47 @@ ddd/
   2. A participant record is added to the quiz
   3. StudentStat is updated (quizzes taken, scores, accuracy, etc.)
   4. Leaderboard is updated and sorted by score/time
+
+### Email Notifications
+
+#### Overview
+The project includes an email notification feature implemented using [Nodemailer](https://nodemailer.com/) in the backend. This allows the system to send emails to users for important events, such as when a new quiz is created or when students are granted access to quizzes.
+
+#### How It Works
+- **Nodemailer** is configured in `backend/utils/mail.js` using credentials from environment variables.
+- The `sendMail` function is used to send emails with customizable recipients, subjects, and content (plain text or HTML).
+- Email notifications are triggered in scenarios such as:
+  - When an admin adds new students to their allowed list (in `routes/adminAuth.js`)
+  - When a new quiz is created, all allowed students receive an email with a direct link to the quiz (in `services/notificationService.js`)
+
+#### Example Usage
+```js
+// backend/utils/mail.js
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
+});
+async function sendMail({ to, subject, text, html }) {
+  return transporter.sendMail({ from: process.env.EMAIL_USER, to, subject, text, html });
+}
+```
+
+**Trigger Example:**
+```js
+// In backend/services/notificationService.js
+await sendMail({
+  to: email,
+  subject: `New Quiz: ${quiz.topic}`,
+  text: `A new quiz is available!`,
+  html: `<b>A new quiz is available!</b>`
+});
+```
+
+#### Benefits
+- Ensures students and admins are promptly informed about important events.
+- Supports both plain text and rich HTML emails.
+- Easily extensible for future notification needs (e.g., quiz results, reminders).
 
 ---
 
