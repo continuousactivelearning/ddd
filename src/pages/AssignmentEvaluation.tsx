@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
-
-interface EvaluationData {
-  peerName: string;
-  assignmentTitle: string;
-  subject: string;
-  pdfUrl: string; // Replace with actual file URL if available
-}
-
-const mockAssignment: EvaluationData = {
-  peerName: 'John Doe',
-  assignmentTitle: 'Electricity and Magnetism Report',
-  subject: 'Physics',
-  pdfUrl: 'https://example.com/sample-assignment.pdf', // Replace with actual URL or Blob
-};
+import { evaluationAssignments } from '../data/EvaluationAssignmentsTemp';
+import type { EvaluationAssignment } from '../data/EvaluationAssignmentsTemp';
 
 const AssignmentEvaluation: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState('');
   const [feedback, setFeedback] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false); 
   const [error, setError] = useState('');
+
+  const currentAssignment: EvaluationAssignment | undefined = evaluationAssignments[currentIndex];
 
   const handleSubmit = () => {
     if (!score || isNaN(Number(score)) || Number(score) < 0 || Number(score) > 100) {
@@ -33,13 +24,18 @@ const AssignmentEvaluation: React.FC = () => {
     setScore('');
     setFeedback('');
     setSubmitted(false);
+    if (currentIndex + 1 < evaluationAssignments.length) {
+      setCurrentIndex(currentIndex + 1); // Go to next assignment
+    }
   };
+
+  if (!currentAssignment) return <p style={{ paddingLeft: '230px' }}>No assignments to evaluate.</p>;
 
   return (
     <div style={{ padding: '40px', paddingLeft: '230px', backgroundColor: 'white', minHeight: '100vh' }}>
       {!submitted ? (
         <div style={{
-          maxWidth: '800px',
+          maxWidth: '1000px',
           margin: '0 auto',
           backgroundColor: 'white',
           border: '1px solid #e0e0e0',
@@ -51,22 +47,17 @@ const AssignmentEvaluation: React.FC = () => {
             Assignment Evaluation
           </h2>
           <p style={{ color: '#4B5563', marginBottom: '20px' }}>
-            Evaluate the submitted assignment below.
+            Evaluate the assignment submitted by <strong>{currentAssignment.peerName}</strong>.
           </p>
 
           <div style={{ marginBottom: '16px' }}>
-            <p style={{ fontWeight: 'bold', color: '#047857' }}>{mockAssignment.assignmentTitle}</p>
-            <p style={{ color: '#4B5563' }}>
-              <span style={{ fontWeight: 'medium' }}>Submitted by:</span> {mockAssignment.peerName}
-            </p>
-            <p style={{ color: '#4B5563' }}>
-              <span style={{ fontWeight: 'medium' }}>Subject:</span> {mockAssignment.subject}
-            </p>
+            <p style={{ fontWeight: 'bold', color: '#047857' }}>{currentAssignment.assignmentTitle}</p>
+            <p style={{ color: '#4B5563' }}><strong>Subject:</strong> {currentAssignment.subject}</p>
           </div>
 
           <div style={{ marginBottom: '24px' }}>
             <iframe
-              src={mockAssignment.pdfUrl}
+              src={currentAssignment.pdfUrl}
               title="Assignment PDF"
               style={{
                 width: '100%',
@@ -86,7 +77,7 @@ const AssignmentEvaluation: React.FC = () => {
               value={score}
               onChange={(e) => setScore(e.target.value)}
               style={{
-                width: '100%',
+                width: '40%',
                 padding: '10px',
                 borderRadius: '8px',
                 border: '1px solid #ccc'
@@ -146,7 +137,7 @@ const AssignmentEvaluation: React.FC = () => {
             Evaluation Submitted!
           </h2>
           <p style={{ color: '#4B5563', marginBottom: '20px' }}>
-            Thank you for evaluating <strong>{mockAssignment.peerName}'s</strong> assignment.
+            You evaluated <strong>{currentAssignment.peerName}</strong>'s assignment.
           </p>
           <div style={{
             textAlign: 'left',
@@ -172,7 +163,7 @@ const AssignmentEvaluation: React.FC = () => {
               cursor: 'pointer'
             }}
           >
-            Evaluate Another Assignment
+            Evaluate Next Assignment
           </button>
         </div>
       )}

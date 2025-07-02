@@ -22,7 +22,7 @@ const Sidebar = () => {
   if (!user) return null;
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" style={{ overflowY: "auto", maxHeight: "100vh" }}>
       <div className="user-profile">
         <img
           src={user.avatar || userAvatarFallback}
