@@ -15,7 +15,7 @@
   --black-bean: #301014;
   
   /* Enhanced Light Mode Theme Variables */
-  --bg-primary: linear-gradient(135deg, #8cfaf8 0%, #a8e6cf 100%);
+  --bg-primary: linear-gradient(135deg, #eef4f3 0%, #88dbbd 100%);
   --bg-secondary: #ffffff;
   --bg-tertiary: rgba(255, 255, 255, 0.1);
   --bg-card: rgba(255, 255, 255, 0.95);

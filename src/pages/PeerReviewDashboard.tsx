@@ -50,7 +50,7 @@ const PeerReviewDashboard = () => {
   };
 
   return (
-    <div style={{ padding: "32px", paddingLeft: "230px", backgroundColor: "#f8fafc", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ padding: "32px", paddingLeft: "230px", backgroundColor: "transparent", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
       <div style={{ marginBottom: "32px" }}>
         <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#1e293b", display: "flex", alignItems: "center", gap: "10px" }}>
           <ClipboardList size={24} /> Peer Review Dashboard

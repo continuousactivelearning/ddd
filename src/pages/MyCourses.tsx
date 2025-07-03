@@ -17,7 +17,7 @@ const MyCourses = () => {
     <div style={{
       padding: "32px",
       paddingLeft: "230px",
-      backgroundColor: "#f8fafc",
+      backgroundColor: "transparent",
       minHeight: "100vh",
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
     }}>

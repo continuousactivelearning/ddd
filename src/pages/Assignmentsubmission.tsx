@@ -138,7 +138,7 @@ export default function AssignmentSubmission() {
   }
 
   return (
-    <div style={{ marginLeft: '230px', backgroundColor: '#ffffff', padding: '40px', minHeight: '100vh' }}>
+    <div style={{ marginLeft: '230px', backgroundColor: 'transparent', padding: '40px', minHeight: '100vh' }}>
       <div style={{ maxWidth: '700px', margin: '0 auto', backgroundColor: '#ffffff', padding: '30px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
         <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '10px', color: '#16a34a' }}>Submit Assignment</h1>
         <p style={{ marginBottom: '30px', color: '#4b5563' }}>Upload your completed assignment with the required details.</p>

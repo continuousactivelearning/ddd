@@ -277,7 +277,7 @@ const Calendar = () => {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(7, 1fr)',
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         borderRadius: '12px',
         overflow: 'hidden',
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
@@ -293,7 +293,7 @@ const Calendar = () => {
     <div style={{
       padding: "32px",
       paddingLeft: "230px",
-      backgroundColor: "#f8fafc",
+      backgroundColor: "transparent",
       minHeight: "100vh",
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
     }}>

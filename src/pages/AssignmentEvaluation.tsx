@@ -32,7 +32,7 @@ const AssignmentEvaluation: React.FC = () => {
   if (!currentAssignment) return <p style={{ paddingLeft: '230px' }}>No assignments to evaluate.</p>;
 
   return (
-    <div style={{ padding: '40px', paddingLeft: '230px', backgroundColor: 'white', minHeight: '100vh' }}>
+    <div style={{ padding: '40px', paddingLeft: '230px', backgroundColor: 'transparent', minHeight: '100vh' }}>
       {!submitted ? (
         <div style={{
           maxWidth: '1000px',
