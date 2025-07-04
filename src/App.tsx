@@ -15,7 +15,8 @@ import FeedbackTrends from './pages/FeedbackTrends';
 import Assignmentsubmission from "./pages/Assignmentsubmission";
 import AssignmentEvaluation from './pages/AssignmentEvaluation';
 
-import './App.css';
+
+import './App.css'; // Global styles
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
       <div className="app-container">
         <Sidebar />
         <div className="main-content">
+      
           <Routes>
             <Route path="/" element={<DashboardOverview />} />
             <Route path="/quiz" element={<Quiz />} />
