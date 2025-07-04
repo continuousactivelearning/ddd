@@ -29,6 +29,25 @@ async function updateStudentStatOnQuizAttempt({ userId, quizId, score, correctAn
   stat.accuracy = stat.totalQuestions > 0 ? (stat.correctAnswers / stat.totalQuestions) * 100 : 0;
   stat.averageTimePerQuiz = stat.totalTimeTaken / stat.totalQuizzesAttempted;
 
+  // XP calculation: 10 XP per correct answer + score as XP
+  const xpEarned = (correctAnswers * 10) + score;
+  stat.xp = (stat.xp || 0) + xpEarned;
+
+  // Badge logic
+  const newBadges = [];
+  if ((stat.totalQuizzesAttempted === 1) && !stat.badges.some(b => b.name === 'First Quiz')) {
+    newBadges.push({ name: 'First Quiz' });
+  }
+  if ((stat.totalQuizzesAttempted === 10) && !stat.badges.some(b => b.name === '10 Quizzes')) {
+    newBadges.push({ name: '10 Quizzes' });
+  }
+  if ((correctAnswers === totalQuestions) && !stat.badges.some(b => b.name === 'Perfect Score')) {
+    newBadges.push({ name: 'Perfect Score' });
+  }
+  if (newBadges.length > 0) {
+    stat.badges = [...(stat.badges || []), ...newBadges];
+  }
+
   // Add activity
   stat.activity.push({
     type: 'quiz_attempted',

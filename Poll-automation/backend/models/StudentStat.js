@@ -58,6 +58,19 @@ const studentStatSchema = new mongoose.Schema({
         default: Date.now
       }
     }
+  ],
+  xp: {
+    type: Number,
+    default: 0
+  },
+  badges: [
+    {
+      name: String,
+      earnedAt: {
+        type: Date,
+        default: Date.now
+      }
+    }
   ]
 }, {
   timestamps: true
