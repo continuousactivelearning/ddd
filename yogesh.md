@@ -43,4 +43,5 @@ Today i work on project file.
 Day 23
 Worked on setting up the backend structure for the Dopamine Driving through Dashboard project using Node.js and Express.js.
 Created essential API routes and initialized the server environment for future development.
-
+Day 24
+Today ,I remake the teacher dashboard
