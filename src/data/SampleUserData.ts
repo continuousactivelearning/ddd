@@ -3,6 +3,7 @@ export interface UserDashboardData {
   name: string;
   avatar?: string; 
   email?: string;
+  password?: string; // Added password property
   role?: string;
   performance: {
     score: number;
@@ -37,6 +38,7 @@ export const sampleUserData: UserDashboardData[] = [
     avatar: "src/assets/user-avatar.jpg",
     role: "Student",
     email: "gaurpadshukla@gmail.com",
+    password: "Gaurpad123", // Added password
     performance: { score: 80, accuracy: 90, totalQuestions: 10, quizScore: "7.5/10" },
     peerComparison: [8, 6, 7, 9, 8],
     progress: {
@@ -92,6 +94,7 @@ export const sampleUserData: UserDashboardData[] = [
     avatar: "src/assets/anshika.jpg", 
     role: "Student",
     email: "anshikashukla0410@gmail.com",
+    password: "Anshika123", // Added password
     performance: { score: 88, accuracy: 87, totalQuestions: 12, quizScore: "8.1/10" },
     peerComparison: [7, 8, 6, 8, 7],
     progress: {
@@ -146,6 +149,8 @@ export const sampleUserData: UserDashboardData[] = [
     name: "Jhalak",
     avatar: "src/assets/jhalak.jpg", 
     role: "Student",
+    email: "jhalak@gmail.com",
+    password: "yourPassword", // Added password
     performance: { score: 82, accuracy: 85, totalQuestions: 14, quizScore: "7.8/10" },
     peerComparison: [6, 6, 7, 7, 6],
     progress: {
@@ -200,6 +205,8 @@ export const sampleUserData: UserDashboardData[] = [
     name: "Yogesh",
     avatar: "../../assets/user-avatar.jpg", 
     role: "Student",
+    email: "yogeshtharwani@gmail.com",
+    password: "Yogesh123", // Added password
     performance: { score: 90, accuracy: 93, totalQuestions: 16, quizScore: "9.1/10" },
     peerComparison: [9, 9, 8, 8, 9],
     progress: {
@@ -326,7 +333,6 @@ export const getUserByCredentials = (name: string, email: string) => {
   return allUsers.find(u => u.name.toLowerCase() === name.toLowerCase() && u.email?.toLowerCase() === email.toLowerCase());
 };
 
-
 export const loadUsers = (): UserDashboardData[] => {
   const localData = localStorage.getItem("sampleUserData");
   return localData ? JSON.parse(localData) : sampleUserData;
@@ -343,5 +349,3 @@ export const addUser = (newUser: UserDashboardData) => {
   users.push(newUser);
   saveUsers(users);
 };
-
-

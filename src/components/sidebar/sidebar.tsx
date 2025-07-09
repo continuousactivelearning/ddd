@@ -10,16 +10,14 @@ import {
 } from "lucide-react";
 import userAvatarFallback from '../../assets/user-avatar.jpg';
 import { useNavigate } from "react-router-dom";
-import { getUserDataById } from "../../data/SampleUserData";
-import "../../pages/styles.css"; 
-
-const userId = "user_001"; 
-const user = getUserDataById(userId);
+import { useAuth } from "../../context/Authcontext"; // ✅ import auth context
+import "../../pages/styles.css";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const { user } = useAuth(); // ✅ get logged-in user from context
 
-  if (!user) return null;
+  if (!user) return null; // ⛔ If user is not authenticated, don’t show sidebar
 
   return (
     <aside className="sidebar" style={{ overflowY: "auto", maxHeight: "100vh" }}>

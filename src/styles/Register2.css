@@ -1,0 +1,113 @@
+/* Common container background styling */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../images/Backgroung.jpg'); /* Replace with your actual background */
+  background-size: cover;
+  background-position: center;
+}
+
+.register-box {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 380px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.register-box input {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.register-box input::placeholder {
+  color: #aaa;
+}
+
+/* Eye icon wrapper fix */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+
+.toggle-icon:hover {
+  color: #fff;
+}
+
+/* Error text and red border */
+.input-error {
+  border-bottom: 1px solid red !important;
+}
+
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin: -8px 0 10px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #000;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+
+.prev-button {
+  margin-bottom: 10px;
+}
+.success-text {
+  color: #00ffcc;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}

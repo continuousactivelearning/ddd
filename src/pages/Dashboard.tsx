@@ -20,52 +20,95 @@ import EducationalChatbot from "./DDD-chatbot";
 import PeerComparisonRadar from "../components/Charts/PeerComparisonRadar";
 import { getDashboardMetricsById } from "../data/SampleUserData";
 import { useTheme } from "../context/ThemeContext"; // 🔑 global theme hook
+import { useAuth } from "../context/Authcontext"; // ✅ Auth context
 
 import "./styles.css";
 
-const userId = "user_002";
-const userMetrics = getDashboardMetricsById(userId);
-
-const metrics = userMetrics
-  ? [
-      {
-        icon: <Clock size={24} />,
-        title: "Work Time",
-        value: userMetrics.workTime,
-        subtitle: "Weekly Total",
-        change: "+5.4%",
-      },
-      {
-        icon: <ListChecks size={24} />,
-        title: "Evaluation pending",
-        value: `${userMetrics.evaluationsPending}`,
-        subtitle: "In This Week",
-        change: "+8.2%",
-      },
-      {
-        icon: <BarChart3 size={24} />,
-        title: "Evaluation Completed",
-        value: userMetrics.evaluationsCompleted,
-        subtitle: "Average",
-        change: "+1.5%",
-      },
-      {
-        icon: <Flame size={24} />,
-        title: "Current Streak",
-        value: userMetrics.streak,
-        subtitle: "Daily Activity",
-        change: "🔥",
-      },
-    ]
-  : [];
-
 const DashboardOverview = () => {
   const { theme, toggleTheme } = useTheme(); // 👈 using global context
+  const { user } = useAuth(); // 🔑 Get current user from auth context
   const [isChatOpen, setIsChatOpen] = useState(false);
+
+  // Dynamically get user metrics based on logged-in user
+  const userMetrics = user ? getDashboardMetricsById(user.id) : null;
+
+  // Create metrics array based on user data
+  const metrics = userMetrics
+    ? [
+        {
+          icon: <Clock size={24} />,
+          title: "Work Time",
+          value: userMetrics.workTime,
+          subtitle: "Weekly Total",
+          change: "+5.4%",
+        },
+        {
+          icon: <ListChecks size={24} />,
+          title: "Evaluation pending",
+          value: `${userMetrics.evaluationsPending}`,
+          subtitle: "In This Week",
+          change: "+8.2%",
+        },
+        {
+          icon: <BarChart3 size={24} />,
+          title: "Evaluation Completed",
+          value: userMetrics.evaluationsCompleted,
+          subtitle: "Average",
+          change: "+1.5%",
+        },
+        {
+          icon: <Flame size={24} />,
+          title: "Current Streak",
+          value: userMetrics.streak,
+          subtitle: "Daily Activity",
+          change: "🔥",
+        },
+      ]
+    : [];
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
   };
+
+  // Show loading or error state if user is not available
+  if (!user) {
+    return (
+      <div className="dashboard-new">
+        <div className="dashboard-header">
+          <h1 className="dashboard-heading">
+            PES Dashboard
+            <b>
+              <div className="label">Please log in to view your dashboard</div>
+            </b>
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
+  // Show message if user metrics are not found
+  if (!userMetrics) {
+    return (
+      <div className="dashboard-new">
+        <div className="dashboard-header">
+          <h1 className="dashboard-heading">
+            PES Dashboard
+            <b>
+              <div className="label">Welcome, {user.name || user.email}!</div>
+            </b>
+          </h1>
+          <button className="theme-toggle-button" onClick={toggleTheme}>
+            {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+          </button>
+        </div>
+        <div className="dashboard-card">
+          <div className="card-content">
+            <p>No dashboard data available for this user.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-new">
@@ -73,7 +116,7 @@ const DashboardOverview = () => {
         <h1 className="dashboard-heading">
           PES Dashboard
           <b>
-            <div className="label">Welcome to your Dashboard!</div>
+            <div className="label">Welcome back, {user.name || user.email}!</div>
           </b>
         </h1>
         <button className="theme-toggle-button" onClick={toggleTheme}>
@@ -97,7 +140,7 @@ const DashboardOverview = () => {
       <div className="vertical-charts">
         <div className="dashboard-card">
           <div className="card-content">
-            <ProgressChart userId="user_001" />
+            <ProgressChart userId={user.id} />
             <div className="label">Weekly Progress</div>
             <div className="sublabel">Your learning growth</div>
           </div>
@@ -113,7 +156,7 @@ const DashboardOverview = () => {
 
         <div className="dashboard-card">
           <div className="card-content">
-            <EvaluationMeter userId="user_001" />
+            <EvaluationMeter userId={user.id} />
             <div className="label">Today's Meter</div>
             <div className="sublabel">Activity Summary</div>
           </div>
@@ -122,7 +165,7 @@ const DashboardOverview = () => {
 
       <div className="dashboard-card">
         <div className="card-content">
-          <PeerComparisonRadar userId={userId} />
+          <PeerComparisonRadar userId={user.id} />
         </div>
       </div>
 
@@ -143,13 +186,13 @@ const DashboardOverview = () => {
       <div className="streaks-badges-section">
         <div className="dashboard-card">
           <div className="card-content">
-            <Streak userId={userId} />
+            <Streak userId={user.id} />
             <h3 className="label">Your Streak</h3>
           </div>
         </div>
         <div className="dashboard-card">
           <div className="card-content-badges">
-            <Badges userId={userId} />
+            <Badges userId={user.id} />
             <h3 className="label">Achievement Badges</h3>
           </div>
         </div>
