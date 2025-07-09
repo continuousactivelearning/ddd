@@ -49,3 +49,5 @@ Day 25
 Today,I  Implemented the Feedback System for the Dopamine Driving through Dashboard project.
 Day 26
 Today, I focused on designing and implementing the MongoDB database layer for the Dopamine Driving Dashboard (DDD).
+Day 27
+Today, I worked project file.
