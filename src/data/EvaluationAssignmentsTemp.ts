@@ -12,14 +12,27 @@ export const evaluationAssignments: EvaluationAssignment[] = [
     peerName: 'Anshika Shukla',
     assignmentTitle: 'Backend integration with frontend',
     subject: 'MERN Stack Development',
-    pdfUrl: '/pdfs/sample1.pdf', // Replace with actual file URL if available
+    pdfUrl: '/pdfs/sample1.pdf', 
   },
   {
     id: '2',
     peerName: 'Gaurpad Shukla',
-    assignmentTitle: 'Chemistry Lab Analysis',
-    subject: 'Chemistry',
+    assignmentTitle: 'Cloud Essentials',
+    subject: 'Cloud Computing',
     pdfUrl: '/pdfs/sample2.pdf',
   },
-  // Add more mock assignments as needed
+  {
+    id: '3',
+    peerName: 'Yoegsh Tharwani',
+    assignmentTitle: 'Algorithm Analysis',
+    subject: 'Data Structures and Algorithms',
+    pdfUrl: '/pdfs/sample3.pdf',
+  },
+  {
+    id: '4',
+    peerName: 'Jhalak',
+    assignmentTitle: 'Nested SQL Queries',
+    subject: 'SQL and Analytics',
+    pdfUrl: '/pdfs/sample4.pdf',
+  },
 ];

@@ -2,6 +2,27 @@ import React, { useState } from 'react';
 import { evaluationAssignments } from '../data/EvaluationAssignmentsTemp';
 import type { EvaluationAssignment } from '../data/EvaluationAssignmentsTemp';
 
+
+  
+
+// Alternative: Generate simple anonymous IDs
+const generateAnonymousId = (realName: string, assignmentId: string): string => {
+  const hash = (str: string): number => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash);
+  };
+
+  const seed = hash(realName + assignmentId);
+  const id = (seed % 9999) + 1000; // Generate 4-digit ID
+  return `Anonymous-${id}`;
+};
+
+
 const AssignmentEvaluation: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState('');
@@ -10,6 +31,11 @@ const AssignmentEvaluation: React.FC = () => {
   const [error, setError] = useState('');
 
   const currentAssignment: EvaluationAssignment | undefined = evaluationAssignments[currentIndex];
+
+  // Generate anonymous identifier
+  const getAnonymousIdentifier = (realName: string, assignmentId: string): string => {
+    return generateAnonymousId(realName, assignmentId);
+  };
 
   const handleSubmit = () => {
     if (!score || isNaN(Number(score)) || Number(score) < 0 || Number(score) > 100) {
@@ -25,11 +51,13 @@ const AssignmentEvaluation: React.FC = () => {
     setFeedback('');
     setSubmitted(false);
     if (currentIndex + 1 < evaluationAssignments.length) {
-      setCurrentIndex(currentIndex + 1); // Go to next assignment
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
-  if (!currentAssignment) return <p style={{ paddingLeft: '230px' }}>No assignments to evaluate.</p>;
+  if (!currentAssignment) return <h2 style={{ paddingLeft: '230px' }}>No assignments to evaluate.</h2>;
+
+  const anonymousIdentifier = getAnonymousIdentifier(currentAssignment.peerName, currentAssignment.id || currentIndex.toString());
 
   return (
     <div style={{ padding: '40px', paddingLeft: '230px', backgroundColor: 'transparent', minHeight: '100vh' }}>
@@ -46,8 +74,22 @@ const AssignmentEvaluation: React.FC = () => {
           <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#047857', marginBottom: '8px' }}>
             Assignment Evaluation
           </h2>
+          
+          {/* Anonymous Notice */}
+          <div style={{
+            backgroundColor: '#EFF6FF',
+            border: '1px solid #DBEAFE',
+            borderRadius: '8px',
+            padding: '12px',
+            marginBottom: '20px'
+          }}>
+            <p style={{ color: '#1E40AF', fontSize: '14px', margin: 0 }}>
+              🔒 <strong>Anonymous Review:</strong> Student identity is hidden to ensure fair evaluation.
+            </p>
+          </div>
+
           <p style={{ color: '#4B5563', marginBottom: '20px' }}>
-            Evaluate the assignment submitted by <strong>{currentAssignment.peerName}</strong>.
+            Evaluate the assignment submitted by <strong style={{ color: '#047857' }}>{anonymousIdentifier}</strong>.
           </p>
 
           <div style={{ marginBottom: '16px' }}>
@@ -137,7 +179,7 @@ const AssignmentEvaluation: React.FC = () => {
             Evaluation Submitted!
           </h2>
           <p style={{ color: '#4B5563', marginBottom: '20px' }}>
-            You evaluated <strong>{currentAssignment.peerName}</strong>'s assignment.
+            You evaluated <strong>{anonymousIdentifier}</strong>'s assignment.
           </p>
           <div style={{
             textAlign: 'left',

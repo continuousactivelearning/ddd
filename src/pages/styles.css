@@ -925,7 +925,7 @@ html,
   background: var(--bg-button);
   color: var(--text-button);
   border: 1px solid var(--border-secondary);
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: 0.75rem;
@@ -934,9 +934,13 @@ html,
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: center; /* ✅ Fix */
+  justify-content: center;
   gap: 0.5rem;
+  width: fit-content; /* ✅ Makes button only as wide as content */
 }
+
+
 
 .theme-toggle-button::before {
   content: '';
@@ -1019,12 +1023,16 @@ html,
 }
 
 /* Focus states for accessibility */
-.button-group button:focus,
-.theme-toggle-button:focus,
-.leaderboard-tabs button:focus {
-  outline: 2px solid var(--text-primary);
-  outline-offset: 2px;
+button,
+.button-group button,
+.theme-toggle-button,
+.leaderboard-tabs button {
+  width: fit-content;
+  display: inline-flex; /* or inline-block works too */
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {

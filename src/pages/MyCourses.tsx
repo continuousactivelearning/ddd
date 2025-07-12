@@ -2,8 +2,8 @@ const MyCourses = () => {
   const courses = [
     { name: "Data Structures and Algorithms", progress: 75, instructor: "Dr. C Pandurangan", nextClass: "Tomorrow 10:00 AM", assignments: 3 },
     { name: "MERN Stack Development", progress: 40, instructor: "Prof. Sakshi Sharma", nextClass: "Today 2:00 PM", assignments: 2 },
-    { name: "SQL and Analytics", progress: 60, instructor: "Dr. Sudarshan Iyengar", nextClass: "Friday 11:00 AM", assignments: 1 },
-    { name: "Cloud Practitioner and Architect", progress: 25, instructor: "Prof. Sudarshan Iyengar", nextClass: "Monday 9:00 AM", assignments: 4 },
+    { name: "SQL and Analytics", progress: 60, instructor: "Prof. Sakshi Sharma", nextClass: "Friday 11:00 AM", assignments: 1 },
+    { name: "Cloud Practitioner and Architect", progress: 25, instructor: "Prof. Rohit", nextClass: "Monday 9:00 AM", assignments: 4 },
   ];
 
   const getProgressColor = (progress: number) => {

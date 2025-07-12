@@ -123,8 +123,8 @@ export const sampleUserData: UserDashboardData[] = [
       ]
     },
     streak: {
-      current: 8,
-      longest: 18,
+      current: 32,
+      longest: 32,
       bestPercent: 38,
       week: [
         { day: "M", date: "01/15", completed: false },

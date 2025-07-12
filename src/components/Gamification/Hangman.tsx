@@ -92,17 +92,23 @@ const HangmanGame: React.FC = () => {
           key={letter}
           onClick={() => guessLetter(letter)}
           disabled={isDisabled}
-          style={{
-            margin: '0.25rem',
-            padding: '0.5rem 0.75rem',
-            borderRadius: '6px',
-            fontWeight: 'bold',
-            fontSize: '0.875rem',
-            color: '#fff',
-            backgroundColor,
-            opacity: isDisabled ? 0.5 : 1,
-            transition: 'all 0.3s'
-          }}
+         style={{
+  margin: '0.25rem',
+  padding: '0.5rem 0.75rem',
+  borderRadius: '6px',
+  fontWeight: 'bold',
+  fontSize: '0.875rem',
+  color: '#fff',
+  backgroundColor,
+  opacity: isDisabled ? 0.5 : 1,
+  transition: 'all 0.3s',
+  width: '40px', // force fixed width
+  height: '40px', // force fixed height
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+}}
+
         >
           {letter}
         </button>

@@ -113,7 +113,7 @@ const MatchmakingGame: React.FC = () => {
     <div
       style={{
         minHeight: "100vh",
-        paddingLeft: "230px",
+        paddingLeft: "240px",
         padding: "2rem",
         backgroundColor: "#ffffff",
         boxSizing: "border-box",
